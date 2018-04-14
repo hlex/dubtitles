@@ -1,4 +1,4 @@
-import { App, Home, Page1, Page2 } from './containers'
+import { App, Home, Page1, Page2, Discover } from './containers'
 
 const routes = [
   {
@@ -16,6 +16,10 @@ const routes = [
       {
         path: '/page2',
         component: Page2
+      },
+      {
+        path: '/discover',
+        component: Discover
       }
     ]
   }

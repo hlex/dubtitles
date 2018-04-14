@@ -1,0 +1,73 @@
+.mediaCard{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  >img{
+    width: 100%;
+    max-height: 205px;
+    height: 100%;
+    margin-bottom: 16px;
+    object-fit: cover;
+  }
+
+  >div {
+    display: 'flex';
+    flex-direction: 'row';
+  }
+  >div .title{
+    box-sizing: border-box;
+    color: #717171;
+    font-family: 'Circular-Std-Bold-Italic';
+    font-size: 21px;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: -0.4px;
+    text-align: left;
+    overflow: hidden;
+    white-space: nowrap; 
+    text-overflow: ellipsis; 
+    width: 255px; 
+    
+    @media only screen and (max-width: 1200px) {
+      width: 230px; 
+    }
+    @media only screen and (max-width: 992px) {
+      width: 19vw; 
+    }
+    @media only screen and (max-width: 768px) {
+      width: 255px; 
+    }
+    @media only screen and (max-width: 576px) {
+      width: 255px; 
+    }
+  }
+  .subTitle{
+    font-family: 'Circular-Std';
+    font-size: 17px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: -0.4px;
+    text-align: left;
+    color: #afaeaf;
+  }
+  .timimg{
+    margin-top: 8px;
+    font-family: 'Circular-Std';
+    font-size: 18px;
+    font-weight: 500;
+    font-style: italic;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: -0.4px;
+    text-align: left;
+    color: #7f7f7f;
+  }
+  .button-holder{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+}

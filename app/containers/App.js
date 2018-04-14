@@ -20,6 +20,9 @@ class App extends Component {
               <li>
                 <NavLink activeClassName='active' to='/page2'>Page2</NavLink>
               </li>
+              <li>
+                <NavLink activeClassName='active' to='/discover'>Discover</NavLink>
+              </li>
             </ul>
           </nav>
         </header>
