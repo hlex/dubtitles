@@ -23,15 +23,10 @@ body {
 }
 
 .main-content {
-    padding-top: 500px;
-
+    padding-top: 360px;
 }
 
 .content {
     height: 100vh;
     text-align: center;
-}
-
-.page-discover {
-    @extend %default-gradient;
 }

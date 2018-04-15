@@ -2,31 +2,93 @@
 @import "web-font";
 @import "web-icon";
 
-%default-typography {
+$CircularLetterSpacing: -0.4px;
 
+%CircularStdMediumItalic {
+  letter-spacing: $CircularLetterSpacing;
+  font-family: 'CircularStdMediumItalic';
+}
+
+%CircularStdMedium {
+  letter-spacing: $CircularLetterSpacing;
+  font-family: 'CircularStdMedium';
+}
+
+%CircularStdBookItalic {
+  letter-spacing: $CircularLetterSpacing;
+  font-family: 'CircularStdBookItalic';
+}
+
+%CircularStdBoldItalic {
+  letter-spacing: $CircularLetterSpacing;
+  font-family: 'CircularStdBoldItalic';
+}
+
+%CircularStdBold {
+  letter-spacing: $CircularLetterSpacing;
+  font-family: 'CircularStdBold';
+}
+
+%CircularStdBlack {
+  letter-spacing: $CircularLetterSpacing;
+  font-family: 'CircularStdBlack';
+}
+
+%CircularStdBlackItalic {
+  letter-spacing: $CircularLetterSpacing;
+  font-family: 'CircularStdBlackItalic';
+}
+
+%SukhumvitSetBold {
+  font-family: 'SukhumvitSetBold';
+}
+
+%SukhumvitSetSemiBold {
+  font-family: 'SukhumvitSetSemiBold';
+}
+
+%SukhumvitSetMedium {
+  font-family: 'SukhumvitSetMedium';
+}
+
+%SukhumvitSetText {
+  font-family: 'SukhumvitSetText';
+}
+
+%SukhumvitSetThin {
+  font-family: 'SukhumvitSetThin';
+}
+
+%SukhumvitSetLight {
+  font-family: 'SukhumvitSetLight';
+}
+
+%default-typography {
+  margin: 0;
 }
 
 h1 {
-
+  @extend %default-typography;
 }
 
 h2 {
-
+  @extend %default-typography;
 }
 
 h3 {
-
+  @extend %default-typography;
 }
 
 h4 {
-
+  @extend %default-typography;
 }
 
 h5 {
+  @extend %default-typography;
 }
 
 p {
-
+  @extend %default-typography;
 }
 
 

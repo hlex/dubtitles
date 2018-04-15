@@ -1,12 +1,13 @@
-.discover-layout{
-  background-color: #ff7b87;
+.page-discover {
+  @extend %default-gradient;
+  padding: 50px 0;
+}
+
+.page-discover .discover-layout{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100vw;
-  height: 100vh;
-
   .panelHolder{
     width: 85.5%;
   }

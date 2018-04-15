@@ -1,9 +1,9 @@
 .main-header {
+    z-index: 10;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    // background: #333;
     background: rgba(255,82,54,1);
     background: -moz-linear-gradient(-45deg, rgba(255,82,54,1) 0%, rgba(253,171,84,1) 100%);
     background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(255,82,54,1)), color-stop(100%, rgba(253,171,84,1)));
