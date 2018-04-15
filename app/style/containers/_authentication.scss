@@ -1,0 +1,19 @@
+.authentication {
+  .hr-text {
+    margin: 15px;
+    font-size: 16px;
+    color: $gray6;
+    @extend %CircularStdBookItalic;
+  }
+  .signupNow {
+    display: inline-block;
+    cursor: pointer;
+  }
+}
+
+.authentication .title {
+    text-align: center;
+    padding: 20px;
+    font-size: 36px;
+    color: $red1;
+}

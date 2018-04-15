@@ -8,6 +8,68 @@ $orange6: #ff7447;
 
 $yellow1: #fdab54;
 
+//red
 $red1: #e8523e;
+$red2: #ff3b30;
+.red1 {
+  color: $red1;
+}
+.red2,
+.color-red {
+  color: $red2;
+}
 
 $white: #ffffff;
+
+//gray color
+$gray1: #525252;
+$gray2: #999999;
+$gray3: #e6e6e6;
+$gray4: #f0f0f0;
+$gray5: #f9f9f9;
+$gray6: #afaeaf;
+
+$white: #ffffff;
+.gray1,
+.color-gray {
+  color: $gray1;
+}
+.gray2 {
+  color: $gray2;
+}
+.gray3 {
+  color: $gray3;
+}
+.gray4 {
+  color: $gray4;
+}
+.gray5 {
+  color: $gray5;
+}
+.white {
+  color: $white;
+}
+
+//cyan
+$blue: #2d3fad;
+$blue1: #2d3ea8;
+$blue2: #374bcc;
+$blue3: #3c52dc;
+$blue4: #e6e9ff;
+$facebook: #3b5998;
+
+.color-blue {
+  color: $blue;
+}
+.blue1 {
+  color: $blue1;
+}
+.blue2 {
+  color: $blue2;
+}
+.blue3 {
+  color: $blue3;
+}
+.blue4 {
+  color: $blue4;
+}

@@ -70,30 +70,63 @@ $CircularLetterSpacing: -0.4px;
   }
 }
 
+$f-12: 12px;
+$f-14: 14px;
+
+
 h1 {
   @extend %default-typography;
+  @extend %CircularStdBold;
+  font-size: 45px;
 }
 
 h2 {
   @extend %default-typography;
+  @extend %CircularStdBold;
+  font-size: 40px;
 }
 
 h3 {
   @extend %default-typography;
+  @extend %CircularStdBlack;
+  font-size: 30px;
+  &[lang="th"] {
+    font-size: 22px;
+    @extend %SukhumvitSetSemiBold;
+  }
 }
 
 h4 {
   @extend %default-typography;
+  @extend %CircularStdBoldItalic;
+  font-size: 20px;
+  &[lang="th"] {
+    font-size: 20px;
+    @extend %SukhumvitSetSemiBold;
+  }
 }
 
 h5 {
   @extend %default-typography;
+  @extend %CircularStdMediumItalic;
+  font-size: 16px;
+  &[lang="th"] {
+    font-size: 16px;
+    @extend %SukhumvitSetSemiBold;
+  }
 }
 
 p {
   @extend %default-typography;
+  font-size: 16px;
 }
 
+small {
+  @extend %default-typography;
+  @extend %CircularStdBookItalic;
+  color: $gray6;
+  font-size: 16px;
+}
 
 
 // Discover

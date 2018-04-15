@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
+import iconFacebook from '../../images/facebook-f.svg'
+
 export default class Button extends PureComponent {
   static propTypes = {
     className: PropTypes.string,
@@ -37,6 +39,7 @@ export default class Button extends PureComponent {
         } ${classified} ${full && 'full'}`}
         onClick={onClick}
       >
+        {classified === 'facebook' && <span style={{ marginRight: '10px' }} className='icon-facebook' />}
         {name}
         {children}
       </button>

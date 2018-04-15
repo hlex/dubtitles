@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
 import { routerReducer } from 'react-router-redux'
-import todo from './todo'
+import domains from './domains'
 
 export default combineReducers({
   router: routerReducer,
-  todo
+  domains
 })

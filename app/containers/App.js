@@ -16,7 +16,7 @@ class App extends Component {
         <Helmet title='Dubtitles' />
         <Modal
           name='authentication'
-          title='Modal Title'
+          title=''
           zIndex='30'
           className='your-classname'
           overlayColor='rgba(0, 0, 0, 0.7)'

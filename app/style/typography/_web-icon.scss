@@ -1,3 +1,14 @@
+@font-face {
+  font-family: 'icomoon';
+  // font-family: 'IcoMoonFree';
+  src: url('../fonts/icomoon/IcoMoonFree.eot');
+  src: url('../fonts/icomoon/IcoMoonFree.eot') format('embedded-opentype'),
+       url('../fonts/icomoon/IcoMoonFree.woff2') format('woff2'),
+       url('../fonts/icomoon/IcoMoonFree.woff') format('woff'),
+       url('../fonts/icomoon/IcoMoonFree.ttf') format('truetype'),
+       url('../fonts/icomoon/IcoMoonFree.svg#IcoMoonFree') format('svg');
+}
+
 [class^="icon-"], [class*=" icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'icomoon' !important;
@@ -15,4 +26,58 @@
 
 .icon-icon-line:before {
   content: "\e900";
+}
+.icon-adjust:before {
+  content: "\e900";
+}
+.icon-close:before {
+  content: "\e901";
+}
+.icon-configurations:before {
+  content: "\e902";
+}
+.icon-create-project:before {
+  content: "\e903";
+}
+.icon-delete:before {
+  content: "\e904";
+}
+.icon-down:before {
+  content: "\e905";
+}
+.icon-duplicate:before {
+  content: "\e906";
+}
+.icon-edit:before {
+  content: "\e907";
+}
+.icon-error:before {
+  content: "\e908";
+}
+.icon-export:before {
+  content: "\e909";
+}
+.icon-left:before {
+  content: "\e90a";
+}
+.icon-material:before {
+  content: "\e90b";
+}
+.icon-preference:before {
+  content: "\e90c";
+}
+.icon-print:before {
+  content: "\e90d";
+}
+.icon-right:before {
+  content: "\e90e";
+}
+.icon-success:before {
+  content: "\e90f";
+}
+.icon-warning:before {
+  content: "\e910";
+}
+.icon-facebook:before {
+  content: "\ea90";
 }
