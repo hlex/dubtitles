@@ -2,7 +2,8 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
 import {
-  Navigation
+  Navigation,
+  Icon
 } from '../../components'
 
 export default class Header extends PureComponent {
@@ -10,6 +11,7 @@ export default class Header extends PureComponent {
     return (
       <header className='main-header'>
         <Navigation />
+        <Icon.AppIcon />
       </header>
     )
   }
