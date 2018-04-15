@@ -12,6 +12,9 @@
     background: -ms-linear-gradient(-45deg, rgba(255,82,54,1) 0%, rgba(253,171,84,1) 100%);
     background: linear-gradient(135deg, rgba(255,82,54,1) 0%, rgba(253,171,84,1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff5236', endColorstr='#fdab54', GradientType=1 );
+    &.no-background {
+        background: none;
+    }
 }
 
 .main-header .navigation {

@@ -10,7 +10,12 @@ import { connectModal } from '../hocs/connectModal'
 
 @connectModal
 class App extends Component {
+  isHomePage = () => {
+    const { location: { pathname } } = this.props
+    return pathname === '/' || pathname === '/home'
+  }
   render() {
+    const isHomePage = this.isHomePage()
     return (
       <React.Fragment>
         <Helmet title='Dubtitles' />
@@ -27,9 +32,11 @@ class App extends Component {
         >
           <Authentication />
         </Modal>
-        <Header />
-        <div className='main-content'>
-          <div className='content'>{renderRoutes(this.props.route.routes)}</div>
+        {
+          isHomePage === false && <Header />
+        }
+        <div className={`main-screen-content ${isHomePage && 'home'} `}>
+          <div className='screen-content'>{renderRoutes(this.props.route.routes)}</div>
         </div>
       </React.Fragment>
     )
