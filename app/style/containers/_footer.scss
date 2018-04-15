@@ -1,4 +1,5 @@
 .main-footer {
+    padding: 25px;
     display: block;
 }
 
@@ -16,15 +17,18 @@
         padding: 0;
     }
     >li>a {
+        @extend %CircularStdBookItalic;
         display: block;
         color: #fff;
         text-decoration: none;
         border-radius: 5px;
         position: relative;
+        font-size: 20px;
     }
     >li:not(:last-child)>a:after {
         padding: 0 10px;
         content: '|';
+        font-family: monospace;
     }
 }
 
@@ -34,7 +38,9 @@
     position: relative;
     text-align: center;
     p.copy-right {
+        @extend %CircularStdBookItalic;
         color: $white;
+        font-size: 20px;
     }
     .social-media {
         top: 50%;

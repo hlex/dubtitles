@@ -2,13 +2,3 @@
   @extend %default-gradient;
   padding: 50px 0;
 }
-
-.page-discover .discover-layout{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  .panelHolder{
-    width: 85.5%;
-  }
-}

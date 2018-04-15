@@ -1,0 +1,10 @@
+.mediaSliderPanel {
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .panelHolder{
+    width: 85.5%;
+  }
+}
