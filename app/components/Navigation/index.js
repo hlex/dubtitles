@@ -1,9 +1,14 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 
+import { openModal } from '../../hocs/connectModal'
+
 export default class Navigation extends Component {
   shouldComponentUpdate(nextProps, nextState, nextContext) {
     return true
+  }
+  handleLogin = () => {
+    openModal('authentication')
   }
   render() {
     return (
@@ -25,9 +30,9 @@ export default class Navigation extends Component {
             </NavLink>
           </li>
           <li>
-            <NavLink activeClassName='active' to='/page2'>
+            <a onClick={this.handleLogin}>
               log in
-            </NavLink>
+            </a>
           </li>
         </ul>
       </nav>
