@@ -1,0 +1,13 @@
+.discover-layout{
+  background-color: #ff7b87;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+
+  .panelHolder{
+    width: 85.5%;
+  }
+}

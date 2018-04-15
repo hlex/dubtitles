@@ -3,7 +3,6 @@ import { renderRoutes } from 'react-router-config'
 import Helmet from 'react-helmet'
 
 import Header from './Header'
-import Footer from './Footer'
 
 class App extends Component {
   render () {
