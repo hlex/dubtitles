@@ -15,7 +15,6 @@ class App extends Component {
           <div className='content'>
             {renderRoutes(this.props.route.routes)}
           </div>
-          <Footer />
         </div>
       </React.Fragment>
     )

@@ -1,5 +1,9 @@
 import React from 'react'
 // ======================================================
+// Containers
+// ======================================================
+import Footer from '../Footer'
+// ======================================================
 // Hoc
 // ======================================================
 import { withRedux } from '../../hocs'
@@ -18,7 +22,12 @@ const actionToProps = {}
 
 @withRedux(mapStateToProps, actionToProps)
 export default class extends React.Component {
-  render () {
-    return <h1>Discover Page</h1>
+  render() {
+    return (
+      <div className='page-discover'>
+        <h1>Discover Page</h1>
+        <Footer />
+      </div>
+    )
   }
 }
