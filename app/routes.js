@@ -1,4 +1,11 @@
-import { App, Home, Page1, Page2 } from './containers'
+import {
+  App,
+  Home,
+  Discover,
+  Lesson,
+  MyProfile,
+  PageNotFound
+} from './containers'
 
 const routes = [
   {
@@ -10,12 +17,20 @@ const routes = [
         component: Home
       },
       {
-        path: '/page1',
-        component: Page1
+        path: '/profile',
+        component: MyProfile
       },
       {
-        path: '/page2',
-        component: Page2
+        path: '/discover',
+        component: Discover
+      },
+      {
+        path: '/lessons',
+        component: Lesson
+      },
+      {
+        path: '/*',
+        component: PageNotFound
       }
     ]
   }
