@@ -1,0 +1,42 @@
+.main-footer {
+  display: block;
+  background-color: $orange1;
+}
+.main-footer nav {
+  margin-bottom: 15px;
+}
+
+.main-footer nav .navigation {
+  text-align: center;
+  > li > a {
+    padding: 0;
+  }
+  > li:not(:last-child) > a:after {
+    padding: 0 10px;
+    content: '|';
+  }
+}
+
+.main-footer .copy-right-wrapper {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  text-align: center;
+  p.copy-right {
+    color: $white;
+  }
+  .social-media {
+    top: 50%;
+    right: 0;
+    margin-top: -16px;
+    position: absolute;
+  }
+  .social-media img {
+    width: 28px;
+    height: 28px;
+    opacity: 0.8;
+  }
+  .navigation > li > a {
+    padding: 0;
+  }
+}

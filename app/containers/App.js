@@ -3,6 +3,7 @@ import { renderRoutes } from 'react-router-config'
 import Helmet from 'react-helmet'
 
 import Header from './Header'
+import Footer from './Footer'
 
 class App extends Component {
   render () {
@@ -10,7 +11,12 @@ class App extends Component {
       <React.Fragment>
         <Helmet title='React Redux boilerplate' />
         <Header />
-        {renderRoutes(this.props.route.routes)}
+        <div className='content'>
+          {renderRoutes(this.props.route.routes)}
+        </div>
+        <div>
+          <Footer />
+        </div>
       </React.Fragment>
     )
   }
