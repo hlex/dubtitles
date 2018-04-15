@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'CircularStdBlack';
+    src: url('fonts/CircularStdBlack.eot');
+    src: url('fonts/CircularStdBlack.eot') format('embedded-opentype'),
+         url('fonts/CircularStdBlack.woff2') format('woff2'),
+         url('fonts/CircularStdBlack.woff') format('woff'),
+         url('fonts/CircularStdBlack.ttf') format('truetype'),
+         url('fonts/CircularStdBlack.svg#CircularStdBlack') format('svg');
+}
