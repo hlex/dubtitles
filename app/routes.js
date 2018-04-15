@@ -4,7 +4,8 @@ import {
   Discover,
   Lesson,
   MyProfile,
-  PageNotFound
+  PageNotFound,
+  StyleGuide
 } from './containers'
 
 const routes = [
@@ -27,6 +28,10 @@ const routes = [
       {
         path: '/lessons',
         component: Lesson
+      },
+      {
+        path: '/style-guide',
+        component: StyleGuide
       },
       {
         path: '/*',

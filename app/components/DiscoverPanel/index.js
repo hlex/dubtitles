@@ -48,7 +48,7 @@ class DiscoverPanel extends React.Component {
       slidesToScroll: _.clamp(_.size(medias), 1, 4)
     }
     return (
-      <div className='dicover-panel'>
+      <div className='discover-panel'>
         <div className='panel-header'>
           <div className='label' style={{ backgroundColor: color }} dangerouslySetInnerHTML={{ __html: label }} />
           <div className='subLabel'>: {subLabel}</div>

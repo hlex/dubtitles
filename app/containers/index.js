@@ -4,6 +4,7 @@ import Discover from './Discover'
 import Lesson from './Lesson'
 import MyProfile from './MyProfile'
 import PageNotFound from './PageNotFound'
+import StyleGuide from './StyleGuide'
 
 export {
   App,
@@ -11,5 +12,6 @@ export {
   Discover,
   Lesson,
   MyProfile,
-  PageNotFound
+  PageNotFound,
+  StyleGuide
 }

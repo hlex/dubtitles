@@ -1,49 +1,47 @@
-.dicover-panel{
-  border-radius: 13px;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-
-  .panel-header{
+.discover-panel {
+    border-radius: 13px;
     display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-
-    z-index: 3;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-  }
-    .label{
-      @extend %CircularStdBold;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px 0 rgba(152, 152, 152, 0.5);
-      font-size: 30px;
-      letter-spacing: -0.4px;
-      text-align: left;
-      color: #ffffff;
-      padding: 12px 15px;
+    flex-direction: column;
+    position: relative;
+    .panel-header {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        z-index: 3;
+        position: absolute;
+        top: 0px;
+        left: 0px;
     }
-    .subLabel{
-      @extend %SukhumvitSetSemiBold;
-      font-size: 21px;
-      font-weight: 600;
-      letter-spacing: -0.4px;
-      text-align: left;
-      color: #ffffff;
-      margin-left: 14px;
+    .label {
+        @extend %CircularStdBold;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px 0 rgba(152, 152, 152, 0.5);
+        font-size: 30px;
+        letter-spacing: -0.4px;
+        text-align: left;
+        color: #ffffff;
+        padding: 12px 15px;
     }
-    .content{
-      background-color: #fff;
-      border-radius: 13px;
-      padding-left: 25px;
-      margin-left: 35px;
-      padding-top: 35px;
-      padding-bottom: 26px;
-      margin-top: 31px;
-      display: flex;
-      flex-direction: row;
-      flex-grow: 0;
-      max-height: 360px;
+    .subLabel {
+        @extend %SukhumvitSetSemiBold;
+        font-size: 21px;
+        font-weight: 600;
+        letter-spacing: -0.4px;
+        text-align: left;
+        color: #ffffff;
+        margin-left: 14px;
+    }
+    .content {
+        background-color: #fff;
+        border-radius: 13px;
+        padding-left: 25px;
+        margin-left: 35px;
+        padding-top: 35px;
+        padding-bottom: 26px;
+        margin-top: 31px;
+        display: flex;
+        flex-direction: row;
+        flex-grow: 0;
+        max-height: 360px;
     }
 }

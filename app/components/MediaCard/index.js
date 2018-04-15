@@ -1,4 +1,7 @@
 import React from 'react'
+import {
+  Button
+} from '../'
 
 export default class MeidaCard extends React.Component {
   render () {
@@ -12,7 +15,10 @@ export default class MeidaCard extends React.Component {
         <div className='subTitle'>{subTitle}</div>
         <div className='timing'>{timing}</div>
         <div className='button-holder'>
-          <button className='primary-button'>dub</button>
+          <Button
+            primary
+            name='dub'
+          />
         </div>
       </div>
     )
