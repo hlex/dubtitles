@@ -11,10 +11,19 @@ body {
     width: 100%;
 }
 
+.main-content {
+    padding-top: 500px;
+    background: rgba(253, 171, 84, 1);
+    background: -moz-linear-gradient(-45deg, rgba(253, 171, 84, 1) 0%, rgba(255, 82, 54, 1) 100%);
+    background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(253, 171, 84, 1)), color-stop(100%, rgba(255, 82, 54, 1)));
+    background: -webkit-linear-gradient(-45deg, rgba(253, 171, 84, 1) 0%, rgba(255, 82, 54, 1) 100%);
+    background: -o-linear-gradient(-45deg, rgba(253, 171, 84, 1) 0%, rgba(255, 82, 54, 1) 100%);
+    background: -ms-linear-gradient(-45deg, rgba(253, 171, 84, 1) 0%, rgba(255, 82, 54, 1) 100%);
+    background: linear-gradient(135deg, rgba(253, 171, 84, 1) 0%, rgba(255, 82, 54, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fdab54', endColorstr='#ff5236', GradientType=1);
+}
+
 .content {
-    padding-top: 250px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     height: 100vh;
+    text-align: center;
 }

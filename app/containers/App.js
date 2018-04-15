@@ -11,10 +11,10 @@ class App extends Component {
       <React.Fragment>
         <Helmet title='React Redux boilerplate' />
         <Header />
-        <div className='content'>
-          {renderRoutes(this.props.route.routes)}
-        </div>
-        <div>
+        <div className='main-content'>
+          <div className='content'>
+            {renderRoutes(this.props.route.routes)}
+          </div>
           <Footer />
         </div>
       </React.Fragment>
