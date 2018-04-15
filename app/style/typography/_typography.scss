@@ -65,6 +65,9 @@ $CircularLetterSpacing: -0.4px;
 
 %default-typography {
   margin: 0;
+  &[lang="th"] {
+    @extend %SukhumvitSetBold;
+  }
 }
 
 h1 {

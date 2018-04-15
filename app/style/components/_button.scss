@@ -7,6 +7,9 @@
   cursor: pointer;
   @extend %CircularStdMedium;
   @include transition(.1s);
+  &.full {
+    display: block;
+  }
   &:active{
     transform: translate(0, 1px); /* depth of button press */
   }

@@ -3,7 +3,6 @@ body {
     justify-content: center;
     align-items: center;
     margin: 0;
-    height: 100vh;
     font-family: 'CircularStdBold';
 }
 
@@ -23,10 +22,9 @@ body {
 }
 
 .main-content {
-    padding-top: 360px;
+    padding-top: 188px;
 }
 
 .content {
-    height: 100vh;
-    text-align: center;
+    min-height: 100vh;
 }
