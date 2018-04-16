@@ -98,6 +98,11 @@ export default class extends React.Component {
         console.error('error', error)
       })
   }
+  handleDoLoginWithFacebook = () => {
+    this.signInWithFacebook().then((response) => {
+      console.log('handleDoLoginWithFacebook', response)
+    })
+  }
   renderFooter = () => {
     const { mode } = this.state
     const { firstError } = this.props
@@ -154,7 +159,7 @@ export default class extends React.Component {
           <p className='hr-text'>or</p>
         </div>
         <div className='_center'>
-          <Button onClick={this.signInWithFacebook} classified='facebook' name='Login with Facebook' />
+          <Button onClick={this.handleDoLoginWithFacebook} classified='facebook' name='Login with Facebook' />
         </div>
       </React.Fragment>
     )
