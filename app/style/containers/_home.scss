@@ -1,6 +1,250 @@
 .page-home {
-  height: 100%;
-  .hero {
-    color: $white;
-  }
+    height: 100%;
+    .hero {
+        color: $white;
+    }
+}
+
+.page-home .home-container {
+    width: 100%;
+    max-width: 1200px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.page-home .home-inner-container {
+    width: 100%;
+    max-width: 1200px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 80px;
+    padding-right: 80px;
+}
+
+.page-home section.top {
+    position: relative;
+    min-height: 100vh;
+    background: rgba(255, 82, 54, 1);
+    background: -moz-linear-gradient( 45deg, rgba(255, 82, 54, 1) 0%, rgba(253, 171, 84, 1) 100%);
+    background: -webkit-gradient( left bottom, right top, color-stop(0%, rgba(255, 82, 54, 1)), color-stop(100%, rgba(253, 171, 84, 1)));
+    background: -webkit-linear-gradient( 45deg, rgba(255, 82, 54, 1) 0%, rgba(253, 171, 84, 1) 100%);
+    background: -o-linear-gradient( 45deg, rgba(255, 82, 54, 1) 0%, rgba(253, 171, 84, 1) 100%);
+    background: -ms-linear-gradient( 45deg, rgba(255, 82, 54, 1) 0%, rgba(253, 171, 84, 1) 100%);
+    background: linear-gradient( 45deg, rgba(255, 82, 54, 1) 0%, rgba(253, 171, 84, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff5236', endColorstr='#fdab54', GradientType=1);
+}
+
+.page-home section.bottom {
+    position: relative;
+    background: rgba(253, 171, 84, 1);
+    background: -moz-linear-gradient( left, rgba(253, 171, 84, 1) 0%, rgba(255, 82, 54, 1) 100%);
+    background: -webkit-gradient( left top, right top, color-stop(0%, rgba(253, 171, 84, 1)), color-stop(100%, rgba(255, 82, 54, 1)));
+    background: -webkit-linear-gradient( left, rgba(253, 171, 84, 1) 0%, rgba(255, 82, 54, 1) 100%);
+    background: -o-linear-gradient( left, rgba(253, 171, 84, 1) 0%, rgba(255, 82, 54, 1) 100%);
+    background: -ms-linear-gradient( left, rgba(253, 171, 84, 1) 0%, rgba(255, 82, 54, 1) 100%);
+    background: linear-gradient( to right, rgba(253, 171, 84, 1) 0%, rgba(255, 82, 54, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fdab54', endColorstr='#ff5236', GradientType=1);
+}
+
+.page-home .hero {
+    margin: 30px 0;
+    h1,
+    h2 {
+        margin-bottom: 10px;
+    }
+    h3 {
+        margin-bottom: 20px;
+    }
+}
+
+.page-home .white-cloud {
+    position: relative;
+    background-color: #fff;
+    padding: 50px;
+    border-bottom-left-radius: 100px;
+    border-bottom-right-radius: 100px;
+}
+
+.page-home .tooltip {
+    text-align: right;
+    h4 {
+        display: inline-block;
+        border: 1px solid $orange7;
+        padding: 20px 30px;
+        border-radius: 8px;
+        background-color: $orange7;
+        color: #fff;
+    }
+}
+
+.page-home .section-title {
+    margin-bottom: 20px;
+    &.steps {
+        margin: 100px 0;
+    }
+    &.steps h3 {
+        color: $white;
+    }
+    h1 {
+        color: $orange8;
+    }
+    h3 {
+        color: $pink1;
+    }
+}
+
+.page-home .aboutUs-panel {
+    padding: 30px;
+    border-radius: 17px;
+    background-color: $pink2;
+    max-width: 826px;
+    color: $orange9;
+    margin-bottom: 200px;
+    li {
+        margin-bottom: 15px;
+    }
+}
+
+.page-home .whatDoYouGetWrapper {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.page-home .whatDoYouGetWrapper .whatDoYouGet {
+    text-align: center;
+    margin-bottom: 100px;
+    img {
+        max-width: 250px;
+        width: 100%;
+        height: auto;
+    }
+    .topic {}
+    .topic h3 {
+        color: $red3;
+        margin-bottom: 15px;
+    }
+    h4 {
+        color: $red4;
+    }
+}
+
+.page-home .stepWrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 150px;
+}
+
+.page-home .stepWrapper .steps {
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    position: relative;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    h1 {
+        color: $orange9;
+    }
+    h4 {
+        color: $red4;
+    }
+}
+
+.page-home .stepWrapper .steps.discover {
+    div {
+        margin-bottom: 10px;
+    }
+    img {
+        max-width: 170px;
+        width: 100%;
+        height: auto;
+        position: absolute;
+        left: -130px;
+        bottom: 0;
+    }
+}
+
+.page-home .stepWrapper .steps.listen {
+    h1 {
+        margin: 75px 0 15px;
+    }
+    img {
+        max-width: 187px;
+        width: 100%;
+        height: auto;
+        position: absolute;
+        left: -20px;
+        top: -80px;
+    }
+}
+
+.page-home .stepWrapper .steps.speak {
+    div {
+        margin-bottom: 10px;
+    }
+    img {
+        max-width: 150px;
+        width: 100%;
+        height: auto;
+        position: absolute;
+        bottom: -50px;
+        right: -30px;
+    }
+}
+
+.page-home .stepWrapper .steps.share {
+    img {
+        max-width: 170px;
+        width: 100%;
+        height: auto;
+        position: absolute;
+        top: -50px;
+        right: -90px;
+    }
+}
+
+.page-home .ending {
+    background-color: rgba(255, 255, 255, 0.31);
+    text-align: center;
+    padding: 30px;
+    margin-bottom: 50px;
+    .invitation-wrapper {
+        margin-bottom: 20px;
+    }
+    h1,
+    h3 {
+        display: inline-block;
+    }
+    h1 {
+        color: $orange8;
+    }
+    h3 {
+        color: $white;
+        margin-right: 15px;
+    }
+}
+
+.page-home #tape1 {
+    width: 400px;
+    position: absolute;
+    bottom: 0;
+    left: -100px;
+}
+
+.page-home #tape2 {
+    position: absolute;
+    right: -60px;
+    width: 150px;
+    top: 220px;
+}
+
+.page-home #tape3 {
+    position: absolute;
+    right: -100px;
+    bottom: 750px;
+    width: 300px;
 }

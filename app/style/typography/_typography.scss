@@ -98,12 +98,13 @@ h3 {
 
 h4 {
   @extend %default-typography;
-  @extend %CircularStdBoldItalic;
+  // @extend %CircularStdBoldItalic;
   font-size: 20px;
-  &[lang="th"] {
-    font-size: 20px;
-    @extend %SukhumvitSetSemiBold;
-  }
+  // &[lang="th"] {
+  //   font-size: 20px;
+  //   // @extend %SukhumvitSetSemiBold;
+  // }
+  font-family: 'CircularStdBoldItalic', 'SukhumvitSetSemiBold'
 }
 
 h5 {
