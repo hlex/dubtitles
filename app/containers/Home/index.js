@@ -112,7 +112,7 @@ export default class extends React.Component {
             </div>
             <div className='home-container'>
               <div className='section-title _right'>
-                <h3>What do ypu get from</h3>
+                <h3>What do you get from</h3>
                 <h1>dubtitles ?</h1>
               </div>
             </div>

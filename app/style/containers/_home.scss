@@ -50,6 +50,8 @@
 
 .page-home .hero {
     margin: 30px 0;
+    z-index: 2;
+    position: relative;
     h1,
     h2 {
         margin-bottom: 10px;
@@ -102,6 +104,8 @@
     max-width: 826px;
     color: $orange9;
     margin-bottom: 200px;
+    z-index: 2;
+    position: relative;
     li {
         margin-bottom: 15px;
     }
