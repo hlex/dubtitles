@@ -28,6 +28,24 @@ export default class Header extends Component {
   static defaultProps = {
     noBackground: false
   }
+  getPageTitle = () => {
+    const { location: { pathname } } = this.props
+    switch (pathname) {
+      case '/':
+      case '/home':
+        return ''
+      case '/lessons':
+        return
+      case '/profile':
+        return 'my profile'
+      case '/discover':
+        return 'discover'
+      case '/about':
+        return 'about'
+      default:
+        return ''
+    }
+  }
   isHome = () => {
     const { location: { pathname } } = this.props
     return pathname === '/' || pathname === '/home'
@@ -46,7 +64,7 @@ export default class Header extends Component {
           !this.isHome() &&
           <div className='page-title-container'>
             <div className='container'>
-              <PageTitle title='Discover' />
+              <PageTitle title={this.getPageTitle()} />
             </div>
           </div>
         }
