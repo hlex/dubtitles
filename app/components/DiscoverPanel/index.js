@@ -67,7 +67,7 @@ class DiscoverPanel extends React.Component {
           >
             { _.map(medias, (item, index) => (
               <div key={index} style={{ margin: '0px 7px' }}>
-                <MediaCard />
+                <MediaCard {...item} />
               </div>
             ))}
           </SlickSlider>
