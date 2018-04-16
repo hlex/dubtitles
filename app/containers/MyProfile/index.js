@@ -19,7 +19,9 @@ import { withRedux } from '../../hocs'
 // ======================================================
 
 const mapStateToProps = state => {
-  return {}
+  return {
+    user: state.user
+  }
 }
 
 const actionToProps = {}
@@ -28,7 +30,7 @@ const actionToProps = {}
 export default class extends React.Component {
   static defaultProps = {
     user: {
-      name: 'Irene Indravudh',
+      displayName: 'Irene Indravudh',
       profileImage: 'http://cdn02.cdn.justjaredjr.com/wp-content/uploads/headlines/2017/07/hp-jk-rowling-birthday-tweets.jpg'
     },
     favorites: {
@@ -139,7 +141,7 @@ export default class extends React.Component {
           <div className='profile-panel'>
             <div className='title'>
               <span className='greeting'>Hello</span>,{' '}
-              <span className='name'>{user.name || ''}</span>
+              <span className='name'>{user.displayName || ''}</span>
             </div>
             <div className='panel'>
               <div className='profile-image-cropper'>

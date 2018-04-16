@@ -12,7 +12,7 @@ const customStyles = {
   },
   title: {
     textAlign: 'center',
-    padding: '20px',
+    padding: '10px',
     fontSize: '36px',
     color: '#e8523e'
   },

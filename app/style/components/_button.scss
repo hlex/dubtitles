@@ -7,6 +7,10 @@
   cursor: pointer;
   @extend %CircularStdMedium;
   @include transition(.1s);
+  &:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
   &.full {
     display: block;
   }
