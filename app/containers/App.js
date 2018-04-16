@@ -8,7 +8,7 @@ import Authentication from './Authentication'
 // ======================================================
 // Action
 // ======================================================
-import { setUser } from '../actions'
+import { userLogin } from '../actions'
 // ======================================================
 // Hoc
 // ======================================================
@@ -25,7 +25,7 @@ const mapStateToProps = state => {
 }
 
 const actionToProps = {
-  onUserStillLoggedIn: setUser
+  onUserStillLoggedIn: userLogin
 }
 @connectModal
 @withRedux(mapStateToProps, actionToProps)

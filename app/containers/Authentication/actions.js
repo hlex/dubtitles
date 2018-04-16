@@ -1,6 +1,6 @@
 import {
   goToPage,
-  setUser
+  userLogin
 } from '../../actions'
 import {
   closeModal
@@ -9,7 +9,7 @@ import {
 export const handleUserSignUpWithEmail = (user) => {
   return (dispatch) => {
     closeModal('authentication')
-    dispatch(setUser(user))
+    dispatch(userLogin(user))
     dispatch(goToPage('profile'))
   }
 }

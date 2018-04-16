@@ -5,14 +5,13 @@ import { InputField, Button } from '../../components'
 import { withRedux } from '../../hocs'
 import createForm from './createForm'
 import firebase from '../../firebase'
+import { closeModal } from '../../hocs/connectModal'
 
 // ======================================================
 // Action
 // ======================================================
 import { FORM_CHANGE } from '../../actions/actionTypes'
-import {
-  handleUserSignUpWithEmail
-} from './actions'
+import { handleUserSignUpWithEmail } from './actions'
 
 const mapStateToProps = state => {
   return {
@@ -51,14 +50,13 @@ export default class extends React.Component {
       .then(user => {
         console.debug(user)
         onUserSignUpWithEmail(user)
-      })``
-      .catch(error => {
-        // Handle Errors here.
-        var errorCode = error.code
-        var errorMessage = error.message
-        // ...
-        console.error(error, errorCode, errorMessage)
-      })
+      })``.catch(error => {
+      // Handle Errors here.
+      var errorCode = error.code
+      var errorMessage = error.message
+      // ...
+      console.error(error, errorCode, errorMessage)
+    })
   }
   signInWithEmailAndPassword = (email, password) =>
     firebase.auth().signInWithEmailAndPassword(email, password)
@@ -87,6 +85,19 @@ export default class extends React.Component {
       mode
     })
   }
+  handleDoLogin = () => {
+    const { formData } = this.props
+    const email = formData.email.value
+    const password = formData.password.value
+    this.signInWithEmailAndPassword(email, password)
+      .then(response => {
+        console.log('response', response)
+        closeModal('authentication')
+      })
+      .catch(error => {
+        console.error('error', error)
+      })
+  }
   renderFooter = () => {
     const { mode } = this.state
     const { firstError } = this.props
@@ -95,7 +106,7 @@ export default class extends React.Component {
         <React.Fragment>
           <div className='_center'>
             <Button
-              onClick={this.handleClickLogin}
+              onClick={this.handleDoLogin}
               classified='secondary'
               name='Log in'
             />

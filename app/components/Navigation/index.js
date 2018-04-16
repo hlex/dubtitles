@@ -10,7 +10,11 @@ export default class Navigation extends Component {
   handleLogin = () => {
     openModal('authentication')
   }
+  handleLogout = () => {
+    this.props.onLogout()
+  }
   render() {
+    const { isLoggedIn } = this.props
     return (
       <nav>
         <ul className='navigation'>
@@ -25,15 +29,25 @@ export default class Navigation extends Component {
             </NavLink>
           </li>
           <li>
-            <NavLink activeClassName='active' to='/profile'>
-              my profile
-            </NavLink>
+            {
+              isLoggedIn ? (
+                <NavLink activeClassName='active' to='/profile'>
+                  my profile
+                </NavLink>
+              ) : (
+                <a onClick={this.handleLogin}>my profile</a>
+              )
+            }
           </li>
-          <li>
-            <a onClick={this.handleLogin}>
-              log in
-            </a>
-          </li>
+          {isLoggedIn ? (
+            <li>
+              <a onClick={this.handleLogout}>log out</a>
+            </li>
+          ) : (
+            <li>
+              <a onClick={this.handleLogin}>log in</a>
+            </li>
+          )}
         </ul>
       </nav>
     )

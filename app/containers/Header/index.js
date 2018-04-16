@@ -1,10 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router'
-import {
-  Navigation,
-  AppLogo,
-  PageTitle
-} from '../../components'
+import { Navigation, AppLogo, PageTitle } from '../../components'
 
 // ======================================================
 // Hoc
@@ -13,15 +9,22 @@ import { withRedux } from '../../hocs'
 // ======================================================
 // Action
 // ======================================================
+import { handleUserLogout } from '../../actions'
 // ======================================================
 // Asset
 // ======================================================
 
+import firebase from '../../firebase'
+
 const mapStateToProps = state => {
-  return {}
+  return {
+    user: state.user
+  }
 }
 
-const actionToProps = {}
+const actionToProps = {
+  onUserLogout: handleUserLogout
+}
 @withRouter
 @withRedux(mapStateToProps, actionToProps)
 export default class Header extends Component {
@@ -29,7 +32,9 @@ export default class Header extends Component {
     noBackground: false
   }
   getPageTitle = () => {
-    const { location: { pathname } } = this.props
+    const {
+      location: { pathname }
+    } = this.props
     switch (pathname) {
       case '/':
       case '/home':
@@ -47,27 +52,45 @@ export default class Header extends Component {
     }
   }
   isHome = () => {
-    const { location: { pathname } } = this.props
+    const {
+      location: { pathname }
+    } = this.props
     return pathname === '/' || pathname === '/home'
   }
+  handleLogout = () => {
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        // Sign-out successful.
+        this.props.onUserLogout()
+        alert('Logout successfully.')
+      })
+      .catch(error => {
+        // An error happened.
+        console.error(error)
+      })
+  }
   render = () => {
-    const { noBackground } = this.props
+    const { user, noBackground } = this.props
     return (
       <header className={`main-header ${noBackground && 'no-background'}`}>
         <div className='container'>
-          <Navigation />
+          <Navigation
+            isLoggedIn={user.isLoggedIn}
+            onLogout={this.handleLogout}
+          />
           <div className='app-logo-wrapper'>
             <AppLogo />
           </div>
         </div>
-        {
-          !this.isHome() &&
+        {!this.isHome() && (
           <div className='page-title-container'>
             <div className='container'>
               <PageTitle title={this.getPageTitle()} />
             </div>
           </div>
-        }
+        )}
       </header>
     )
   }
