@@ -32,24 +32,27 @@ const actionToProps = {
 class App extends Component {
   componentWillMount = () => {
     const { onUserStillLoggedIn } = this.props
-    firebase.auth().onAuthStateChanged(async user => {
-      console.log('onAuthStateChanged', user)
-      if (user) {
-        onUserStillLoggedIn(user)
-      //   // Write User (without Info) to localStorage first, so user is marked as 'loggedIn'
-      //   window.localStorage.setItem(storageKey, JSON.stringify(user.toJSON()));
+    firebase
+      .auth()
+      .onAuthStateChanged()
+      .then(user => {
+        console.log('onAuthStateChanged', user)
+        if (user) {
+          onUserStillLoggedIn(user)
+          //   // Write User (without Info) to localStorage first, so user is marked as 'loggedIn'
+          //   window.localStorage.setItem(storageKey, JSON.stringify(user.toJSON()));
 
-      //   const userWithInfo = await firebase.firestore()
-      //     .collection('iam_users').doc(user.uid).get()
-      //     .then(doc => ({ ...user.toJSON(), ...doc.data() }));
+          //   const userWithInfo = await firebase.firestore()
+          //     .collection('iam_users').doc(user.uid).get()
+          //     .then(doc => ({ ...user.toJSON(), ...doc.data() }));
 
-      //   // When userInfo return, rewrite to add `userInfo` to user object
-      //   window.localStorage.setItem(storageKey, JSON.stringify(userWithInfo));
-      // } else {
-      //   typeof unregister === 'function' && unregister();
-      //   window.localStorage.removeItem(storageKey);
-      }
-    })
+          //   // When userInfo return, rewrite to add `userInfo` to user object
+          //   window.localStorage.setItem(storageKey, JSON.stringify(userWithInfo));
+          // } else {
+          //   typeof unregister === 'function' && unregister();
+          //   window.localStorage.removeItem(storageKey);
+        }
+      })
   }
   isHomePage = () => {
     const {
