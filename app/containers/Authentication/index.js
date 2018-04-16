@@ -154,7 +154,7 @@ export default class extends React.Component {
           <p className='hr-text'>or</p>
         </div>
         <div className='_center'>
-          <Button classified='facebook' name='Login with Facebook' />
+          <Button onClick={this.signInWithFacebook} classified='facebook' name='Login with Facebook' />
         </div>
       </React.Fragment>
     )
