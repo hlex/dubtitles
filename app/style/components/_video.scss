@@ -1,67 +1,56 @@
-// .video-container {
-  // width: 100%;
 
-  .video-react .video-react-video {
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-  }
-  .video-react {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    >video{
-      object-fit: fill;
-      width: 100%;
-      height: 100%;
-      min-height: 205px;
-      
-    }
-    button{
-      outline: none;
-      padding: 5px;
-      -webkit-tap-highlight-color: transparent;
-      &:active{
-        transform: translate(0, 1px); /* depth of button press */
-      }
-    }
-    .video-big-play-button {
-      font-size: 3em;
-      background-color: transparent;
-      border: none;
-      position: absolute;
-      bottom: 10px;
-      right: 0px;
-      cursor: pointer;
-      color: rgba(255, 255, 255, 0.5);
-      padding: 0px;
+@import "~video-react/styles/scss/video-react"; 
 
-    &::before{
-      color: rgba(255, 255, 255, 0.5);
-    }
+.video-react-control-bar {
+  display: none !important;
+  background-color: transparent
+}
 
-    &.favIcon {
-      bottom: unset;
-      font-size: 2em;
-      top: 10px;
-      right: 10px;
-      bottom: unset;
-      z-index: 4;
-      display: flex;
-      border: none;
-      align-items: center;
-      justify-content: center;
-     
-      &::before{
-        color: transparent;
-      }
-    }
-    &.video-react-big-play-button-right-bottom {
-      bottom: 0px;
-      right: 0px;
-      margin-right: 10px;
-      margin-bottom: 10px;
-    }
+button {
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+  &:active{
+    transform: translate(0, 1px); /* depth of button press */
   }
+}
+
+.favIcon {
+  font-size: 3.5em !important;
+  position: absolute;
+  bottom: unset;
+  top: 10px;
+  right: 20px;
+  bottom: unset;
+  z-index: 4;
+  display: flex;
+  border: none;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5em;
+  background-color: transparent;
+}
+
+.video-react .video-react-big-play-button {
+  font-size: 2.5em;
+  line-height: 1.5em;
+  height: 2em;
+  width: 2em;
+  display: block;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  top: unset;
+  left: unset;
+  padding: 0;
+  cursor: pointer;
+  opacity: 1;
+  border: 3px solid rgba(255, 255, 255, 0.5);
+  background-color: transparent;
+  border-radius: 50%;
+  transition: all 0.4s;
+
+  &::before{
+    color: rgba(255, 255, 255, 0.5);
+    top: 3px;
   }
-// }
+}
