@@ -42,10 +42,11 @@ const settings = {
 class DiscoverPanel extends React.Component {
   render () {
     const { label, subLabel, color, medias } = this.props.data
+    const { id } = this.props
     const settingslider = {
       ...settings,
-      slidesToShow: _.clamp(_.size(medias), 1, 4),
-      slidesToScroll: _.clamp(_.size(medias), 1, 4)
+      slidesToShow: _.clamp(_.size(medias), 1, 3),
+      slidesToScroll: _.clamp(_.size(medias), 1, 3)
     }
     return (
       <div className='discover-panel'>
@@ -61,13 +62,20 @@ class DiscoverPanel extends React.Component {
             nextArrowWrapperStyle={{
               position: 'absolute',
               top: 0,
-              right: 0,
+              right: '-8.3vw',
               zIndex: 1
             }}
           >
             { _.map(medias, (item, index) => (
               <div key={index} style={{ margin: '0px 7px' }}>
-                <MediaCard />
+                <MediaCard
+                  videoID={`${id}-${index}`}
+                  title={item.title}
+                  subTitle={item.subTitle}
+                  timing={item.timing}
+                  img={item.img}
+                  src={item.src}
+                />
               </div>
             ))}
           </SlickSlider>
@@ -80,51 +88,59 @@ class DiscoverPanel extends React.Component {
 export default DiscoverPanel
 
 DiscoverPanel.defaultProps = {
-  label: 'HITS<br/>QUOTES',
-  subLabel: 'คำคมฮิตติดปาก',
-  color: '#ff8747',
-  medias: [
-    {
-      title: 'Because waiting for you because waiting for you because waiting for you',
-      subTitle: 'Notting Hills',
-      timing: '0.14 sec',
-      img: 'https://picsum.photos/246/369/?random'
-    },
-    {
-      title: 'You’re waiting for a train',
-      subTitle: 'The Dark Knight',
-      timing: '0.14 sec',
-      img: 'https://picsum.photos/246/369/?random'
-    },
-    {
-      title: 'You’re waiting for a train',
-      subTitle: 'The Dark Knight',
-      timing: '0.14 sec',
-      img: 'https://picsum.photos/246/369/?random'
-    },
-    {
-      title: 'You’re waiting for a train',
-      subTitle: 'The Dark Knight',
-      timing: '0.14 sec',
-      img: 'https://picsum.photos/246/369/?random'
-    },
-    {
-      title: 'You’re waiting for a train',
-      subTitle: 'The Dark Knight',
-      timing: '0.14 sec',
-      img: 'https://picsum.photos/246/369/?random'
-    },
-    {
-      title: 'You’re waiting for a train',
-      subTitle: 'The Dark Knight',
-      timing: '0.14 sec',
-      img: 'https://picsum.photos/246/369/?random'
-    },
-    {
-      title: 'You’re waiting for a train',
-      subTitle: 'The Dark Knight',
-      timing: '0.14 sec',
-      img: 'https://picsum.photos/246/369/?random'
-    }
-  ]
+  data: { label: 'HITS<br/>QUOTES',
+    subLabel: 'คำคมฮิตติดปาก',
+    color: '#ff8747',
+    medias: [
+      {
+        title: 'Because waiting for you because waiting for you because waiting for you',
+        subTitle: 'Notting Hills',
+        timing: '0.14 sec',
+        img: 'https://picsum.photos/308/205/?random',
+        src: 'http://media.w3.org/2010/05/bunny/trailer.mp4'
+      },
+      {
+        title: 'You’re waiting for a train',
+        subTitle: 'The Dark Knight',
+        timing: '0.14 sec',
+        img: 'https://picsum.photos/308/205/?random',
+        src: 'https://media.w3.org/2010/05/sintel/trailer_hd.mp4'
+      },
+      {
+        title: 'You’re waiting for a train',
+        subTitle: 'Notting Hills',
+        timing: '0.14 sec',
+        img: 'https://picsum.photos/308/205/?random',
+        src: 'http://media.w3.org/2010/05/bunny/trailer.mp4'
+      },
+      {
+        title: 'You’re waiting for a train',
+        subTitle: 'The Dark Knight',
+        timing: '0.14 sec',
+        img: 'https://picsum.photos/308/205/?random',
+        src: 'https://media.w3.org/2010/05/sintel/trailer_hd.mp4'
+      },
+      {
+        title: 'You’re waiting for a train',
+        subTitle: 'Notting Hills',
+        timing: '0.14 sec',
+        img: 'https://picsum.photos/308/205/?random',
+        src: 'http://media.w3.org/2010/05/bunny/trailer.mp4'
+      },
+      {
+        title: 'You’re waiting for a train',
+        subTitle: 'The Dark Knight',
+        timing: '0.14 sec',
+        img: 'https://picsum.photos/308/205/?random',
+        src: 'https://media.w3.org/2010/05/sintel/trailer_hd.mp4'
+      },
+      {
+        title: 'You’re waiting for a train',
+        subTitle: 'Notting Hills',
+        timing: '0.14 sec',
+        img: 'https://picsum.photos/308/205/?random',
+        src: 'http://media.w3.org/2010/05/bunny/trailer.mp4'
+      }
+    ]
+  }
 }
