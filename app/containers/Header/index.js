@@ -35,6 +35,7 @@ export default class Header extends Component {
     const {
       location: { pathname }
     } = this.props
+    if (/lessons/ig.test(pathname)) return 'lessons'
     switch (pathname) {
       case '/':
       case '/home':

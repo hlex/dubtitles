@@ -1,35 +1,4 @@
 .lessonCard {
-  padding: 20px;
-  border: 1px solid $white;
-  border-radius: 8px;
-  background-color: $white;
-  position: relative;
   min-height: 550px;
   color: $red1;
-  img {
-    max-width: 100%;
-    height: auto;
-  }
-  .title {
-    margin: 20px 0;
-  }
-  .title > .name {
-
-  }
-  .title > .recommendTag {
-
-  }
-  .subtitle {
-
-  }
-  .description {
-
-  }
-  .etc {
-    position: absolute;
-    bottom: 25px;
-  }
-  .etc .dot {
-    margin: 0 10px;
-  }
 }

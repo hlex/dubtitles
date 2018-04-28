@@ -1,0 +1,11 @@
+.dubtitleCard {
+  padding: 20px;
+  border: 1px solid $white;
+  border-radius: 8px;
+  background-color: $white;
+  position: relative;
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}

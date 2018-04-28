@@ -1,0 +1,75 @@
+.page-lessons-detail {
+    @extend %default-gradient;
+    padding: 50px 0;
+    min-height: 100vh;
+}
+
+.lessonDetailCard {
+    color: $red1;
+    padding: 40px;
+    margin: 0 50px;
+    >.header {
+        min-height: 250px;
+    }
+    hr {
+        height: 3px;
+        border: solid 5px $red1;
+        margin: 50px 0;
+    }
+}
+
+.lessonDetailCard .lessonDetail {
+    .detail {
+        width: 400px;
+    }
+}
+
+$text-in-circle-size: 48px;
+.lessonDetailCard .text-in-circle {
+    display: inline-block;
+    vertical-align: middle;
+    width: $text-in-circle-size;
+    height: $text-in-circle-size;
+    border-radius: 100%;
+    font-size: ($text-in-circle-size / 2);
+    color: $white;
+    line-height: $text-in-circle-size;
+    text-align: center;
+    background: $yellowOrange;
+    margin-right: 50px;
+}
+
+.lessonDetailCard .subLessonItem {
+  margin-bottom: 30px;
+    .header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+}
+
+.lessonDetailCard .subLessonItem .unitList {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.lessonDetailCard .subLessonItem .unitItem {
+  text-align: center;
+  margin: 0 15px;
+  background-color: $yellowOrange;
+  border-radius: 8px;
+  color: $white;
+  display: flex;
+  flex-direction: column;
+  &.locked {
+    background-color: $silverChalice;
+  }
+  img {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+  .unitLevel {
+    padding: 10px;
+  }
+}

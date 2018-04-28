@@ -3,6 +3,7 @@ import {
   Home,
   Discover,
   Lesson,
+  LessonDetail,
   MyProfile,
   PageNotFound,
   StyleGuide
@@ -19,18 +20,27 @@ const routes = [
       },
       {
         path: '/profile',
+        exact: true,
         component: MyProfile
       },
       {
         path: '/discover',
+        exact: true,
         component: Discover
       },
       {
         path: '/lessons',
+        exact: true,
         component: Lesson
       },
       {
+        path: '/lessons/:slug',
+        exact: true,
+        component: LessonDetail
+      },
+      {
         path: '/style-guide',
+        exact: true,
         component: StyleGuide
       },
       {

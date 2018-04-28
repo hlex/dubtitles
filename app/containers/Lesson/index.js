@@ -18,6 +18,9 @@ import { withRedux } from '../../hocs'
 // ======================================================
 // Action
 // ======================================================
+import {
+  goToPage
+} from '../../actions'
 // ======================================================
 // Asset
 // ======================================================
@@ -62,14 +65,18 @@ const mapStateToProps = state => {
   return {}
 }
 
-const actionToProps = {}
+const actionToProps = {
+  onSelectLesson: goToPage
+}
 
 @withRedux(mapStateToProps, actionToProps)
 export default class extends React.Component {
   static defaultProps = {
     lessons: [
       {
+        isRecommended: true,
         thumbnail: 'http://via.placeholder.com/380x240',
+        slug: 'english-for-muggles-1',
         name: 'ENGLISH FOR MUGGLES 1',
         subtitle: 'British Accent Training',
         description: 'You will learn grammar and also British accent with the top hit scenes from Harry Potter season 1-7',
@@ -77,7 +84,9 @@ export default class extends React.Component {
         subLesson: 7
       },
       {
+        isRecommended: false,
         thumbnail: 'http://via.placeholder.com/380x240',
+        slug: 'english-for-muggles-2',
         name: 'ENGLISH FOR MUGGLES 2',
         subtitle: 'British Accent Training',
         description: 'You will learn grammar and also British accent with the top hit scenes from Harry Potter season 1-7',
@@ -85,7 +94,9 @@ export default class extends React.Component {
         subLesson: 7
       },
       {
+        isRecommended: false,
         thumbnail: 'http://via.placeholder.com/380x240',
+        slug: 'english-for-muggles-3',
         name: 'ENGLISH FOR MUGGLES 3',
         subtitle: 'British Accent Training',
         description: 'You will learn grammar and also British accent with the top hit scenes from Harry Potter season 1-7',
@@ -93,7 +104,9 @@ export default class extends React.Component {
         subLesson: 7
       },
       {
+        isRecommended: false,
         thumbnail: 'http://via.placeholder.com/380x240',
+        slug: 'english-for-muggles-4',
         name: 'ENGLISH FOR MUGGLES 4',
         subtitle: 'British Accent Training',
         description: 'You will learn grammar and also British accent with the top hit scenes from Harry Potter season 1-7',
@@ -101,7 +114,9 @@ export default class extends React.Component {
         subLesson: 7
       },
       {
+        isRecommended: false,
         thumbnail: 'http://via.placeholder.com/380x240',
+        slug: 'english-for-muggles-5',
         name: 'ENGLISH FOR MUGGLES 5',
         subtitle: 'British Accent Training',
         description: 'You will learn grammar and also British accent with the top hit scenes from Harry Potter season 1-7',
@@ -109,6 +124,9 @@ export default class extends React.Component {
         subLesson: 7
       }
     ]
+  }
+  handleSelectLesson = (lessonSlug) => {
+    this.props.onSelectLesson(`lessons/${lessonSlug}`)
   }
   render () {
     const {
@@ -130,7 +148,7 @@ export default class extends React.Component {
             {
               _.map(lessons, (lesson, index) => (
                 <div className='lesson-item' key={index}>
-                  <LessonCard {...lesson} />
+                  <LessonCard onClick={() => this.handleSelectLesson(lesson.slug)} {...lesson} />
                 </div>
               ))
             }

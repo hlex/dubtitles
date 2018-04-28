@@ -1,0 +1,55 @@
+.lessonDetail {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+}
+
+.lessonDetail > .detail {
+  img.star {
+    width: 50px;
+  }
+  .recommendedLabel {
+    position: relative;
+  }
+  .recommendedLabel img.star {
+    position: absolute;
+    left: 0;
+    top: -8px;
+  }
+  .recommendedLabel .text {
+    padding: 2px 16px;
+    color: $white;
+    background-color: $orange1;
+    border-radius: 8px;
+    margin-left: 40px;
+    display: inline-block;
+  }
+  .title {
+    position: relative;
+    margin: 20px 0;
+  }
+  .title img.start {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  .title > .name {
+
+  }
+  .title > .recommendTag {
+
+  }
+  .subtitle {
+
+  }
+  .description {
+
+  }
+  .etc {
+    margin-top: 50px;
+  }
+  .etc .dot {
+    margin: 0 10px;
+  }
+}
