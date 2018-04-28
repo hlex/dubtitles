@@ -31,7 +31,7 @@ const actionToProps = {}
 export default class extends React.Component {
   render() {
     return (
-      <div className='page-discover'>
+      <div className='dubtitlePage page-discover'>
         <MediaSliderPanel />
         <MediaSliderPanel />
         <MediaSliderPanel />

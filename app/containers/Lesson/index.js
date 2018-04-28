@@ -138,7 +138,7 @@ export default class extends React.Component {
       slidesToScroll: 1
     }
     return (
-      <div className='page-lessons'>
+      <div className='dubtitlePage page-lessons'>
         <div className='slick-wrapper'>
           <SlickSlider
             infinite={false}

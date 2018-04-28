@@ -1,15 +1,20 @@
 import React from 'react'
-import {
-  Button
-} from '../'
+import MdFav from 'react-icons/lib/md/favorite'
 import Video from '../Video'
 
-// <img src={img} />
-
 export default class MeidaCard extends React.Component {
+  state = {
+    isFav: false
+  }
+  handelFav = () => {
+    const { isFav } = this.state
+    this.setState({
+      isFav: !isFav
+    })
+  }
   render () {
+    const { isFav } = this.state
     const { title, subTitle, timing, img, videoID, src } = this.props
-    console.log('src', src)
     return (
       <div className='mediaCard'>
         <div className='video-holder'>
@@ -20,16 +25,22 @@ export default class MeidaCard extends React.Component {
         </div>
         <div className='subTitle'>{subTitle}</div>
         <div className='timing'>{timing}</div>
-        <div className='button-holder'>
-          <Button
-            primary
-            name='dub'
-          />
-        </div>
+        <button className='favIcon' onClick={() => this.handelFav()} >
+          <MdFav className='icon' color={isFav ? '#fc481e' : '#fff'} />
+        </button>
       </div>
     )
   }
 }
+
+/*
+  <div className='button-holder'>
+    <Button
+      primary
+      name='dub'
+    />
+  </div>
+*/
 
 MeidaCard.defaultProps = {
   title: 'Because waiting for you because waiting for you because waiting for you',

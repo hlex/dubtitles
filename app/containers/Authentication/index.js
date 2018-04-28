@@ -101,6 +101,7 @@ export default class extends React.Component {
   handleDoLoginWithFacebook = () => {
     this.signInWithFacebook().then((response) => {
       console.log('handleDoLoginWithFacebook', response)
+      closeModal('authentication')
     })
   }
   renderFooter = () => {

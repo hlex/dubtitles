@@ -279,7 +279,7 @@ export default class extends React.Component {
       subLessons
     } = lesson
     return (
-      <div className='page-lessons-detail'>
+      <div className='dubtitlePage page-lessons-detail'>
         <div className='container'>
           <Card className='lessonDetailCard'>
             <div className='header'>

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Player, ControlBar } from 'video-react'
-import MdFav from 'react-icons/lib/md/favorite'
+import $ from 'jquery'
 
 export default class Video extends React.Component {
   constructor(props) {
@@ -11,28 +11,24 @@ export default class Video extends React.Component {
   }
 
   componentDidMount() {
+    $('.video-react').hover(hoverVideo, hideVideo)
+    function hoverVideo(e) {
+      $('video', this)
+        .get(0)
+        .play()
+    }
+    function hideVideo(e) {
+      $('video', this)
+        .get(0)
+        .pause()
+    }
   }
 
-  handelFav = () => {
-    const { isFav } = this.state
-    this.setState({
-      isFav: !isFav
-    })
-  }
-
-  render () {
+  render() {
     const { source, img } = this.props
-    const { isFav } = this.state
-    // console.log('currVideo>', currVideo.ended)
     return (
-      <Player
-        poster={img}
-        preload='metadata'
-      >
+      <Player poster={img} preload='metadata'>
         <source src={source} />
-        <button className='favIcon' onClick={() => this.handelFav()} >
-          <MdFav color={isFav ? '#b5322b' : 'rgba(255, 255, 255, 0.5)'} />
-        </button>
         <ControlBar autoHide disableDefaultControls />
       </Player>
     )
@@ -40,6 +36,6 @@ export default class Video extends React.Component {
 }
 
 Video.defaultProps = {
-  source: 'https://media.w3.org/2010/05/sintel/trailer_hd.mp4',
+  source: 'https://giant.gfycat.com/VerifiableTerrificHind.mp4',
   img: 'https://picsum.photos/308/205/?movie'
 }

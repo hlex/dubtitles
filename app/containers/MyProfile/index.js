@@ -42,43 +42,13 @@ export default class extends React.Component {
           title: '“I’m also just a girl…”',
           subTitle: 'Notting Hills',
           timing: '0.14 sec',
-          img: 'http://via.placeholder.com/246x369'
+          img: 'http://media.w3.org/2010/05/bunny/trailer.mp4'
         },
         {
-          title: 'You’re waiting for a train',
-          subTitle: 'The Dark Knight',
+          title: '“I’m also just a girl…”',
+          subTitle: 'Notting Hills',
           timing: '0.14 sec',
-          img: 'http://via.placeholder.com/246x369'
-        },
-        {
-          title: 'You’re waiting for a train',
-          subTitle: 'The Dark Knight',
-          timing: '0.14 sec',
-          img: 'http://via.placeholder.com/246x369'
-        },
-        {
-          title: 'You’re waiting for a train',
-          subTitle: 'The Dark Knight',
-          timing: '0.14 sec',
-          img: 'http://via.placeholder.com/246x369'
-        },
-        {
-          title: 'You’re waiting for a train',
-          subTitle: 'The Dark Knight',
-          timing: '0.14 sec',
-          img: 'http://via.placeholder.com/246x369'
-        },
-        {
-          title: 'You’re waiting for a train',
-          subTitle: 'The Dark Knight',
-          timing: '0.14 sec',
-          img: 'http://via.placeholder.com/246x369'
-        },
-        {
-          title: 'You’re waiting for a train',
-          subTitle: 'The Dark Knight',
-          timing: '0.14 sec',
-          img: 'http://via.placeholder.com/246x369'
+          img: 'http://media.w3.org/2010/05/bunny/trailer.mp4'
         }
       ]
     },
@@ -93,42 +63,42 @@ export default class extends React.Component {
           timing: '0.14 sec',
           img: 'http://via.placeholder.com/246x369'
         },
-        {
-          title: 'You’re waiting for a train',
-          subTitle: 'The Dark Knight',
-          timing: '0.14 sec',
-          img: 'http://via.placeholder.com/246x369'
-        },
-        {
-          title: 'You’re waiting for a train',
-          subTitle: 'The Dark Knight',
-          timing: '0.14 sec',
-          img: 'http://via.placeholder.com/246x369'
-        },
-        {
-          title: 'You’re waiting for a train',
-          subTitle: 'The Dark Knight',
-          timing: '0.14 sec',
-          img: 'http://via.placeholder.com/246x369'
-        },
-        {
-          title: 'You’re waiting for a train',
-          subTitle: 'The Dark Knight',
-          timing: '0.14 sec',
-          img: 'http://via.placeholder.com/246x369'
-        },
-        {
-          title: 'You’re waiting for a train',
-          subTitle: 'The Dark Knight',
-          timing: '0.14 sec',
-          img: 'http://via.placeholder.com/246x369'
-        },
-        {
-          title: 'You’re waiting for a train',
-          subTitle: 'The Dark Knight',
-          timing: '0.14 sec',
-          img: 'http://via.placeholder.com/246x369'
-        }
+        // {
+        //   title: 'You’re waiting for a train',
+        //   subTitle: 'The Dark Knight',
+        //   timing: '0.14 sec',
+        //   img: 'http://via.placeholder.com/246x369'
+        // },
+        // {
+        //   title: 'You’re waiting for a train',
+        //   subTitle: 'The Dark Knight',
+        //   timing: '0.14 sec',
+        //   img: 'http://via.placeholder.com/246x369'
+        // },
+        // {
+        //   title: 'You’re waiting for a train',
+        //   subTitle: 'The Dark Knight',
+        //   timing: '0.14 sec',
+        //   img: 'http://via.placeholder.com/246x369'
+        // },
+        // {
+        //   title: 'You’re waiting for a train',
+        //   subTitle: 'The Dark Knight',
+        //   timing: '0.14 sec',
+        //   img: 'http://via.placeholder.com/246x369'
+        // },
+        // {
+        //   title: 'You’re waiting for a train',
+        //   subTitle: 'The Dark Knight',
+        //   timing: '0.14 sec',
+        //   img: 'http://via.placeholder.com/246x369'
+        // },
+        // {
+        //   title: 'You’re waiting for a train',
+        //   subTitle: 'The Dark Knight',
+        //   timing: '0.14 sec',
+        //   img: 'http://via.placeholder.com/246x369'
+        // }
       ]
     }
   }

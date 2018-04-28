@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { renderRoutes } from 'react-router-config'
 import Helmet from 'react-helmet'
 import Modal from 'react-modal-es'
+import _ from 'lodash'
 
 import Header from './Header'
 import Authentication from './Authentication'
@@ -33,9 +34,15 @@ class App extends Component {
   componentWillMount = () => {
     const { onUserStillLoggedIn } = this.props
     firebase.auth().onAuthStateChanged((user) => {
+      console.log('onAuthStateChanged', user)
       if (user) {
         // User is signed in.
-        onUserStillLoggedIn(user)
+        const appUser = {
+          email: _.get(user, 'email'),
+          displayName: _.get(user, 'displayName'),
+          profileImage: _.get(user, 'providerData.0.photoURL')
+        }
+        onUserStillLoggedIn(appUser)
       } else {
         // No user is signed in.
       }
