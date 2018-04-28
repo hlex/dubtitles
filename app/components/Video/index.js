@@ -33,10 +33,12 @@ export default class Video extends React.Component {
   render() {
     const { source, img, onClick } = this.props
     return (
-      <Player onClick={onClick} poster={img} preload='metadata'>
-        <source src={source} />
-        <ControlBar autoHide disableDefaultControls />
-      </Player>
+      <div onClick={onClick} className='video-wrapper'>
+        <Player poster={img} preload='metadata'>
+          <source src={source} />
+          <ControlBar autoHide disableDefaultControls />
+        </Player>
+      </div>
     )
   }
 }

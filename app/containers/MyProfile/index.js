@@ -3,10 +3,11 @@ import React from 'react'
 // Containers
 // ======================================================
 import Footer from '../Footer'
+import Authentication from '../Authentication'
 // ======================================================
 // Components
 // ======================================================
-import { MediaSliderPanel } from '../../components'
+import { Card, MediaSliderPanel } from '../../components'
 // ======================================================
 // Hoc
 // ======================================================
@@ -20,7 +21,19 @@ import { withRedux } from '../../hocs'
 
 const mapStateToProps = state => {
   return {
-    user: state.user
+    user: state.user,
+    favorites: {
+      label: 'FAVORITES',
+      subLabel: '',
+      color: '#ff7547',
+      medias: []
+    },
+    dubs: {
+      label: 'MY DUBS',
+      subLabel: '',
+      color: '#ff7547',
+      medias: []
+    }
   }
 }
 
@@ -62,43 +75,7 @@ export default class extends React.Component {
           subTitle: 'Notting Hills',
           timing: '0.14 sec',
           img: 'http://via.placeholder.com/246x369'
-        },
-        // {
-        //   title: 'You’re waiting for a train',
-        //   subTitle: 'The Dark Knight',
-        //   timing: '0.14 sec',
-        //   img: 'http://via.placeholder.com/246x369'
-        // },
-        // {
-        //   title: 'You’re waiting for a train',
-        //   subTitle: 'The Dark Knight',
-        //   timing: '0.14 sec',
-        //   img: 'http://via.placeholder.com/246x369'
-        // },
-        // {
-        //   title: 'You’re waiting for a train',
-        //   subTitle: 'The Dark Knight',
-        //   timing: '0.14 sec',
-        //   img: 'http://via.placeholder.com/246x369'
-        // },
-        // {
-        //   title: 'You’re waiting for a train',
-        //   subTitle: 'The Dark Knight',
-        //   timing: '0.14 sec',
-        //   img: 'http://via.placeholder.com/246x369'
-        // },
-        // {
-        //   title: 'You’re waiting for a train',
-        //   subTitle: 'The Dark Knight',
-        //   timing: '0.14 sec',
-        //   img: 'http://via.placeholder.com/246x369'
-        // },
-        // {
-        //   title: 'You’re waiting for a train',
-        //   subTitle: 'The Dark Knight',
-        //   timing: '0.14 sec',
-        //   img: 'http://via.placeholder.com/246x369'
-        // }
+        }
       ]
     }
   }
@@ -111,24 +88,33 @@ export default class extends React.Component {
           <div className='profile-panel'>
             <div className='title'>
               <span className='greeting'>Hello</span>,{' '}
-              <span className='name'>{user.displayName || ''}</span>
+              <span className='name'>{user.displayName || 'Guest'}</span>
             </div>
-            <div className='panel'>
-              <div className='profile-image-cropper'>
-                <img className='' src={user.profileImage} />
-              </div>
-              <div className='summary'>
-                <div className='item'>
-                  <h4>my dub</h4><span className='semicolon'>:</span><div className='text-in-circle'>{dubs.medias.length}</div>
+            {
+              user.isLoggedIn &&
+              <div className='panel'>
+                <div className='profile-image-cropper'>
+                  <img className='' src={user.profileImage} />
                 </div>
-                <div className='item'>
-                  <h4>favorites</h4><span className='semicolon'>:</span><div className='text-in-circle'>{favorites.medias.length}</div>
+                <div className='summary'>
+                  <div className='item'>
+                    <h4>my dub</h4><span className='semicolon'>:</span><div className='text-in-circle'>{dubs.medias.length}</div>
+                  </div>
+                  <div className='item'>
+                    <h4>favorites</h4><span className='semicolon'>:</span><div className='text-in-circle'>{favorites.medias.length}</div>
+                  </div>
                 </div>
               </div>
-            </div>
+            }
+            {
+              user.isLoggedIn === false &&
+              <Card>
+                <Authentication />
+              </Card>
+            }
           </div>
-          <MediaSliderPanel data={[favorites]} />
-          <MediaSliderPanel data={[dubs]} />
+          { favorites.length > 0 && <MediaSliderPanel data={[favorites]} /> }
+          { dubs.length > 0 && <MediaSliderPanel data={[dubs]} /> }
           <Footer />
         </div>
       </div>

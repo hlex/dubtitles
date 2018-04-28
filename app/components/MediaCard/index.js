@@ -14,11 +14,11 @@ export default class MeidaCard extends React.Component {
   }
   render () {
     const { isFav } = this.state
-    const { title, subTitle, timing, img, videoID, src } = this.props
+    const { title, subTitle, timing, img, videoID, src, onClick } = this.props
     return (
       <div className='mediaCard'>
         <div className='video-holder'>
-          <Video videoID={videoID} source={src} img={img} />
+          <Video onClick={onClick} videoID={videoID} source={src} img={img} />
         </div>
         <div className='title' style={{ display: 'flex', 'flexDirection': 'row' }} >
           "<div className='title'>{title}</div>"

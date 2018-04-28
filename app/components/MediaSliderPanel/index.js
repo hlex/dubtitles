@@ -44,12 +44,12 @@ export default class extends React.Component {
     ]
   }
   render() {
-    const { data } = this.props
+    const { data, onClick } = this.props
     return (
       <div className='mediaSliderPanel'>
         {_.map(data, (item, index) => (
           <div key={index} className='panelHolder'>
-            <DiscoverPanel id={index} data={item} />
+            <DiscoverPanel onClick={onClick} id={index} data={item} />
           </div>
         ))}
       </div>

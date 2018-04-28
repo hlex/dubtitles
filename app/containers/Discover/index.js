@@ -17,6 +17,9 @@ import { withRedux } from '../../hocs'
 // ======================================================
 // Action
 // ======================================================
+import {
+  handleOpenDubtitlePopup
+} from '../../actions'
 // ======================================================
 // Asset
 // ======================================================
@@ -25,14 +28,17 @@ const mapStateToProps = state => {
   return {}
 }
 
-const actionToProps = {}
+const actionToProps = {
+  onClickVideo: handleOpenDubtitlePopup
+}
 
 @withRedux(mapStateToProps, actionToProps)
 export default class extends React.Component {
   render() {
+    const { onClickVideo } = this.props
     return (
       <div className='dubtitlePage page-discover'>
-        <MediaSliderPanel />
+        <MediaSliderPanel onClick={onClickVideo} />
         <Footer />
       </div>
     )

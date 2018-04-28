@@ -42,7 +42,7 @@ const settings = {
 class DiscoverPanel extends React.Component {
   render () {
     const { label, subLabel, color, medias } = this.props.data
-    const { id } = this.props
+    const { id, onClick } = this.props
     const settingslider = {
       ...settings,
       slidesToShow: _.clamp(_.size(medias), 1, 3),
@@ -75,6 +75,7 @@ class DiscoverPanel extends React.Component {
                   timing={item.timing}
                   img={item.img}
                   src={item.src}
+                  onClick={onClick}
                 />
               </div>
             ))}

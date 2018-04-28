@@ -1,4 +1,5 @@
 import React from 'react'
+import _ from 'lodash'
 import { bindFormValidation } from 'redux-form-manager'
 
 import { InputField, Button } from '../../components'
@@ -12,6 +13,7 @@ import { closeModal } from '../../hocs/connectModal'
 // ======================================================
 import { FORM_CHANGE } from '../../actions/actionTypes'
 import { handleUserSignUpWithEmail } from './actions'
+
 
 const mapStateToProps = state => {
   return {
@@ -42,21 +44,19 @@ export default class extends React.Component {
   state = {
     mode: 'signup'
   }
-  createUserWithEmailAndPassword = () => {
+  createUserWithEmailAndPassword = async () => {
     const { email, password, onUserSignUpWithEmail } = this.props
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then(user => {
-        console.debug(user)
-        onUserSignUpWithEmail(user)
-      })``.catch(error => {
+    try {
+      const user = await firebase.auth().createUserWithEmailAndPassword(email, password)
+      console.log('createUserWithEmailAndPassword', user)
+      onUserSignUpWithEmail(user)
+    } catch (error) {
       // Handle Errors here.
-      var errorCode = error.code
-      var errorMessage = error.message
+      const errorCode = error.code
+      const errorMessage = error.message
       // ...
       console.error(error, errorCode, errorMessage)
-    })
+    }
   }
   signInWithEmailAndPassword = (email, password) =>
     firebase.auth().signInWithEmailAndPassword(email, password)

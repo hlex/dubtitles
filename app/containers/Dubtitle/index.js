@@ -16,7 +16,7 @@ import { withRedux } from '../../hocs'
 // import { handleUserSignUpWithEmail } from './actions'
 
 const mapStateToProps = state => {
-  const { src } = this.state.domains.dubtitle
+  const { src } = state.domains.dubtitle
   return {
     src
   }
