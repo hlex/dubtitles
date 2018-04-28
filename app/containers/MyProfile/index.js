@@ -85,34 +85,40 @@ export default class extends React.Component {
     return (
       <div className='page-myProfile'>
         <div className='container'>
-          <div className='profile-panel'>
-            <div className='title'>
-              <span className='greeting'>Hello</span>,{' '}
-              <span className='name'>{user.displayName || 'Guest'}</span>
-            </div>
-            {
-              user.isLoggedIn &&
-              <div className='panel'>
-                <div className='profile-image-cropper'>
-                  <img className='' src={user.profileImage} />
-                </div>
-                <div className='summary'>
-                  <div className='item'>
-                    <h4>my dub</h4><span className='semicolon'>:</span><div className='text-in-circle'>{dubs.medias.length}</div>
-                  </div>
-                  <div className='item'>
-                    <h4>favorites</h4><span className='semicolon'>:</span><div className='text-in-circle'>{favorites.medias.length}</div>
-                  </div>
-                </div>
+          {
+            user.isFetched === false && <div style={{ height: '500px', color: '#fff', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Loading...</div>
+          }
+          {
+            user.isFetched &&
+            <div className='profile-panel'>
+              <div className='title'>
+                <span className='greeting'>Hello</span>,{' '}
+                <span className='name'>{user.displayName || 'Guest'}</span>
               </div>
-            }
-            {
-              user.isLoggedIn === false &&
-              <Card>
-                <Authentication />
-              </Card>
-            }
-          </div>
+              {
+                user.isLoggedIn &&
+                <div className='panel'>
+                  <div className='profile-image-cropper'>
+                    <img className='' src={user.profileImage} />
+                  </div>
+                  <div className='summary'>
+                    <div className='item'>
+                      <h4>my dub</h4><span className='semicolon'>:</span><div className='text-in-circle'>{dubs.medias.length}</div>
+                    </div>
+                    <div className='item'>
+                      <h4>favorites</h4><span className='semicolon'>:</span><div className='text-in-circle'>{favorites.medias.length}</div>
+                    </div>
+                  </div>
+                </div>
+              }
+              {
+                user.isLoggedIn === false &&
+                <Card>
+                  <Authentication />
+                </Card>
+              }
+            </div>
+          }
           { favorites.length > 0 && <MediaSliderPanel data={[favorites]} /> }
           { dubs.length > 0 && <MediaSliderPanel data={[dubs]} /> }
           <Footer />

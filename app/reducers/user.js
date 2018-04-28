@@ -10,6 +10,7 @@ const getInitialState = () => ({
   email: '',
   displayName: '',
   profileImage: DEFAULT_PROFILE_IMAGE,
+  isFetched: false,
   isLoggedIn: false
 })
 
@@ -21,10 +22,14 @@ export default (state = getInitialState(), action) => {
         email: action.email || state.email,
         displayName: action.displayName || state.displayName,
         profileImage: action.profileImage || state.profileImage,
-        isLoggedIn: true
+        isLoggedIn: true,
+        isFetched: true
       }
     case USER_LOGGED_OUT:
-      return getInitialState()
+      return {
+        ...getInitialState(),
+        isFetched: true
+      }
     default: {
       return state
     }
