@@ -1,4 +1,5 @@
 import React from 'react'
+import _ from 'lodash'
 // ======================================================
 // Component
 // ======================================================
@@ -22,7 +23,7 @@ import { withRedux } from '../../hocs'
 // ======================================================
 
 const settings = {
-  speed: 1500,
+  speed: 300,
   initialSlide: 0,
   responsive: [
     {
@@ -69,7 +70,7 @@ export default class extends React.Component {
     lessons: [
       {
         thumbnail: 'http://via.placeholder.com/380x240',
-        name: 'ENGLISH FOR MUGGLES',
+        name: 'ENGLISH FOR MUGGLES 1',
         subtitle: 'British Accent Training',
         description: 'You will learn grammar and also British accent with the top hit scenes from Harry Potter season 1-7',
         time: 30,
@@ -77,7 +78,7 @@ export default class extends React.Component {
       },
       {
         thumbnail: 'http://via.placeholder.com/380x240',
-        name: 'ENGLISH FOR MUGGLES',
+        name: 'ENGLISH FOR MUGGLES 2',
         subtitle: 'British Accent Training',
         description: 'You will learn grammar and also British accent with the top hit scenes from Harry Potter season 1-7',
         time: 30,
@@ -85,7 +86,7 @@ export default class extends React.Component {
       },
       {
         thumbnail: 'http://via.placeholder.com/380x240',
-        name: 'ENGLISH FOR MUGGLES',
+        name: 'ENGLISH FOR MUGGLES 3',
         subtitle: 'British Accent Training',
         description: 'You will learn grammar and also British accent with the top hit scenes from Harry Potter season 1-7',
         time: 30,
@@ -93,7 +94,7 @@ export default class extends React.Component {
       },
       {
         thumbnail: 'http://via.placeholder.com/380x240',
-        name: 'ENGLISH FOR MUGGLES',
+        name: 'ENGLISH FOR MUGGLES 4',
         subtitle: 'British Accent Training',
         description: 'You will learn grammar and also British accent with the top hit scenes from Harry Potter season 1-7',
         time: 30,
@@ -101,7 +102,7 @@ export default class extends React.Component {
       },
       {
         thumbnail: 'http://via.placeholder.com/380x240',
-        name: 'ENGLISH FOR MUGGLES',
+        name: 'ENGLISH FOR MUGGLES 5',
         subtitle: 'British Accent Training',
         description: 'You will learn grammar and also British accent with the top hit scenes from Harry Potter season 1-7',
         time: 30,
@@ -115,19 +116,20 @@ export default class extends React.Component {
     } = this.props
     const settingslider = {
       ...settings,
-      slidesToShow: 3,
+      slidesToShow: 3.3,
       slidesToScroll: 1
     }
     return (
       <div className='page-lessons'>
-        <div className='container'>
+        <div className='slick-wrapper'>
           <SlickSlider
+            infinite={false}
             settings={settingslider}
             showPrevNextButtons={false}
           >
             {
               _.map(lessons, (lesson, index) => (
-                <div key={index} style={{ margin: '0px 7px' }}>
+                <div className='lesson-item' key={index}>
                   <LessonCard {...lesson} />
                 </div>
               ))
