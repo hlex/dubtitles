@@ -33,8 +33,6 @@ export default class extends React.Component {
     return (
       <div className='dubtitlePage page-discover'>
         <MediaSliderPanel />
-        <MediaSliderPanel />
-        <MediaSliderPanel />
         <Footer />
       </div>
     )

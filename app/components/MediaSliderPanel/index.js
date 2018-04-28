@@ -38,41 +38,6 @@ export default class extends React.Component {
             timing: '0.14 sec',
             img: 'https://picsum.photos/308/205/?random',
             src: 'https://media.w3.org/2010/05/sintel/trailer_hd.mp4'
-          },
-          {
-            title: 'You’re waiting for a train',
-            subTitle: 'Notting Hills',
-            timing: '0.14 sec',
-            img: 'https://picsum.photos/308/205/?random',
-            src: 'http://media.w3.org/2010/05/bunny/trailer.mp4'
-          },
-          {
-            title: 'You’re waiting for a train',
-            subTitle: 'The Dark Knight',
-            timing: '0.14 sec',
-            img: 'https://picsum.photos/308/205/?random',
-            src: 'https://media.w3.org/2010/05/sintel/trailer_hd.mp4'
-          },
-          {
-            title: 'You’re waiting for a train',
-            subTitle: 'Notting Hills',
-            timing: '0.14 sec',
-            img: 'https://picsum.photos/308/205/?random',
-            src: 'http://media.w3.org/2010/05/bunny/trailer.mp4'
-          },
-          {
-            title: 'You’re waiting for a train',
-            subTitle: 'The Dark Knight',
-            timing: '0.14 sec',
-            img: 'https://picsum.photos/308/205/?random',
-            src: 'https://media.w3.org/2010/05/sintel/trailer_hd.mp4'
-          },
-          {
-            title: 'You’re waiting for a train',
-            subTitle: 'Notting Hills',
-            timing: '0.14 sec',
-            img: 'https://picsum.photos/308/205/?random',
-            src: 'http://media.w3.org/2010/05/bunny/trailer.mp4'
           }
         ]
       }

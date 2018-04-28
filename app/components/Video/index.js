@@ -1,15 +1,22 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Player, ControlBar } from 'video-react'
 import $ from 'jquery'
 
 export default class Video extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      isFav: false
-    }
+  static PropTypes = {
+    source: PropTypes.string.isRequired,
+    img: PropTypes.string,
+    onClick: PropTypes.func
   }
 
+  static defaultProps = {
+    img: 'https://picsum.photos/308/205/?movie',
+    onClick: () => null
+  }
+  state = {
+    isFav: false
+  }
   componentDidMount() {
     $('.video-react').hover(hoverVideo, hideVideo)
     function hoverVideo(e) {
@@ -23,19 +30,13 @@ export default class Video extends React.Component {
         .pause()
     }
   }
-
   render() {
-    const { source, img } = this.props
+    const { source, img, onClick } = this.props
     return (
-      <Player poster={img} preload='metadata'>
+      <Player onClick={onClick} poster={img} preload='metadata'>
         <source src={source} />
         <ControlBar autoHide disableDefaultControls />
       </Player>
     )
   }
-}
-
-Video.defaultProps = {
-  source: 'https://giant.gfycat.com/VerifiableTerrificHind.mp4',
-  img: 'https://picsum.photos/308/205/?movie'
 }

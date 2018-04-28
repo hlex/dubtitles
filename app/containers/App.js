@@ -6,6 +6,7 @@ import _ from 'lodash'
 
 import Header from './Header'
 import Authentication from './Authentication'
+import Dubtitle from './Dubtitle'
 // ======================================================
 // Action
 // ======================================================
@@ -92,6 +93,19 @@ class App extends Component {
           willClose={() => null}
         >
           <Authentication />
+        </Modal>
+        <Modal
+          name='dubtitle'
+          title=''
+          zIndex='30'
+          className='your-classname'
+          overlayColor='rgba(0, 0, 0, 0.7)'
+          center
+          didOpen={() => null}
+          willUnmount={() => null}
+          willClose={() => null}
+        >
+          <Dubtitle />
         </Modal>
         {isHomePage === false && <Header />}
         <div className={`main-screen-content ${isHomePage && 'home'} `}>
