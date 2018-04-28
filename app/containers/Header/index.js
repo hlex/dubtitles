@@ -40,7 +40,7 @@ export default class Header extends Component {
       case '/home':
         return ''
       case '/lessons':
-        return
+        return 'lessons'
       case '/profile':
         return 'my profile'
       case '/discover':

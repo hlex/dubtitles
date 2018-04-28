@@ -82,14 +82,14 @@ h1 {
 
 h2 {
   @extend %default-typography;
-  @extend %CircularStdBold;
-  font-size: 40px;
+  @extend %CircularStdBlack;
+  font-size: 30px;
 }
 
 h3 {
   @extend %default-typography;
-  @extend %CircularStdBlack;
-  font-size: 30px;
+  @extend %CircularStdBold;
+  font-size: 26px;
   &[lang="th"] {
     font-size: 22px;
     @extend %SukhumvitSetSemiBold;
@@ -98,19 +98,20 @@ h3 {
 
 h4 {
   @extend %default-typography;
-  // @extend %CircularStdBoldItalic;
+  font-family: 'Circular-Std-Medium', 'SukhumvitSetSemiBold';
   font-size: 20px;
-  // &[lang="th"] {
-  //   font-size: 20px;
-  //   // @extend %SukhumvitSetSemiBold;
-  // }
-  font-family: 'CircularStdBoldItalic', 'SukhumvitSetSemiBold'
+  &.italic {
+    font-family: 'Circular-Std-Book-Italic', 'SukhumvitSetSemiBold';
+  }
 }
 
 h5 {
   @extend %default-typography;
-  @extend %CircularStdMediumItalic;
+  @extend %CircularStdBold;
   font-size: 16px;
+  &.italic {
+    @extend %CircularStdBookItalic;
+  }
   &[lang="th"] {
     font-size: 16px;
     @extend %SukhumvitSetSemiBold;
