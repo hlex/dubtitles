@@ -90,6 +90,7 @@
     "redux-form-manager": "^3.0.2",
     "redux-logger": "^3.0.1",
     "redux-thunk": "^2.2.0",
+    "video-react": "^0.10.4",
     "webpack-isomorphic-tools": "^3.0.5"
   },
   "devDependencies": {
