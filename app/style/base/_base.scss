@@ -1,2 +1,6 @@
 // @import "normalize";
 @import "grid-system";
+
+:focus {
+  outline: none !important;
+}
