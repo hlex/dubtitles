@@ -61,16 +61,16 @@ export default class extends React.Component {
   }
   signInWithEmailAndPassword = (email, password) =>
     firebase.auth().signInWithEmailAndPassword(email, password)
-  signInWithGoogle = () => {
-    const provider = new firebase.auth.GoogleAuthProvider()
-    return firebase.auth().signInWithPopup(provider)
-  }
+  // signInWithGoogle = () => {
+  //   const provider = new firebase.auth.GoogleAuthProvider()
+  //   return firebase.auth().signInWithPopup(provider)
+  // }
   signInWithFacebook = () => {
     const provider = new firebase.auth.FacebookAuthProvider()
     return firebase.auth().signInWithPopup(provider)
   }
   signOut = () => firebase.auth().signOut()
-  onAuthStateChanged = cb => firebase.auth().onAuthStateChanged(cb)
+  // // onAuthStateChanged = cb => firebase.auth().onAuthStateChanged(cb)
   // isAuthenticated = () => !!window.localStorage.getItem(storageKey)
   // getAuthenticatedUser = () =>
   //   JSON.parse(window.localStorage.getItem(storageKey))

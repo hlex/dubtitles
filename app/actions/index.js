@@ -4,6 +4,7 @@ import {
   USER_LOGGED_OUT,
   DUBTITLE_SET_SOURCE
 } from './actionTypes'
+import { clearForm } from './formAction'
 import { openModal } from '../hocs/connectModal'
 import firebase from '../firebase'
 
@@ -47,12 +48,14 @@ export const userLogout = () => ({
 export const handleUserLogin = ({ email, displayName, profileImage }) => {
   return dispatch => {
     dispatch(userLogin({ email, displayName, profileImage }))
+    dispatch(clearForm())
   }
 }
 
 export const handleUserLogout = () => {
   return dispatch => {
     dispatch(userLogout())
+    dispatch(clearForm())
     dispatch(goToPage(''))
   }
 }
