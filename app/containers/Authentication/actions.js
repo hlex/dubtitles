@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import {
   goToPage,
   userLogin
@@ -18,7 +19,7 @@ const userSignUpThenLogin = (user) => {
       userId: user.uid,
       displayName: user.displayName || 'No name',
       email: user.email,
-      profileImage: user.profileImage
+      profileImage: _.get(user, 'providerData.0.photoURL', user.profileImage)
     }))
     dispatch(goToPage('profile'))
   }
