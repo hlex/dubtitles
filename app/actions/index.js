@@ -1,20 +1,43 @@
 import { push } from 'react-router-redux'
-import { USER_LOGGED_IN, USER_LOGGED_OUT } from './actionTypes'
+import {
+  USER_LOGGED_IN,
+  USER_LOGGED_OUT,
+  DUBTITLE_SET_SOURCE
+} from './actionTypes'
 import { openModal } from '../hocs/connectModal'
 import firebase from '../firebase'
 
 export const goToPage = path => dispatch => dispatch(push(`/${path}`))
 
-export const userLogin = ({ email, displayName, profileImage }) => async (dispatch) => {
+export const userLogin = ({
+  email,
+  displayName,
+  profileImage
+}) => async dispatch => {
   var userId = firebase.auth().currentUser.uid
-  const snapshot = await firebase.database().ref('/users/' + userId).once('value')
-  const { displayName, email, profileImage } = snapshot.val()
-  dispatch({
-    type: USER_LOGGED_IN,
-    email,
-    displayName,
-    profileImage
-  })
+  const snapshot = await firebase
+    .database()
+    .ref('/users/' + userId)
+    .once('value')
+  console.log('userLogin', userId, snapshot, snapshot.val())
+  if (snapshot.val() && snapshot.val() !== null) {
+    const { displayName, email, profileImage } = snapshot.val()
+    dispatch({
+      type: USER_LOGGED_IN,
+      email,
+      displayName,
+      profileImage
+    })
+    dispatch(goToPage('profile'))
+  } else {
+    dispatch({
+      type: USER_LOGGED_IN,
+      email,
+      displayName,
+      profileImage
+    })
+    dispatch(goToPage('profile'))
+  }
 }
 
 export const userLogout = () => ({
@@ -35,7 +58,17 @@ export const handleUserLogout = () => {
 }
 
 export const handleOpenDubtitlePopup = () => {
-  return (dispatch) => {
+  return dispatch => {
     openModal('dubtitle')
+  }
+}
+
+export const handleSelectVideoToDub = src => {
+  return dispatch => {
+    dispatch({
+      type: DUBTITLE_SET_SOURCE,
+      src
+    })
+    dispatch(handleOpenDubtitlePopup())
   }
 }

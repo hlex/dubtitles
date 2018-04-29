@@ -12,7 +12,7 @@ import { closeModal } from '../../hocs/connectModal'
 // Action
 // ======================================================
 import { FORM_CHANGE } from '../../actions/actionTypes'
-import { handleUserSignUpWithEmail } from './actions'
+import { handleUserSignUpWithEmail, handleUserSignUpWithFacebook } from './actions'
 
 
 const mapStateToProps = state => {
@@ -23,7 +23,8 @@ const mapStateToProps = state => {
 }
 
 const actionToProps = {
-  onUserSignUpWithEmail: handleUserSignUpWithEmail
+  onUserSignUpWithEmail: handleUserSignUpWithEmail,
+  onUserLoginWithFacebook: handleUserSignUpWithFacebook
 }
 
 const core = {
@@ -99,9 +100,10 @@ export default class extends React.Component {
       })
   }
   handleDoLoginWithFacebook = () => {
+    const { onUserLoginWithFacebook } = this.props
     this.signInWithFacebook().then((response) => {
       console.log('handleDoLoginWithFacebook', response)
-      closeModal('authentication')
+      onUserLoginWithFacebook(response.user)
     })
   }
   renderFooter = () => {

@@ -18,7 +18,7 @@ import { withRedux } from '../../hocs'
 // Action
 // ======================================================
 import {
-  handleOpenDubtitlePopup
+  handleSelectVideoToDub
 } from '../../actions'
 // ======================================================
 // Asset
@@ -29,7 +29,7 @@ const mapStateToProps = state => {
 }
 
 const actionToProps = {
-  onClickVideo: handleOpenDubtitlePopup
+  onClickVideo: handleSelectVideoToDub
 }
 
 @withRedux(mapStateToProps, actionToProps)

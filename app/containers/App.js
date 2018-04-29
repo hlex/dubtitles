@@ -15,6 +15,8 @@ import { userLogin } from '../actions'
 // Hoc
 // ======================================================
 import { connectModal } from '../hocs/connectModal'
+// import { connectDubModal } from '../hocs/connectDubModal'
+
 import { withRedux } from '../hocs'
 
 import firebase from '../firebase'
@@ -98,7 +100,7 @@ class App extends Component {
           name='dubtitle'
           title=''
           zIndex='30'
-          className='your-classname'
+          className='dubtitleWorkspace'
           overlayColor='rgba(0, 0, 0, 0.7)'
           center
           didOpen={() => null}

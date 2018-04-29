@@ -30,10 +30,13 @@ export default class Video extends React.Component {
         .pause()
     }
   }
+  handleClick = () => {
+    this.props.onClick(this.props.source)
+  }
   render() {
-    const { source, img, onClick } = this.props
+    const { source, img } = this.props
     return (
-      <div onClick={onClick} className='video-wrapper'>
+      <div onClick={this.handleClick} className='video-wrapper hideControlBar'>
         <Player poster={img} preload='metadata'>
           <source src={source} />
           <ControlBar autoHide disableDefaultControls />

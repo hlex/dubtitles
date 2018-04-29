@@ -4,7 +4,7 @@ import MediaCard from '../MediaCard'
 import SlickSlider from '../SlickSlider'
 
 const settings = {
-  speed: 1500,
+  speed: 500,
   initialSlide: 0,
   responsive: [
     {
@@ -45,26 +45,28 @@ class DiscoverPanel extends React.Component {
     const { id, onClick } = this.props
     const settingslider = {
       ...settings,
-      slidesToShow: _.clamp(_.size(medias), 1, 3),
-      slidesToScroll: _.clamp(_.size(medias), 1, 3)
+      slidesToShow: _.clamp(_.size(medias), 1, 3.3),
+      slidesToScroll: _.clamp(_.size(medias), 1, 1)
     }
     return (
       <div className='discover-panel'>
         <div className='panel-header'>
           <div className='label' style={{ backgroundColor: color }} dangerouslySetInnerHTML={{ __html: label }} />
-          <div className='subLabel'>: {subLabel}</div>
+          <div className='subLabel _hidden'>: {subLabel}</div>
         </div>
         <div className='content'>
           <SlickSlider
+            infinite={false}
             settings={settingslider}
-            showPrevNextButtons
-            prevArrow={<div />}
-            nextArrowWrapperStyle={{
-              position: 'absolute',
-              top: 0,
-              right: '-8.3vw',
-              zIndex: 1
-            }}
+            showPrevNextButtons={false}
+            // showPrevNextButtons
+            // prevArrow={<div />}
+            // nextArrowWrapperStyle={{
+            //   position: 'absolute',
+            //   top: 0,
+            //   right: '-8.3vw',
+            //   zIndex: 1
+            // }}
           >
             { _.map(medias, (item, index) => (
               <div key={index} style={{ margin: '0px 7px' }}>

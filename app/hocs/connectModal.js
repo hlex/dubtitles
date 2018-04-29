@@ -20,9 +20,9 @@ const customStyles = {
 }
 
 const customUI = (title, children, onClose) => (
-  <div style={customStyles.body}>
-    <div style={customStyles.title}>{title}</div>
-    <div style={customStyles.content}>{children}</div>
+  <div className='modal-body' style={customStyles.body}>
+    <div className='modal-title' style={customStyles.title}>{title}</div>
+    <div className='modal-children' style={customStyles.content}>{children}</div>
   </div>
 )
 

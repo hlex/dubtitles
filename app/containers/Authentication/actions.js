@@ -9,7 +9,7 @@ import {
   closeModal
 } from '../../hocs/connectModal'
 
-export const handleUserSignUpWithEmail = (user) => {
+const userSignUpThenLogin = (user) => {
   return (dispatch) => {
     user.profileImage = 'https://res.cloudinary.com/www-appmondit-com/image/upload/v1524952488/80e3a04748883424f92259f1c81dda86-bpthumb_o3ivta.jpg'
     closeModal('authentication')
@@ -21,5 +21,17 @@ export const handleUserSignUpWithEmail = (user) => {
       profileImage: user.profileImage
     }))
     dispatch(goToPage('profile'))
+  }
+}
+
+export const handleUserSignUpWithEmail = (user) => {
+  return (dispatch) => {
+    dispatch(userSignUpThenLogin(user))
+  }
+}
+
+export const handleUserSignUpWithFacebook = (user) => {
+  return (dispatch) => {
+    dispatch(userSignUpThenLogin(user))
   }
 }

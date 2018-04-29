@@ -14,9 +14,8 @@ export default class Footer extends PureComponent {
           <nav>
             <ul className='navigation'>
               <li><NavLink exact to='/'>home</NavLink></li>
-              <li><NavLink exact to='/about'>about</NavLink></li>
-              <li><NavLink exact to='/feedback'>feedback</NavLink></li>
-              <li><NavLink exact to='/help-center'>help center</NavLink></li>
+              <li><NavLink exact to='https://google.com'>more works</NavLink></li>
+              <li><NavLink exact to='/contact'>contact</NavLink></li>
             </ul>
           </nav>
           <div className='copy-right-wrapper'>
@@ -24,7 +23,6 @@ export default class Footer extends PureComponent {
             <div className='social-media'>
               <ul className='navigation'>
                 <li><NavLink exact to='/'><img src={IconFacebook} alt='' /></NavLink></li>
-                <li><NavLink exact to='/'><img src={IconTwitter} alt='' /></NavLink></li>
                 <li><NavLink exact to='/'><img src={IconMail} alt='' /></NavLink></li>
               </ul>
             </div>

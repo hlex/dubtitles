@@ -1,7 +1,9 @@
 
 @import "~video-react/styles/scss/video-react";
 
-.video-react-control-bar {
+
+
+.hideControlBar .video-react-control-bar {
   display: none !important;
   background-color: transparent
 }
