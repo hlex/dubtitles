@@ -12,8 +12,8 @@ export default [
         videoSrc: 'https://res.cloudinary.com/dghqbnkcb/video/upload/v1525028076/discovervideo/burn_with_us.mp4',
         subtitle: {
           '1.0': 'But do you see that?',
-          '3.3': 'Fire is catching',
-          '7.0': 'And If we burn, you burn with us.',
+          '3.0': 'Fire is catching',
+          '6.0': 'And If we burn, you burn with us.',
           '11.0': ' '
         }
       },

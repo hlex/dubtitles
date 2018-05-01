@@ -72,7 +72,7 @@ export default class extends React.Component {
   componentDidMount() {
     this.refs.dubtitlePlayer.subscribeToStateChange(this.handleStateChange.bind(this))
   }
-  getSubtitle = (currentTime) => {
+  findSubtitle = (currentTime) => {
     const { subtitle } = this.props
     // console.log('currentTime is', currentTime)
     const currentSubtitle = _.findLast(subtitle, (text, time) => {
@@ -82,9 +82,11 @@ export default class extends React.Component {
       if (parseFloat(time) <= currentTime) return text
     })
     // console.log('currentSubtitle', currentSubtitle)
-    return currentSubtitle || ''
+    return currentSubtitle || ' '
   }
   getIsPlayerPlaying = () => _.get(this.state, 'player.ended', true) === false
+  getSubtitle = () => this.findSubtitle(this.state.currentTime)
+  hasSubtitle = () => this.getSubtitle() !== ' '
   captureUserMedia(callback) {
     var params = { audio: true, video: true }
     navigator.getUserMedia(params, callback, (error) => {
@@ -125,11 +127,11 @@ export default class extends React.Component {
     console.log(state, this.state.currentTime, state.currentTime)
     if (this.state.currentTime !== state.currentTime) {
       const oneDecimalCurrentTime = Math.round(state.currentTime * 10) / 10
-      const subtitle = this.getSubtitle(oneDecimalCurrentTime)
+      const subtitle = this.findSubtitle(oneDecimalCurrentTime)
       this.setState({
         player: state,
-        floorDuration,
-        floorCurrentTime,
+        duration: floorDuration,
+        currentTime: floorCurrentTime,
         subtitle,
         isVideoPlaying: this.state.currentTime !== floorCurrentTime
       })
@@ -198,10 +200,11 @@ export default class extends React.Component {
     })
   }
   render() {
-    const { isVideoPlaying, subtitle, isRecording, isPlaybackWithRecorded } = this.state
+    // console.log('state', this.state)
+    const { subtitle, isRecording, isPlaybackWithRecorded } = this.state
     const { videoSrc, posterSrc } = this.props
-    const mutedPlayer = isRecording || isPlaybackWithRecorded
-    console.log('state', this.state)
+    const mutedPlayer = (isRecording || isPlaybackWithRecorded) && this.hasSubtitle()
+    // console.log('mutedPlayer', 'isRecording', isRecording, 'isPlaybackWithRecorded', isPlaybackWithRecorded, this.hasSubtitle())
     return (
       <div className='dubtitle'>
         <Player
