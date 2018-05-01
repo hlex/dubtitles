@@ -62,6 +62,7 @@ export default class extends React.Component {
     audioPlayer: null,
     subtitle: '',
     currentTime: 0,
+    isVideoPlaying: false,
     isRecording: false,
     isPlaybackWithRecorded: false,
     recordVideo: null,
@@ -83,7 +84,7 @@ export default class extends React.Component {
     // console.log('currentSubtitle', currentSubtitle)
     return currentSubtitle || ''
   }
-  getIsPlayerPlaying = () => this.state.player.currentTime !== undefined
+  getIsPlayerPlaying = () => _.get(this.state, 'player.ended', true) === false
   captureUserMedia(callback) {
     var params = { audio: true, video: true }
     navigator.getUserMedia(params, callback, (error) => {
@@ -92,9 +93,12 @@ export default class extends React.Component {
   };
   onVideoEnded = () => {
     const { isRecording, isPlaybackWithRecorded } = this.state
+    console.log('onVideoEnded', 'isRecording', isRecording, 'isPlaybackWithRecorded', isPlaybackWithRecorded)
     // anytime video ended seek 0
     this.refs.dubtitlePlayer.seek(0)
-
+    this.setState({
+      isVideoPlaying: false
+    })
     if (isPlaybackWithRecorded) {
       this.setState({
         isPlaybackWithRecorded: false
@@ -108,23 +112,26 @@ export default class extends React.Component {
         this.refs.dubtitlePlayer.play()
         audio.play()
         this.setState({
-          isPlaybackWithRecorded: true
+          isPlaybackWithRecorded: true,
+          isVideoPlaying: true
         })
       })
     }
   }
-  handleStateChange(state, prevState) {
+  handleStateChange = (state, prevState) => {
     // copy player state to this component's state
-    const duration = Math.floor(state.duration)
-    const currentTime = Math.floor(state.currentTime)
-    if (this.state.currentTime !== currentTime) {
+    const floorDuration = Math.floor(state.duration)
+    const floorCurrentTime = Math.floor(state.currentTime)
+    console.log(state, this.state.currentTime, state.currentTime)
+    if (this.state.currentTime !== state.currentTime) {
       const oneDecimalCurrentTime = Math.round(state.currentTime * 10) / 10
       const subtitle = this.getSubtitle(oneDecimalCurrentTime)
       this.setState({
         player: state,
-        duration,
-        currentTime,
-        subtitle
+        floorDuration,
+        floorCurrentTime,
+        subtitle,
+        isVideoPlaying: this.state.currentTime !== floorCurrentTime
       })
     }
     const isEnded = state.duration === state.currentTime
@@ -191,10 +198,10 @@ export default class extends React.Component {
     })
   }
   render() {
-    const { subtitle, isRecording, isPlaybackWithRecorded } = this.state
+    const { isVideoPlaying, subtitle, isRecording, isPlaybackWithRecorded } = this.state
     const { videoSrc, posterSrc } = this.props
     const mutedPlayer = isRecording || isPlaybackWithRecorded
-    // console.log(this.state)
+    console.log('state', this.state)
     return (
       <div className='dubtitle'>
         <Player
@@ -222,9 +229,12 @@ export default class extends React.Component {
             <ProgressControl order={3} />
             <RecordVideoButton order={4} />
           </ControlBar>
-          <div className='dubtitleVideoPlayerSubtitle'>
-            <p>{subtitle}</p>
-          </div>
+          {
+            this.getIsPlayerPlaying() &&
+            <div className='dubtitleVideoPlayerSubtitle'>
+              <p>{subtitle}</p>
+            </div>
+          }
         </Player>
         <div className='helperPanel'>
           <h4 className='translate'>: หากคุณเก่งอะไร จงอย่าทำมันให้ใครฟรี ๆ</h4>
