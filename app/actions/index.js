@@ -29,7 +29,7 @@ export const userLogin = ({
       displayName,
       profileImage
     })
-    dispatch(goToPage('profile'))
+    // dispatch(goToPage('profile'))
   } else {
     dispatch({
       type: USER_LOGGED_IN,
@@ -37,7 +37,7 @@ export const userLogin = ({
       displayName,
       profileImage
     })
-    dispatch(goToPage('profile'))
+    // dispatch(goToPage('profile'))
   }
 }
 
@@ -67,11 +67,16 @@ export const handleOpenDubtitlePopup = () => {
 }
 
 export const handleSelectVideoToDub = ({ data }) => {
-  return dispatch => {
+  return (dispatch, getState) => {
     dispatch({
       type: DUBTITLE_SET_MEDIA,
       data
     })
-    dispatch(handleOpenDubtitlePopup())
+    const isUserLoggedIn = getState().user.isLoggedIn
+    if (isUserLoggedIn) {
+      dispatch(handleOpenDubtitlePopup())
+    } else {
+      openModal('authentication')
+    }
   }
 }
