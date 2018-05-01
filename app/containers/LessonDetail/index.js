@@ -55,6 +55,16 @@ export default class extends React.Component {
               name: 'vocabulary',
               level: 'easy',
               thumbnail: 'http://via.placeholder.com/380x240',
+              video: '',
+              translation: {
+                '1.5': 'ฉันชื่อรอน',
+                '3.0': 'สวัสดีแฮร์รี่'
+              },
+              tips: [
+                'first line',
+                'second line',
+                'third line'
+              ],
               locked: false
             },
             {

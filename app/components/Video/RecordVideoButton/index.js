@@ -2,10 +2,11 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import classNames from 'classnames'
 
+import icon from '../../../images/video2.svg'
+
 const propTypes = {
   player: PropTypes.object,
-  className: PropTypes.string,
-  isRecording: PropTypes.bool
+  className: PropTypes.string
 }
 
 export default class DownloadButton extends Component {
@@ -14,12 +15,10 @@ export default class DownloadButton extends Component {
     this.handleClick = this.handleClick.bind(this)
   }
 
-  handleClick() {
-    this.props.onClick()
-  }
+  handleClick() {}
 
   render() {
-    const { player, className, isRecording } = this.props
+    const { player, className } = this.props
     return (
       <a
         ref={c => {
@@ -27,18 +26,17 @@ export default class DownloadButton extends Component {
         }}
         className={classNames(className, {
           'video-react-control': true,
-          'video-react-button': true,
-          'customizeRecordButton': true,
-          'isRecording': isRecording
+          'video-react-button': true
         })}
+        style={{
+          backgroundImage:
+            `url(${icon})`,
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center'
+        }}
         tabIndex='0'
         onClick={this.handleClick}
-      >
-        <div className={classNames({}, {
-          'recordButton': true,
-          'isRecording': isRecording
-        })} />
-      </a>
+      />
     )
   }
 }

@@ -1,8 +1,20 @@
 import React from 'react'
-import { Player, ControlBar } from 'video-react'
+import {
+  Player,
+  ControlBar,
+  PlayToggle,
+  BigPlayButton,
+  VolumeMenuButton,
+  ProgressControl
+} from 'video-react'
 // import $ from 'jquery'
 
-import { Button, DownloadButton } from '../../components'
+import {
+  Button,
+  PlayButton,
+  RecordButton,
+  RecordVideoButton
+} from '../../components'
 
 // import { bindFormValidation } from 'redux-form-manager'
 
@@ -32,7 +44,8 @@ const actionToProps = {
 export default class extends React.Component {
   state = {
     player: {},
-    currentTime: 0
+    currentTime: 0,
+    isRecording: false
   }
   componentDidMount() {
     this.refs.dubtitlePlayer.subscribeToStateChange(this.handleStateChange.bind(this))
@@ -48,7 +61,14 @@ export default class extends React.Component {
       })
     }
   }
+  isPlaying = () => this.state.player.currentTime !== undefined
+  handleToggleRecord = () => {
+    this.setState({
+      isRecording: !this.state.isRecording
+    })
+  }
   render() {
+    const { isRecording } = this.state
     const { src } = this.props
     console.log(this.state)
     return (
@@ -63,13 +83,22 @@ export default class extends React.Component {
           aspectRatio='16:9'
         >
           <source src={src} />
-          <div className='dubtitleControl'>
-            <Button>Hello</Button>
-            <Button>Hello</Button>
-            <Button>Hello</Button>
-          </div>
+          <ControlBar
+            autoHide={false}
+            className='dubtitleCustomVideoControlbar'
+            disableDefaultControls
+          >
+            <RecordButton
+              onClick={this.handleToggleRecord}
+              isRecording={isRecording}
+              order={0}
+            />
+            <PlayToggle order={1} />
+            <ProgressControl order={2} />
+            <RecordVideoButton order={3} />
+          </ControlBar>
         </Player>
-        <div className='helper-panel'>
+        <div className='helperPanel'>
           <h4 className='translate'>: หากคุณเก่งอะไร จงอย่าทำมันให้ใครฟรี ๆ</h4>
           <h4 className='tip'>good at เป็นเหมือนสำนวนแปลว่า เก่ง, เชี่ยวชาญ, มีความสามารถ รูปประโยคใช้ V. to be + good at + N/Ving </h4>
         </div>
