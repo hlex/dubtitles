@@ -22,7 +22,7 @@ const renderFullPage = (html, initialState) => {
       <body>
         <div id="app">${html}</div>
         <script>
-          window.__INITIAL_STATE__ = ${JSON.stringify(initialState)}; 
+          window.__INITIAL_STATE__ = ${JSON.stringify(initialState)};
         </script>
         <script src="/polyfill.js?v=${Date.now()}"></script>
         <script src="/vendor.js?v=${Date.now()}"></script>

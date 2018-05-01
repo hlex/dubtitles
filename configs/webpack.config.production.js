@@ -7,6 +7,8 @@ const webpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(
   require('./webpack-isomorphic-tools')
 )
 
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+
 const plugins = [
   new webpack.DefinePlugin({
     'process.env': {
@@ -18,6 +20,9 @@ const plugins = [
     filename: 'style.css',
     allChunks: true
   }),
+  new CopyWebpackPlugin([
+    { from: `${projectPath.public}/favicon.ico`, to: `${projectPath.build}/favicon.ico` },
+  ]),
   webpackIsomorphicToolsPlugin
 ]
 
