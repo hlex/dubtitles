@@ -42,6 +42,18 @@ export default class extends React.Component {
         color: '#ff7547',
         medias: [
           {
+            title: '"Ugh, As if"',
+            subTitle: 'Clueless',
+            timing: '5 sec.',
+            img: 'https://res.cloudinary.com/dghqbnkcb/image/upload/v1525011999/discoverposter/Untitled-4-06.png',
+            src: 'https://res.cloudinary.com/dghqbnkcb/video/upload/v1525029691/discoverposter/ugh.as_if.mp4',
+            subtitle: {
+              '0.0': 'Ew! Get off of me!',
+              '2.3': '',
+              '2.8': 'ugh! as if'
+            }
+          },
+          {
             title: '"And If we burn, you burn with us"',
             subTitle: 'The Hunger Games : Mockingjay',
             timing: '16 sec.',

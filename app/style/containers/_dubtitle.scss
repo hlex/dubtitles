@@ -1,7 +1,7 @@
 .dubtitleWorkspace {
-  max-width: 960px;
+  max-width: 960px !important;
   .modal-body {
-    max-height: 660px;
+    max-height: 660px !important;
   }
   .modal-title {
     display: none;
@@ -27,6 +27,10 @@
     color: #ef513e;
     width: 500px;
   }
+}
+
+.video-react .video-react-control-bar.dubtitleCustomVideoControlBar {
+  display: flex;
 }
 
 .dubtitleWorkspace {
