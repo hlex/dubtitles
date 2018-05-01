@@ -18,13 +18,10 @@
         margin-bottom: 16px;
         cursor: pointer;
         >div {
-            max-width: 308px;
-            min-height: 205px;
+            width: 320px;
+            height: 180px;
+            overflow: hidden;
         }
-    }
-    >div {
-        display: 'flex';
-        flex-direction: 'row';
     }
     >div .title {
         box-sizing: border-box;

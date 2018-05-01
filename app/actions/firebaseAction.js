@@ -14,8 +14,13 @@ export const writeUserData = ({ userId, displayName, email, profileImage }) => {
 export const writeUserFavoriteMedia = ({ userId, mediaSlug }) => {
   console.log('writeUserFavoriteMedia', userId, mediaSlug)
   return (dispatch) => {
-    firebase.database().ref(`users/${userId}/favorites/${mediaSlug}`).set({
-      slug: mediaSlug
-    })
+    firebase.database().ref(`users/${userId}/favorites/${mediaSlug}`).set(true)
+  }
+}
+
+export const writeUserUnFavoriteMedia = ({ userId, mediaSlug }) => {
+  console.log('writeUserUnFavoriteMedia', userId, mediaSlug)
+  return (dispatch) => {
+    firebase.database().ref(`users/${userId}/favorites/${mediaSlug}`).set(null)
   }
 }

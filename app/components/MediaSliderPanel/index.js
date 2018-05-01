@@ -49,22 +49,24 @@ export default class extends React.Component {
         ]
       }
     ],
+    favList: {},
     canFav: true,
     onClick: () => null,
     onClickFav: () => null
   }
   render() {
-    const { data, canFav, onClick, onClickFav } = this.props
+    const { groups, favList, canFav, onClick, onClickFav } = this.props
     return (
       <div className='mediaSliderPanel'>
-        {_.map(data, (item, index) => (
+        {_.map(groups, (group, index) => (
           <div key={index} className='panelHolder'>
             <DiscoverPanel
+              favList={favList}
               canFav={canFav}
               onClickFav={onClickFav}
               onClick={onClick}
               id={index}
-              data={item}
+              data={group}
             />
           </div>
         ))}

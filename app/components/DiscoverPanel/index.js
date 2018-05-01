@@ -41,8 +41,8 @@ const settings = {
 
 class DiscoverPanel extends React.Component {
   render () {
-    const { label, subLabel, color, medias } = this.props.data
-    const { id, canFav, onClick, onClickFav } = this.props
+    const { id, data, favList, canFav, onClick, onClickFav } = this.props
+    const { label, subLabel, color, medias } = data
     const settingslider = {
       ...settings,
       slidesToShow: _.clamp(_.size(medias), 1, 3.3),
@@ -73,13 +73,14 @@ class DiscoverPanel extends React.Component {
                 <MediaCard
                   videoID={`${id}-${index}`}
                   title={item.title}
-                  subtitle={item.movieName}
+                  subtitle={item.source}
                   timing={item.timing}
                   posterSrc={item.posterSrc}
                   videoSrc={item.videoSrc}
+                  isFav={_.has(favList, item.slug)}
                   canFav={canFav}
                   onClick={() => onClick({ slug: item.slug })}
-                  onClickFav={() => onClickFav({ slug: item.slug })}
+                  onClickFav={(nextFavState) => onClickFav({ slug: item.slug, isFav: nextFavState })}
                 />
               </div>
             ))}

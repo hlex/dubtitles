@@ -18,6 +18,13 @@ export default class MediaCard extends React.Component {
   state = {
     isFav: this.props.isFav
   }
+  componentWillReceiveProps = (nextProps) => {
+    if (this.props.isFav !== nextProps.isFav) {
+      this.setState({
+        isFav: nextProps.isFav
+      })
+    }
+  }
   handelFav = () => {
     const { isFav } = this.state
     const nextFavState = !isFav

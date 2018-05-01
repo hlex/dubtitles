@@ -29,6 +29,7 @@ import ContentDiscovers from '../../../content/discovers'
 
 const mapStateToProps = state => {
   return {
+    userFavoriteList: state.user.favorites,
     isUserLoggedIn: state.user.isLoggedIn
   }
 }
@@ -64,7 +65,7 @@ export default class extends React.Component {
 
         this.setState({
           entities,
-          data,
+          groups: data,
           isFetched: true
         })
       })
@@ -80,19 +81,19 @@ export default class extends React.Component {
   handleClickMedia = ({ slug }) => {
     this.props.onClickVideo({ data: this.state.entities[slug] })
   }
-  handleClickFav = ({ slug }) => {
-    this.props.onClickFav({ slug })
+  handleClickFav = ({ slug, isFav }) => {
+    this.props.onClickFav({ slug, isFav })
   }
   render() {
-    const { isUserLoggedIn } = this.props
-    const { data, isFetched } = this.state
-    console.log(this.state, this.props)
+    const { isUserLoggedIn, userFavoriteList } = this.props
+    const { groups, isFetched } = this.state
     return (
       <div className='dubtitlePage page-discover'>
         {
           isFetched === true &&
           <MediaSliderPanel
-            data={data}
+            groups={groups}
+            favList={userFavoriteList}
             canFav={isUserLoggedIn}
             onClick={this.handleClickMedia}
             onClickFav={this.handleClickFav}

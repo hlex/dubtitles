@@ -8,7 +8,7 @@ import {
   DUBTITLE_SET_MEDIA
 } from './actionTypes'
 import { clearForm } from './formAction'
-import { writeUserFavoriteMedia } from './firebaseAction'
+import { writeUserFavoriteMedia, writeUserUnFavoriteMedia } from './firebaseAction'
 import { openModal } from '../hocs/connectModal'
 import firebase from '../firebase'
 
@@ -26,12 +26,14 @@ export const userLogin = ({
     .once('value')
   console.log('userLogin', userId, snapshot, snapshot.val())
   if (snapshot.val() && snapshot.val() !== null) {
-    const { displayName, email, profileImage } = snapshot.val()
+    const { displayName, email, profileImage, favorites = [] } = snapshot.val()
+    console.log('userLogin', displayName, email, profileImage, favorites)
     dispatch({
       type: USER_LOGGED_IN,
       email,
       displayName,
-      profileImage
+      profileImage,
+      favorites
     })
     // dispatch(goToPage('profile'))
   } else {
@@ -85,12 +87,19 @@ export const handleSelectVideoToDub = ({ data }) => {
   }
 }
 
-export const handleUserFavoriteVideo = ({ slug }) => {
+export const handleUserFavoriteVideo = ({ slug, isFav }) => {
   return dispatch => {
     const userId = firebase.auth().currentUser.uid
-    dispatch(writeUserFavoriteMedia({
-      userId,
-      mediaSlug: slug
-    }))
+    if (isFav) {
+      dispatch(writeUserFavoriteMedia({
+        userId,
+        mediaSlug: slug
+      }))
+    } else {
+      dispatch(writeUserUnFavoriteMedia({
+        userId,
+        mediaSlug: slug
+      }))
+    }
   }
 }
