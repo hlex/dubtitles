@@ -19,7 +19,8 @@ import { withRedux } from '../../hocs'
 // Action
 // ======================================================
 import {
-  handleSelectVideoToDub
+  handleSelectVideoToDub,
+  handleUserFavoriteVideo
 } from '../../actions'
 // ======================================================
 // Asset
@@ -27,11 +28,14 @@ import {
 import ContentDiscovers from '../../../content/discovers'
 
 const mapStateToProps = state => {
-  return {}
+  return {
+    isUserLoggedIn: state.user.isLoggedIn
+  }
 }
 
 const actionToProps = {
-  onClickVideo: handleSelectVideoToDub
+  onClickVideo: handleSelectVideoToDub,
+  onClickFav: handleUserFavoriteVideo
 }
 
 @withRedux(mapStateToProps, actionToProps)
@@ -73,18 +77,26 @@ export default class extends React.Component {
       }, 1)
     })
   }
-  handleOnClickVideo = ({ slug }) => {
-    console.log('handleOnClickVideo', slug)
+  handleClickMedia = ({ slug }) => {
     this.props.onClickVideo({ data: this.state.entities[slug] })
   }
+  handleClickFav = ({ slug }) => {
+    this.props.onClickFav({ slug })
+  }
   render() {
+    const { isUserLoggedIn } = this.props
     const { data, isFetched } = this.state
-    console.log(this.state)
+    console.log(this.state, this.props)
     return (
       <div className='dubtitlePage page-discover'>
         {
           isFetched === true &&
-          <MediaSliderPanel data={data} onClick={this.handleOnClickVideo} />
+          <MediaSliderPanel
+            data={data}
+            canFav={isUserLoggedIn}
+            onClick={this.handleClickMedia}
+            onClickFav={this.handleClickFav}
+          />
         }
         {
           !isFetched && <h1>Loading</h1>

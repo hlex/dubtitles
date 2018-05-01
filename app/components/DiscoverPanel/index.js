@@ -42,7 +42,7 @@ const settings = {
 class DiscoverPanel extends React.Component {
   render () {
     const { label, subLabel, color, medias } = this.props.data
-    const { id, onClick } = this.props
+    const { id, canFav, onClick, onClickFav } = this.props
     const settingslider = {
       ...settings,
       slidesToShow: _.clamp(_.size(medias), 1, 3.3),
@@ -77,7 +77,9 @@ class DiscoverPanel extends React.Component {
                   timing={item.timing}
                   posterSrc={item.posterSrc}
                   videoSrc={item.videoSrc}
+                  canFav={canFav}
                   onClick={() => onClick({ slug: item.slug })}
+                  onClickFav={() => onClickFav({ slug: item.slug })}
                 />
               </div>
             ))}
@@ -91,7 +93,9 @@ class DiscoverPanel extends React.Component {
 export default DiscoverPanel
 
 DiscoverPanel.defaultProps = {
-  data: { label: 'HITS<br/>QUOTES',
+  canFav: true,
+  data: {
+    label: 'HITS<br/>QUOTES',
     subLabel: 'คำคมฮิตติดปาก',
     color: '#ff8747',
     medias: [

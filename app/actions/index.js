@@ -1,10 +1,14 @@
 import { push } from 'react-router-redux'
+// ======================================================
+// Action
+// ======================================================
 import {
   USER_LOGGED_IN,
   USER_LOGGED_OUT,
   DUBTITLE_SET_MEDIA
 } from './actionTypes'
 import { clearForm } from './formAction'
+import { writeUserFavoriteMedia } from './firebaseAction'
 import { openModal } from '../hocs/connectModal'
 import firebase from '../firebase'
 
@@ -15,7 +19,7 @@ export const userLogin = ({
   displayName,
   profileImage
 }) => async dispatch => {
-  var userId = firebase.auth().currentUser.uid
+  const userId = firebase.auth().currentUser.uid
   const snapshot = await firebase
     .database()
     .ref('/users/' + userId)
@@ -73,5 +77,15 @@ export const handleSelectVideoToDub = ({ data }) => {
       data
     })
     dispatch(handleOpenDubtitlePopup())
+  }
+}
+
+export const handleUserFavoriteVideo = ({ slug }) => {
+  return dispatch => {
+    const userId = firebase.auth().currentUser.uid
+    dispatch(writeUserFavoriteMedia({
+      userId,
+      mediaSlug: slug
+    }))
   }
 }
