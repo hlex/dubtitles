@@ -1,5 +1,6 @@
 import React from 'react'
 import _ from 'lodash'
+import Modal from 'react-modal-es'
 import {
   Player,
   ControlBar,
@@ -26,7 +27,7 @@ import {
 import { withRedux } from '../../hocs'
 // import createForm from './createForm'
 // import firebase from '../../firebase'
-// import { closeModal } from '../../hocs/connectModal'
+import { openModal } from '../../hocs/connectModal'
 
 // ======================================================
 // Action
@@ -108,6 +109,8 @@ export default class extends React.Component {
       this.setState({
         isPlaybackWithRecorded: false
       })
+      // popup confirm to save
+      openModal('confirmToSaveDub')
     }
     // if not recording then do nothing.
     if (isRecording) {
@@ -209,6 +212,25 @@ export default class extends React.Component {
     // console.log('mutedPlayer', 'isRecording', isRecording, 'isPlaybackWithRecorded', isPlaybackWithRecorded, this.hasSubtitle())
     return (
       <div className='dubtitle'>
+        <Modal
+          name='confirmToSaveDub'
+          title=''
+          zIndex='99'
+          className='confirmToSaveDub'
+          overlayColor='rgba(0, 0, 0, 0.7)'
+          center
+          didOpen={() => null}
+          willUnmount={() => null}
+          willClose={() => null}
+        >
+          <h3>Great</h3>
+          <h5 className='italic'>A little bit more practice to become a perfect</h5>
+          <h1>80%</h1>
+          <div className='groupButton'>
+            <Button className='tertiary' name='dub again' />
+            <Button className='primary' name='save' />
+          </div>
+        </Modal>
         <Player
           muted={mutedPlayer}
           ref='dubtitlePlayer'
