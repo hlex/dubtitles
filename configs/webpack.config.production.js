@@ -22,6 +22,8 @@ const plugins = [
   }),
   new CopyWebpackPlugin([
     { from: `${projectPath.public}/favicon.ico`, to: `${projectPath.build}/favicon.ico` },
+    { from: `${projectPath.public}/images`, to: `${projectPath.build}/images` }
+
   ]),
   webpackIsomorphicToolsPlugin
 ]
