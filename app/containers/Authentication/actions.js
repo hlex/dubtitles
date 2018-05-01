@@ -21,7 +21,7 @@ const userSignUpThenLogin = (user) => {
       email: user.email,
       profileImage: _.get(user, 'providerData.0.photoURL', user.profileImage)
     }))
-    dispatch(goToPage('profile'))
+    // dispatch(goToPage('profile'))
   }
 }
 

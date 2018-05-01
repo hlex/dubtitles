@@ -124,7 +124,6 @@ export default class extends React.Component {
     // copy player state to this component's state
     const floorDuration = Math.floor(state.duration)
     const floorCurrentTime = Math.floor(state.currentTime)
-    console.log(state, this.state.currentTime, state.currentTime)
     if (this.state.currentTime !== state.currentTime) {
       const oneDecimalCurrentTime = Math.round(state.currentTime * 10) / 10
       const subtitle = this.findSubtitle(oneDecimalCurrentTime)
@@ -210,8 +209,8 @@ export default class extends React.Component {
         <Player
           muted={mutedPlayer}
           ref='dubtitlePlayer'
-          width={960}
-          height={540}
+          width={900}
+          height={450}
           name='dubtitleVideoPlayer'
           poster={posterSrc}
           preload='auto'
