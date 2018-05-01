@@ -2,7 +2,7 @@ import { push } from 'react-router-redux'
 import {
   USER_LOGGED_IN,
   USER_LOGGED_OUT,
-  DUBTITLE_SET_SOURCE
+  DUBTITLE_SET_MEDIA
 } from './actionTypes'
 import { clearForm } from './formAction'
 import { openModal } from '../hocs/connectModal'
@@ -66,11 +66,11 @@ export const handleOpenDubtitlePopup = () => {
   }
 }
 
-export const handleSelectVideoToDub = src => {
+export const handleSelectVideoToDub = ({ data }) => {
   return dispatch => {
     dispatch({
-      type: DUBTITLE_SET_SOURCE,
-      src
+      type: DUBTITLE_SET_MEDIA,
+      data
     })
     dispatch(handleOpenDubtitlePopup())
   }

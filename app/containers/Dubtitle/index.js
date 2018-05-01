@@ -6,6 +6,7 @@ import {
   PlayToggle,
   BigPlayButton,
   VolumeMenuButton,
+  CurrentTimeDisplay,
   ProgressControl
 } from 'video-react'
 import RecordRTC, { StereoAudioRecorder } from 'recordrtc'
@@ -34,9 +35,8 @@ import { withRedux } from '../../hocs'
 // import { handleUserSignUpWithEmail } from './actions'
 
 const mapStateToProps = state => {
-  const { src } = state.domains.dubtitle
   return {
-    src
+    ...state.domains.dubtitle
   }
 }
 
@@ -47,10 +47,10 @@ const actionToProps = {
 export default class extends React.Component {
   static defaultProps = {
     title: '"Ugh, As if"',
-    subTitle: 'Clueless',
+    movieName: 'Clueless',
     timing: '5 sec.',
-    poster: 'https://res.cloudinary.com/dghqbnkcb/image/upload/v1525011999/discoverposter/Untitled-4-06.png',
-    src: 'https://res.cloudinary.com/dghqbnkcb/video/upload/v1525029691/discoverposter/ugh.as_if.mp4',
+    posterSrc: 'https://res.cloudinary.com/dghqbnkcb/image/upload/v1525011999/discoverposter/Untitled-4-06.png',
+    videoSrc: 'https://res.cloudinary.com/dghqbnkcb/video/upload/v1525029691/discoverposter/ugh.as_if.mp4',
     subtitle: {
       '0.0': 'Ew! Get off of me!',
       '2.3': '',
@@ -73,15 +73,14 @@ export default class extends React.Component {
   }
   getSubtitle = (currentTime) => {
     const { subtitle } = this.props
-    console.log('currentTime is', currentTime)
+    // console.log('currentTime is', currentTime)
     const currentSubtitle = _.findLast(subtitle, (text, time) => {
-      console.log('time check', 'currentTime =', currentTime, '/ sub time =', parseFloat(time))
-      if (currentTime >= parseFloat(time)) {
-        console.log('I will use this sub ', text)
-        return text
-      }
+      // console.log('================================')
+      // console.log('time check', 'currentTime =', currentTime, '/ sub time =', parseFloat(time))
+      // console.log('text', text)
+      if (parseFloat(time) <= currentTime) return text
     })
-    console.log('currentSubtitle', currentSubtitle)
+    // console.log('currentSubtitle', currentSubtitle)
     return currentSubtitle || ''
   }
   getIsPlayerPlaying = () => this.state.player.currentTime !== undefined
@@ -193,7 +192,7 @@ export default class extends React.Component {
   }
   render() {
     const { subtitle, isRecording, isPlaybackWithRecorded } = this.state
-    const { src, poster } = this.props
+    const { videoSrc, posterSrc } = this.props
     const mutedPlayer = isRecording || isPlaybackWithRecorded
     // console.log(this.state)
     return (
@@ -204,11 +203,10 @@ export default class extends React.Component {
           width={960}
           height={540}
           name='dubtitleVideoPlayer'
-          poster={poster}
+          poster={posterSrc}
           preload='auto'
-          aspectRatio='16:9'
         >
-          <source src={src} />
+          <source src={videoSrc} />
           <ControlBar
             autoHide={false}
             className='dubtitleCustomVideoControlBar'
@@ -220,8 +218,9 @@ export default class extends React.Component {
               order={0}
             />
             <PlayToggle disabled={isRecording} order={1} />
-            <ProgressControl order={2} />
-            <RecordVideoButton order={3} />
+            <CurrentTimeDisplay order={2} />
+            <ProgressControl order={3} />
+            <RecordVideoButton order={4} />
           </ControlBar>
           <div className='dubtitleVideoPlayerSubtitle'>
             <p>{subtitle}</p>

@@ -73,11 +73,11 @@ class DiscoverPanel extends React.Component {
                 <MediaCard
                   videoID={`${id}-${index}`}
                   title={item.title}
-                  subTitle={item.subTitle}
+                  subtitle={item.movieName}
                   timing={item.timing}
-                  img={item.img}
-                  src={item.src}
-                  onClick={onClick}
+                  posterSrc={item.posterSrc}
+                  videoSrc={item.videoSrc}
+                  onClick={() => onClick({ slug: item.slug })}
                 />
               </div>
             ))}

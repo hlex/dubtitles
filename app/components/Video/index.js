@@ -5,13 +5,14 @@ import $ from 'jquery'
 
 export default class Video extends React.Component {
   static PropTypes = {
-    source: PropTypes.string.isRequired,
-    img: PropTypes.string,
+    videoSrc: PropTypes.string.isRequired,
+    posterSrc: PropTypes.string,
     onClick: PropTypes.func
   }
 
   static defaultProps = {
-    img: 'https://picsum.photos/308/205/?movie',
+    videoSrc: '',
+    posterSrc: 'https://picsum.photos/308/205/?movie',
     onClick: () => null
   }
   state = {
@@ -31,14 +32,22 @@ export default class Video extends React.Component {
     }
   }
   handleClick = () => {
+    this.refs.player.pause()
+    this.refs.player.seek(0)
     this.props.onClick(this.props.source)
   }
   render() {
-    const { source, img } = this.props
+    const { videoSrc, posterSrc } = this.props
     return (
       <div onClick={this.handleClick} className='video-wrapper hideControlBar'>
-        <Player poster={img} preload='metadata'>
-          <source src={source} />
+        <Player
+          ref='player'
+          poster={posterSrc}
+          preload='metadata'
+          width={320}
+          height={240}
+        >
+          <source src={videoSrc} />
           <ControlBar autoHide disableDefaultControls />
         </Player>
       </div>
