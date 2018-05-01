@@ -1,4 +1,5 @@
 import React from 'react'
+import _ from 'lodash'
 import {
   Player,
   ControlBar,
@@ -44,9 +45,22 @@ const actionToProps = {
 
 @withRedux(mapStateToProps, actionToProps)
 export default class extends React.Component {
+  static defaultProps = {
+    title: '"Ugh, As if"',
+    subTitle: 'Clueless',
+    timing: '5 sec.',
+    poster: 'https://res.cloudinary.com/dghqbnkcb/image/upload/v1525011999/discoverposter/Untitled-4-06.png',
+    src: 'https://res.cloudinary.com/dghqbnkcb/video/upload/v1525029691/discoverposter/ugh.as_if.mp4',
+    subtitle: {
+      '0.0': 'Ew! Get off of me!',
+      '2.3': '',
+      '2.8': 'ugh! as if'
+    }
+  }
   state = {
     player: {},
     audioPlayer: null,
+    subtitle: '',
     currentTime: 0,
     isRecording: false,
     isPlaybackWithRecorded: false,
@@ -56,6 +70,19 @@ export default class extends React.Component {
 
   componentDidMount() {
     this.refs.dubtitlePlayer.subscribeToStateChange(this.handleStateChange.bind(this))
+  }
+  getSubtitle = (currentTime) => {
+    const { subtitle } = this.props
+    console.log('currentTime is', currentTime)
+    const currentSubtitle = _.findLast(subtitle, (text, time) => {
+      console.log('time check', 'currentTime =', currentTime, '/ sub time =', parseFloat(time))
+      if (currentTime >= parseFloat(time)) {
+        console.log('I will use this sub ', text)
+        return text
+      }
+    })
+    console.log('currentSubtitle', currentSubtitle)
+    return currentSubtitle || ''
   }
   getIsPlayerPlaying = () => this.state.player.currentTime !== undefined
   captureUserMedia(callback) {
@@ -84,8 +111,6 @@ export default class extends React.Component {
         this.setState({
           isPlaybackWithRecorded: true
         })
-        // this.refs.dubtitlePlayer.play()
-        // this.refs.dubtitleVideo.play()
       })
     }
   }
@@ -94,10 +119,13 @@ export default class extends React.Component {
     const duration = Math.floor(state.duration)
     const currentTime = Math.floor(state.currentTime)
     if (this.state.currentTime !== currentTime) {
+      const oneDecimalCurrentTime = Math.round(state.currentTime * 10) / 10
+      const subtitle = this.getSubtitle(oneDecimalCurrentTime)
       this.setState({
         player: state,
         duration,
-        currentTime
+        currentTime,
+        subtitle
       })
     }
     const isEnded = state.duration === state.currentTime
@@ -164,8 +192,8 @@ export default class extends React.Component {
     })
   }
   render() {
-    const { isRecording, isPlaybackWithRecorded } = this.state
-    const { src } = this.props
+    const { subtitle, isRecording, isPlaybackWithRecorded } = this.state
+    const { src, poster } = this.props
     const mutedPlayer = isRecording || isPlaybackWithRecorded
     // console.log(this.state)
     return (
@@ -175,8 +203,8 @@ export default class extends React.Component {
           ref='dubtitlePlayer'
           width={960}
           height={540}
-          name='dubtitleVideo'
-          poster={'http://via.placeholder.com/960x540'}
+          name='dubtitleVideoPlayer'
+          poster={poster}
           preload='auto'
           aspectRatio='16:9'
         >
@@ -195,6 +223,9 @@ export default class extends React.Component {
             <ProgressControl order={2} />
             <RecordVideoButton order={3} />
           </ControlBar>
+          <div className='dubtitleVideoPlayerSubtitle'>
+            <p>{subtitle}</p>
+          </div>
         </Player>
         <div className='helperPanel'>
           <h4 className='translate'>: หากคุณเก่งอะไร จงอย่าทำมันให้ใครฟรี ๆ</h4>

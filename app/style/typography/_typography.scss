@@ -120,6 +120,7 @@ h5 {
 
 p {
   @extend %default-typography;
+  @extend %CircularStdMedium;
   font-size: 16px;
   &.small {
     @extend %CircularStdBookItalic;
