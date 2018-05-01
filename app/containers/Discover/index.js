@@ -70,7 +70,7 @@ export default class extends React.Component {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         resolve(ContentDiscovers)
-      }, 1500)
+      }, 1)
     })
   }
   handleOnClickVideo = ({ slug }) => {
