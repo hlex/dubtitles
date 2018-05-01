@@ -48,7 +48,8 @@ export const userLogin = ({
       type: USER_UPDATE_FAVORITES,
       favorites
     })
-    var favoriteRef = firebase.database().ref(`users/${userId}/favorites`)
+    // bind listener for favorite
+    const favoriteRef = firebase.database().ref(`users/${userId}/favorites`)
     favoriteRef.on('value', function(snapshot) {
       // update favoriteList
       dispatch({

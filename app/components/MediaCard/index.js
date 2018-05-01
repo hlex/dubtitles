@@ -19,7 +19,7 @@ export default class MediaCard extends React.Component {
     isFav: this.props.isFav
   }
   componentWillReceiveProps = (nextProps) => {
-    if (this.props.isFav !== nextProps.isFav) {
+    if (this.props.isFav !== nextProps.isFav || this.props.videoID !== nextProps.videoID) {
       this.setState({
         isFav: nextProps.isFav
       })
@@ -36,6 +36,7 @@ export default class MediaCard extends React.Component {
   render() {
     const { isFav } = this.state
     const { title, subtitle, timing, posterSrc, videoID, videoSrc, onClick, canFav } = this.props
+    console.log(this, 'mediaCard', videoID, isFav)
     return (
       <div className='mediaCard'>
         <div className='video-holder'>

@@ -52,44 +52,6 @@ const actionToProps = {
 
 @withRedux(mapStateToProps, actionToProps)
 export default class extends React.Component {
-  static defaultProps = {
-    user: {
-      displayName: 'Irene Indravudh',
-      profileImage: 'http://cdn02.cdn.justjaredjr.com/wp-content/uploads/headlines/2017/07/hp-jk-rowling-birthday-tweets.jpg'
-    },
-    favorites: {
-      label: 'FAVORITES',
-      subLabel: '',
-      color: '#ff7547',
-      medias: [
-        {
-          title: '“I’m also just a girl…”',
-          subTitle: 'Notting Hills',
-          timing: '0.14 sec',
-          img: 'http://media.w3.org/2010/05/bunny/trailer.mp4'
-        },
-        {
-          title: '“I’m also just a girl…”',
-          subTitle: 'Notting Hills',
-          timing: '0.14 sec',
-          img: 'http://media.w3.org/2010/05/bunny/trailer.mp4'
-        }
-      ]
-    },
-    dubs: {
-      label: 'MY DUBS',
-      subLabel: '',
-      color: '#ff7547',
-      medias: [
-        {
-          title: '“I’m also just a girl…”',
-          subTitle: 'Notting Hills',
-          timing: '0.14 sec',
-          img: 'http://via.placeholder.com/246x369'
-        }
-      ]
-    }
-  }
   componentDidMount = () => {
     const { isFetchedDiscoverData, getDiscoverData } = this.props
     if (!isFetchedDiscoverData) {

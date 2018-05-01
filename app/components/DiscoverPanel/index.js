@@ -41,13 +41,14 @@ const settings = {
 
 class DiscoverPanel extends React.Component {
   render () {
-    const { id, data, favList, canFav, onClick, onClickFav } = this.props
+    const { data, favList, canFav, onClick, onClickFav } = this.props
     const { label, subLabel, color, medias } = data
     const settingslider = {
       ...settings,
       slidesToShow: _.clamp(_.size(medias), 1, 3.3),
       slidesToScroll: _.clamp(_.size(medias), 1, 1)
     }
+    console.log(this)
     return (
       <div className='discover-panel'>
         <div className='panel-header'>
@@ -71,7 +72,7 @@ class DiscoverPanel extends React.Component {
             { _.map(medias, (item, index) => (
               <div key={index} style={{ margin: '0px 7px' }}>
                 <MediaCard
-                  videoID={`${id}-${index}`}
+                  videoID={`${item.slug}-${index}`}
                   title={item.title}
                   subtitle={item.source}
                   timing={item.timing}

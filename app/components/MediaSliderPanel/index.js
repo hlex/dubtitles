@@ -40,11 +40,11 @@ export default class extends React.Component {
         {_.map(groups, (group, index) => (
           <div key={index} className='panelHolder'>
             <DiscoverPanel
+              key={group.label}
               favList={favList}
               canFav={canFav}
               onClickFav={onClickFav}
               onClick={onClick}
-              id={index}
               data={group}
             />
           </div>
