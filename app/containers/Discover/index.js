@@ -19,78 +19,50 @@ import { withRedux } from '../../hocs'
 // Action
 // ======================================================
 import {
+  getDiscoverData,
   handleSelectVideoToDub,
   handleUserFavoriteVideo
 } from '../../actions'
 // ======================================================
 // Asset
 // ======================================================
-import ContentDiscovers from '../../../content/discovers'
 
 const mapStateToProps = state => {
   return {
     userFavoriteList: state.user.favorites,
-    isUserLoggedIn: state.user.isLoggedIn
+    isUserLoggedIn: state.user.isLoggedIn,
+    isFetchedDiscoverData: state.entities.discovers.isFetched,
+    groups: state.entities.discovers.rawData,
+    entities: state.entities.discovers.data
   }
 }
 
 const actionToProps = {
+  getDiscoverData,
   onClickVideo: handleSelectVideoToDub,
   onClickFav: handleUserFavoriteVideo
 }
 
 @withRedux(mapStateToProps, actionToProps)
 export default class extends React.Component {
-  state = {
-    isFetched: false
-  }
   componentDidMount = () => {
-    const { isFetched } = this.state
-    // connect to firebase to get discover data
-    if (!isFetched) {
-      this.fetchData().then((data) => {
-        console.log('fetchData', data)
-        const entities = _.reduce(data, (result, discoverCategory) => {
-          const discoverItems = _.reduce(discoverCategory.medias || [], (acc, media) => {
-            return {
-              ...acc,
-              [media.slug || uuid()]: media
-            }
-          }, {})
-          return {
-            ...result,
-            ...discoverItems
-          }
-        }, {})
-
-        this.setState({
-          entities,
-          groups: data,
-          isFetched: true
-        })
-      })
+    const { isFetchedDiscoverData, getDiscoverData } = this.props
+    if (!isFetchedDiscoverData) {
+      getDiscoverData()
     }
   }
-  fetchData = () => {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(ContentDiscovers)
-      }, 1)
-    })
-  }
   handleClickMedia = ({ slug }) => {
-    this.props.onClickVideo({ data: this.state.entities[slug] })
+    this.props.onClickVideo({ data: this.props.entities[slug] })
   }
   handleClickFav = ({ slug, isFav }) => {
     this.props.onClickFav({ slug, isFav })
   }
   render() {
-    const { isUserLoggedIn, userFavoriteList } = this.props
-    const { groups, isFetched } = this.state
+    const { groups, isFetchedDiscoverData, isUserLoggedIn, userFavoriteList } = this.props
     return (
       <div className='dubtitlePage page-discover'>
         {
-          isFetched === true &&
+          isFetchedDiscoverData === true &&
           <MediaSliderPanel
             groups={groups}
             favList={userFavoriteList}
@@ -100,7 +72,7 @@ export default class extends React.Component {
           />
         }
         {
-          !isFetched && <h1>Loading</h1>
+          !isFetchedDiscoverData && <h1>Loading</h1>
         }
         <Footer />
       </div>

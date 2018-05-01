@@ -1,6 +1,7 @@
 import {
   USER_LOGGED_IN,
-  USER_LOGGED_OUT
+  USER_LOGGED_OUT,
+  USER_UPDATE_FAVORITES
 } from '../actions/actionTypes'
 import _ from 'lodash/fp'
 
@@ -18,13 +19,17 @@ const getInitialState = () => ({
 
 export default (state = getInitialState(), action) => {
   switch (action.type) {
+    case USER_UPDATE_FAVORITES:
+      return {
+        ...state,
+        favorites: action.favorites || state.favorites
+      }
     case USER_LOGGED_IN:
       return {
         ...state,
         email: action.email || state.email,
         displayName: action.displayName || state.displayName,
         profileImage: action.profileImage || state.profileImage,
-        favorites: action.favorites || state.favorites,
         isLoggedIn: true,
         isFetched: true
       }

@@ -1,4 +1,5 @@
 import React from 'react'
+import _ from 'lodash'
 // ======================================================
 // Containers
 // ======================================================
@@ -15,29 +16,39 @@ import { withRedux } from '../../hocs'
 // ======================================================
 // Action
 // ======================================================
+import {
+  getDiscoverData,
+  handleSelectVideoToDub,
+  handleUserFavoriteVideo
+} from '../../actions'
 // ======================================================
 // Asset
 // ======================================================
 
 const mapStateToProps = state => {
+  const userFavoriteListArray = _.keys(state.user.favorites)
+  const discoverEntities = state.entities.discovers.data
   return {
     user: state.user,
-    favorites: {
+    myFavorites: {
       label: 'FAVORITES',
-      subLabel: '',
+      color: '#ff7547',
+      medias: _.map(_.pick(discoverEntities, userFavoriteListArray))
+    },
+    myDubs: {
+      label: 'MY DUBS',
       color: '#ff7547',
       medias: []
     },
-    dubs: {
-      label: 'MY DUBS',
-      subLabel: '',
-      color: '#ff7547',
-      medias: []
-    }
+    isFetchedDiscoverData: state.entities.discovers.isFetched
   }
 }
 
-const actionToProps = {}
+const actionToProps = {
+  getDiscoverData,
+  onClickVideo: handleSelectVideoToDub,
+  onClickFav: handleUserFavoriteVideo
+}
 
 @withRedux(mapStateToProps, actionToProps)
 export default class extends React.Component {
@@ -79,8 +90,30 @@ export default class extends React.Component {
       ]
     }
   }
+  componentDidMount = () => {
+    const { isFetchedDiscoverData, getDiscoverData } = this.props
+    if (!isFetchedDiscoverData) {
+      getDiscoverData()
+    }
+  }
+  getNumberOfFavorite = () => this.props.myFavorites.medias.length
+  getNumberOfDub = () => this.props.myDubs.medias.length
+  getGroup = () => {
+    const { myFavorites, myDubs } = this.props
+    let groups = []
+    if (this.getNumberOfFavorite() > 0) groups.push(myFavorites)
+    if (this.getNumberOfDub() > 0) groups.push(myDubs)
+    return groups
+  }
+  handleClickMedia = ({ slug }) => {
+    this.props.onClickVideo({ data: this.props.entities[slug] })
+  }
+  handleClickFav = ({ slug, isFav }) => {
+    this.props.onClickFav({ slug, isFav })
+  }
   render() {
-    const { user, favorites, dubs } = this.props
+    const { user } = this.props
+    const { isUserLoggedIn, favorites } = user
     console.log(this)
     return (
       <div className='page-myProfile'>
@@ -103,10 +136,10 @@ export default class extends React.Component {
                   </div>
                   <div className='summary'>
                     <div className='item'>
-                      <h4>my dub</h4><span className='semicolon'>:</span><div className='text-in-circle'>{dubs.medias.length}</div>
+                      <h4>my dub</h4><span className='semicolon'>:</span><div className='text-in-circle'>{this.getNumberOfDub()}</div>
                     </div>
                     <div className='item'>
-                      <h4>favorites</h4><span className='semicolon'>:</span><div className='text-in-circle'>{favorites.medias.length}</div>
+                      <h4>favorites</h4><span className='semicolon'>:</span><div className='text-in-circle'>{this.getNumberOfFavorite()}</div>
                     </div>
                   </div>
                 </div>
@@ -119,10 +152,15 @@ export default class extends React.Component {
               }
             </div>
           }
-          { favorites.length > 0 && <MediaSliderPanel data={[favorites]} /> }
-          { dubs.length > 0 && <MediaSliderPanel data={[dubs]} /> }
-          <Footer />
         </div>
+        <MediaSliderPanel
+          groups={this.getGroup()}
+          favList={favorites}
+          canFav={isUserLoggedIn}
+          onClick={this.handleClickMedia}
+          onClickFav={this.handleClickFav}
+        />
+        <Footer />
       </div>
     )
   }

@@ -1,5 +1,14 @@
 import firebase from '../firebase'
 
+// export const subscribeUserChange = () => {
+//   return (dispatch, getState) => {
+//     var starCountRef = firebase.database().ref('posts/' + postId + '/starCount');
+//     starCountRef.on('value', function(snapshot) {
+//       updateStarCount(postElement, snapshot.val());
+//     });
+//   }
+// }
+
 export const writeUserData = ({ userId, displayName, email, profileImage }) => {
   console.log('writeUserData', userId, displayName, email, profileImage)
   return (dispatch) => {
