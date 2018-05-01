@@ -11,12 +11,30 @@ import firebase from '../firebase'
 
 export const writeUserData = ({ userId, displayName, email, profileImage }) => {
   console.log('writeUserData', userId, displayName, email, profileImage)
-  return (dispatch) => {
-    firebase.database().ref(`users/${userId}`).set({
-      displayName,
-      email,
-      profileImage
-    })
+  return async (dispatch) => {
+    const snapshot = await firebase
+      .database()
+      .ref('/users/' + userId)
+      .once('value')
+    const isExistingUser = snapshot.val() && snapshot.val() !== null
+    console.log('isExistingUser', isExistingUser)
+    if (isExistingUser) {
+      const favoritesSnapShot = await firebase.database().ref(`users/${userId}/favorites`).once('value')
+      console.log()
+      firebase.database().ref(`users/${userId}`).update({
+        displayName,
+        email,
+        profileImage,
+        favorites: favoritesSnapShot.val() || {}
+      })
+    } else {
+      firebase.database().ref(`users/${userId}`).set({
+        displayName,
+        email,
+        profileImage,
+        favorites: {}
+      })
+    }
   }
 }
 

@@ -34,6 +34,9 @@ import { withRedux } from '../../hocs'
 // import { FORM_CHANGE } from '../../actions/actionTypes'
 // import { handleUserSignUpWithEmail } from './actions'
 
+const hasGetUserMedia = !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
+  navigator.mozGetUserMedia || navigator.msGetUserMedia);
+
 const mapStateToProps = state => {
   return {
     ...state.domains.dubtitle

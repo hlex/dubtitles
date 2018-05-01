@@ -36,7 +36,7 @@ export const userLogin = ({
   const isExistingUser = snapshot.val() && snapshot.val() !== null
   console.log('userLogin: isExistingUser', isExistingUser, userId, snapshot, snapshot.val())
   if (isExistingUser) {
-    const { displayName, email, profileImage, favorites = [] } = snapshot.val()
+    const { displayName, email, profileImage, favorites = {} } = snapshot.val()
     console.log('userLogin', displayName, email, profileImage, favorites)
     dispatch({
       type: USER_LOGGED_IN,
