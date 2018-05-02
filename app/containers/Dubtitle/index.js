@@ -27,13 +27,13 @@ import {
 import { withRedux } from '../../hocs'
 // import createForm from './createForm'
 // import firebase from '../../firebase'
-import { openModal } from '../../hocs/connectModal'
+import { openModal, closeModal } from '../../hocs/connectModal'
 
 // ======================================================
 // Action
 // ======================================================
 // import { FORM_CHANGE } from '../../actions/actionTypes'
-// import { handleUserSignUpWithEmail } from './actions'
+import { saveDub } from '../../actions'
 
 const hasGetUserMedia = !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
   navigator.mozGetUserMedia || navigator.msGetUserMedia);
@@ -45,6 +45,7 @@ const mapStateToProps = state => {
 }
 
 const actionToProps = {
+  saveDub
 }
 
 @withRedux(mapStateToProps, actionToProps)
@@ -115,16 +116,39 @@ export default class extends React.Component {
     // if not recording then do nothing.
     if (isRecording) {
       // stop recorded
-      this.stopRecord((audio) => {
+      this.stopRecord((blobURL) => {
+        const audio = new Audio(blobURL)
         // play recorded & video both
         this.refs.dubtitlePlayer.play()
         audio.play()
         this.setState({
+          recordedSrc: blobURL,
           isPlaybackWithRecorded: true,
           isVideoPlaying: true
         })
       })
     }
+  }
+  handleDubAgain = () => {
+    closeModal('confirmToSaveDub')
+    // clear data
+    this.setState({
+      recordedSrc: null
+    })
+  }
+  handleSaveDub = () => {
+    const { recordVideo } = this.state
+    const { slug, saveDub } = this.props
+    saveDub({
+      recordedSrc: recordVideo.blob,
+      mediaSlug: slug
+    }, () => {
+      closeModal('confirmToSaveDub')
+      alert('Save Success')
+      this.setState({
+        recordedSrc: null
+      })
+    })
   }
   handleStateChange = (state, prevState) => {
     // copy player state to this component's state
@@ -148,7 +172,7 @@ export default class extends React.Component {
     const { isRecording } = this.state
     if (isRecording) {
       // stop record
-      this.stopRecord()
+      // this.stopRecord()
     } else {
       // start record
       this.startRecord()
@@ -172,6 +196,7 @@ export default class extends React.Component {
       // }
       var options = {
         recorderType: StereoAudioRecorder,
+        desiredSampRate: 16 * 1000, // bits-per-sample * 1000
         mimeType: 'audio/wav'
       }
       console.log('----------- Start Record ---------')
@@ -194,8 +219,7 @@ export default class extends React.Component {
       console.log('----------- Stop Record ---------')
       console.log('----------- Create Audio URL ---------')
       const blobURL = window.URL.createObjectURL(this.state.recordVideo.blob)
-      const audio = new Audio(blobURL)
-      if (callback) callback(audio)
+      if (callback) callback(blobURL)
       // this.setState({
       //   recordedSrc: new Audio(this.state.recordVideo.blob), // window.URL.createObjectURL(this.state.recordVideo.blob),
       //   userMuted: false,
@@ -225,10 +249,10 @@ export default class extends React.Component {
         >
           <h3>Great</h3>
           <h5 className='italic'>A little bit more practice to become a perfect</h5>
-          <h1>80%</h1>
+          <h1>{`${_.random(80, 100)}%`}</h1>
           <div className='groupButton'>
-            <Button className='tertiary' name='dub again' />
-            <Button className='primary' name='save' />
+            <Button onClick={this.handleDubAgain} className='tertiary' name='dub again' />
+            <Button onClick={this.handleSaveDub} className='primary' name='save' />
           </div>
         </Modal>
         <Player

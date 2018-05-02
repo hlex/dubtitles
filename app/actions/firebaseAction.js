@@ -1,14 +1,5 @@
 import firebase from '../firebase'
 
-// export const subscribeUserChange = () => {
-//   return (dispatch, getState) => {
-//     var starCountRef = firebase.database().ref('posts/' + postId + '/starCount');
-//     starCountRef.on('value', function(snapshot) {
-//       updateStarCount(postElement, snapshot.val());
-//     });
-//   }
-// }
-
 export const writeUserData = ({ userId, displayName, email, profileImage }) => {
   console.log('writeUserData', userId, displayName, email, profileImage)
   return async (dispatch) => {
@@ -20,12 +11,13 @@ export const writeUserData = ({ userId, displayName, email, profileImage }) => {
     console.log('isExistingUser', isExistingUser)
     if (isExistingUser) {
       const favoritesSnapShot = await firebase.database().ref(`users/${userId}/favorites`).once('value')
-      console.log()
+      const dubsSnapShot = await firebase.database().ref(`users/${userId}/dubs`).once('value')
       firebase.database().ref(`users/${userId}`).update({
         displayName,
         email,
         profileImage,
-        favorites: favoritesSnapShot.val() || {}
+        favorites: favoritesSnapShot.val() || {},
+        dubs: dubsSnapShot.val() || {}
       })
     } else {
       firebase.database().ref(`users/${userId}`).set({
@@ -50,4 +42,18 @@ export const writeUserUnFavoriteMedia = ({ userId, mediaSlug }) => {
   return (dispatch) => {
     firebase.database().ref(`users/${userId}/favorites/${mediaSlug}`).set(null)
   }
+}
+
+export const writeUserDubtitle = ({ userId, mediaSlug, recordedURL }) => {
+  console.log('writeUserDubtitle', userId, mediaSlug, recordedURL)
+  return (dispatch) => {
+    firebase.database().ref(`users/${userId}/dubs/${mediaSlug}`).set(recordedURL)
+  }
+}
+
+export const uploadBlob = (file, path) => {
+  // Create a root reference
+  const storageRef = firebase.storage().ref()
+  const pathRef = storageRef.child(path)
+  return pathRef.put(file)
 }

@@ -48,7 +48,6 @@ class DiscoverPanel extends React.Component {
       slidesToShow: _.clamp(_.size(medias), 1, 3.3),
       slidesToScroll: _.clamp(_.size(medias), 1, 1)
     }
-    console.log(this)
     return (
       <div className='discover-panel'>
         <div className='panel-header'>

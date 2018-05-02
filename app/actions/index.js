@@ -13,7 +13,7 @@ import {
   ENTITIES_DISCOVER_RECEIVED
 } from './actionTypes'
 import { clearForm } from './formAction'
-import { writeUserFavoriteMedia, writeUserUnFavoriteMedia } from './firebaseAction'
+import { uploadBlob, writeUserFavoriteMedia, writeUserUnFavoriteMedia, writeUserDubtitle } from './firebaseAction'
 import { openModal } from '../hocs/connectModal'
 import firebase from '../firebase'
 // ======================================================
@@ -145,5 +145,16 @@ export const getDiscoverData = () => {
       data: entities,
       rawData: ContentDiscovers
     })
+  }
+}
+
+export const saveDub = ({ recordedSrc, mediaSlug }, callback) => {
+  return async (dispatch) => {
+    const userId = firebase.auth().currentUser.uid
+    console.log('saveDub', userId, recordedSrc, mediaSlug )
+    const { downloadURL } = await uploadBlob(recordedSrc, `dubtitles/${userId}/${mediaSlug}/${Date.now()}.webm`)
+    console.log('downloadURL', downloadURL)
+    dispatch(writeUserDubtitle({ userId, mediaSlug, recordedURL: downloadURL }))
+    if (callback) callback()
   }
 }
