@@ -71,6 +71,7 @@ export default class extends React.Component {
     player: {},
     audioPlayer: null,
     subtitle: '',
+    translation: '',
     currentTime: 0,
     isVideoPlaying: false,
     isRecording: false,
@@ -104,15 +105,17 @@ export default class extends React.Component {
   }
   findSubtitle = (currentTime) => {
     const { subtitle } = this.props
-    // console.log('currentTime is', currentTime)
     const currentSubtitle = _.findLast(subtitle, (text, time) => {
-      // console.log('================================')
-      // console.log('time check', 'currentTime =', currentTime, '/ sub time =', parseFloat(time))
-      // console.log('text', text)
       if (parseFloat(time) <= currentTime) return text
     })
-    // console.log('currentSubtitle', currentSubtitle)
     return currentSubtitle || ' '
+  }
+  findTranslation = (currentTime) => {
+    const { translation } = this.props
+    const currentTranslation = _.findLast(translation, (text, time) => {
+      if (parseFloat(time) <= currentTime) return text
+    })
+    return currentTranslation || ' '
   }
   getIsPlayerPlaying = () => _.get(this.state, 'player.ended', true) === false
   getSubtitle = () => this.findSubtitle(this.state.currentTime)
@@ -182,15 +185,15 @@ export default class extends React.Component {
     if (this.state.currentTime !== state.currentTime) {
       const oneDecimalCurrentTime = Math.round(state.currentTime * 10) / 10
       const subtitle = this.findSubtitle(oneDecimalCurrentTime)
+      const translation = this.findTranslation(oneDecimalCurrentTime)
       const isVideoPlaying = this.state.currentTime !== floorCurrentTime
-      if (isVideoPlaying && this.state.audioPlayer !== null) {
-        this.state.audioPlayer.play()
-      }
+      if (isVideoPlaying && this.state.audioPlayer !== null) this.state.audioPlayer.play()
       this.setState({
         player: state,
         duration: floorDuration,
         currentTime: floorCurrentTime,
         subtitle,
+        translation,
         isVideoPlaying
       })
     }
@@ -258,8 +261,9 @@ export default class extends React.Component {
     })
   }
   render() {
-    const { subtitle, isRecording, isPlaybackWithRecorded } = this.state
-    const { isViewDubMode, videoSrc, posterSrc } = this.props
+    console.log('Dubtitle:', this.props)
+    const { translation, subtitle, isRecording, isPlaybackWithRecorded } = this.state
+    const { tips = [], isViewDubMode, videoSrc, posterSrc } = this.props
     const mutedPlayer = (isRecording || isPlaybackWithRecorded || isViewDubMode) && this.hasSubtitle()
     // console.log('mutedPlayer', 'isRecording', isRecording, 'isPlaybackWithRecorded', isPlaybackWithRecorded, this.hasSubtitle())
     return (
@@ -322,8 +326,13 @@ export default class extends React.Component {
           }
         </Player>
         <div className='helperPanel'>
-          <h4 className='translate'>: หากคุณเก่งอะไร จงอย่าทำมันให้ใครฟรี ๆ</h4>
-          <h4 className='tip'>good at เป็นเหมือนสำนวนแปลว่า เก่ง, เชี่ยวชาญ, มีความสามารถ รูปประโยคใช้ V. to be + good at + N/Ving </h4>
+          {
+            this.props.translation &&
+            <h4 className='translate'>{translation}</h4>
+          }
+          {
+            _.map(tips, tip => <h4 className='tip'>{tip}</h4>)
+          }
         </div>
       </div>
     )

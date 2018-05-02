@@ -343,7 +343,7 @@ export default class extends React.Component {
                       {
                         _.map(subLessonItem.units, (unit) => {
                           return (
-                            <div onClick={() => this.handleClickUnit({ slug: unit.slug })} className={`unitItem ${unit.locked ? 'locked' : 'pass'}`}>
+                            <div onClick={() => !unit.locked && this.handleClickUnit({ slug: unit.slug })} className={`unitItem ${unit.locked ? 'locked' : 'pass'}`}>
                               <div className='iconStatus'>
                                 {unit.locked ? <IconLock /> : <IconCheck />}
                               </div>

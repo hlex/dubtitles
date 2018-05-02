@@ -16,7 +16,7 @@ export default class LessonCard extends React.Component {
   }
   static defaultProps = {
     isRecommended: false,
-    thumbnail: 'http://via.placeholder.com/380x240',
+    posterSrc: 'http://via.placeholder.com/380x240',
     name: 'ENGLISH FOR MUGGLES',
     subtitle: 'British Accent Training',
     description: 'You will learn grammar and also British accent with the top hit scenes from Harry Potter season 1-7',
@@ -26,7 +26,7 @@ export default class LessonCard extends React.Component {
   render () {
     const {
       isRecommended,
-      thumbnail,
+      posterSrc,
       name,
       subtitle,
       description,
@@ -36,8 +36,8 @@ export default class LessonCard extends React.Component {
     } = this.props
     return (
       <Card className='lessonCard'>
-        <div className='thumbnail-wrapper'>
-          <img onClick={onClick} src={thumbnail} alt='' />
+        <div className='posterSrc-wrapper'>
+          <img onClick={onClick} src={posterSrc} alt='' />
         </div>
         <LessonDetail
           onClick={onClick}

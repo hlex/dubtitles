@@ -1,7 +1,7 @@
 export default [
   {
     isRecommended: true,
-    thumbnail: 'https://res.cloudinary.com/dtornrp4k/image/upload/v1525128525/harry/lesson%20cover%20/lessoncover-01.jpg',
+    posterSrc: 'https://res.cloudinary.com/dtornrp4k/image/upload/v1525128525/harry/lesson%20cover%20/lessoncover-01.jpg',
     slug: 'english-for-muggles-1',
     name: 'ENGLISH FOR MUGGLES',
     subtitle: 'British Accent Training',
@@ -75,7 +75,7 @@ export default [
               'courage (n.) ความกล้าหาญ : ',
               ''
             ],
-            locked: true
+            locked: false
           },
           {
             slug: 'hermione-1',
@@ -102,7 +102,7 @@ export default [
               '',
               ''
             ],
-            locked: true
+            locked: false
           }
         ]
       },
