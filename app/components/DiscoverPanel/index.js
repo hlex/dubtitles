@@ -42,7 +42,7 @@ const settings = {
 class DiscoverPanel extends React.Component {
   render () {
     const { data, favList, canFav, onClick, onClickFav } = this.props
-    const { label, subLabel, color, medias } = data
+    const { label, canDownload, subLabel, color, medias } = data
     const settingslider = {
       ...settings,
       slidesToShow: _.clamp(_.size(medias), 1, 3.3),
@@ -79,6 +79,7 @@ class DiscoverPanel extends React.Component {
                   videoSrc={item.videoSrc}
                   isFav={_.has(favList, item.slug)}
                   canFav={canFav}
+                  canDownload={canDownload}
                   onClick={() => onClick({ slug: item.slug })}
                   onClickFav={(nextFavState) => onClickFav({ slug: item.slug, isFav: nextFavState })}
                 />
@@ -94,6 +95,7 @@ class DiscoverPanel extends React.Component {
 export default DiscoverPanel
 
 DiscoverPanel.defaultProps = {
+  canDownload: false,
   canFav: true,
   data: {
     label: 'HITS<br/>QUOTES',

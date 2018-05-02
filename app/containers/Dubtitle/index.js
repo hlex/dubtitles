@@ -39,8 +39,11 @@ const hasGetUserMedia = !!(navigator.getUserMedia || navigator.webkitGetUserMedi
   navigator.mozGetUserMedia || navigator.msGetUserMedia);
 
 const mapStateToProps = state => {
+  const pathname = state.router.location.pathname
+  const isViewDubModal = /profile.*dub/ig.test(pathname)
   return {
-    ...state.domains.dubtitle
+    ...state.domains.dubtitle,
+    isViewDubModal
   }
 }
 
@@ -229,9 +232,9 @@ export default class extends React.Component {
     })
   }
   render() {
-    // console.log('state', this.state)
+    console.log('state', this.state, this.props)
     const { subtitle, isRecording, isPlaybackWithRecorded } = this.state
-    const { videoSrc, posterSrc } = this.props
+    const { isViewDubModal, videoSrc, posterSrc } = this.props
     const mutedPlayer = (isRecording || isPlaybackWithRecorded) && this.hasSubtitle()
     // console.log('mutedPlayer', 'isRecording', isRecording, 'isPlaybackWithRecorded', isPlaybackWithRecorded, this.hasSubtitle())
     return (
@@ -270,15 +273,21 @@ export default class extends React.Component {
             className='dubtitleCustomVideoControlBar'
             disableDefaultControls
           >
-            <RecordButton
-              onClick={this.handleToggleRecord}
-              isRecording={isRecording}
-              order={0}
-            />
+            {
+              !isViewDubModal &&
+              <RecordButton
+                onClick={this.handleToggleRecord}
+                isRecording={isRecording}
+                order={0}
+              />
+            }
             <PlayToggle disabled={isRecording} order={1} />
             <CurrentTimeDisplay order={2} />
             <ProgressControl order={3} />
-            <RecordVideoButton order={4} />
+            {
+              !isViewDubModal &&
+              <RecordVideoButton disabled={isViewDubModal} order={4} />
+            }
           </ControlBar>
           {
             this.getIsPlayerPlaying() &&

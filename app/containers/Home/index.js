@@ -20,6 +20,8 @@ import { openModal } from '../../hocs/connectModal'
 // ======================================================
 // Asset
 // ======================================================
+import wave from '../../images/wave.svg'
+
 import youGetSpeak from '../../images/speaking.svg'
 import youGetListeing from '../../images/listening.svg'
 import youGetVocab from '../../images/vocab.svg'
@@ -57,6 +59,9 @@ export default class extends React.Component {
           <img id='tape1' src={graphicTape} />
           <img id='tape2' src={graphicTape} />
         </section>
+        <div className=''>
+          <img src={wave} />
+        </div>
         <section className='bottom'>
           <div className='white-cloud'>
             <img id='tape3' src={graphicTape} />

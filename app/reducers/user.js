@@ -1,7 +1,8 @@
 import {
   USER_LOGGED_IN,
   USER_LOGGED_OUT,
-  USER_UPDATE_FAVORITES
+  USER_UPDATE_FAVORITES,
+  USER_UPDATE_DUBS
 } from '../actions/actionTypes'
 import _ from 'lodash/fp'
 
@@ -23,6 +24,11 @@ export default (state = getInitialState(), action) => {
       return {
         ...state,
         favorites: action.favorites || state.favorites
+      }
+    case USER_UPDATE_DUBS:
+      return {
+        ...state,
+        dubs: action.dubs || state.dubs
       }
     case USER_LOGGED_IN:
       return {

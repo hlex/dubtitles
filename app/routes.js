@@ -19,6 +19,10 @@ const routes = [
         component: Home
       },
       {
+        path: '/profile/:userId/dub/:slugId',
+        component: Home
+      },
+      {
         path: '/profile',
         exact: true,
         component: MyProfile

@@ -19,7 +19,8 @@ import { withRedux } from '../../hocs'
 import {
   getDiscoverData,
   handleSelectVideoToDub,
-  handleUserFavoriteVideo
+  handleUserFavoriteVideo,
+  handleClickViewMyDub
 } from '../../actions'
 // ======================================================
 // Asset
@@ -27,9 +28,11 @@ import {
 
 const mapStateToProps = state => {
   const userFavoriteListArray = _.keys(state.user.favorites)
+  const userDubListArray = _.keys(state.user.dubs)
   const discoverEntities = state.entities.discovers.data
   return {
     user: state.user,
+    discoverEntities: discoverEntities,
     myFavorites: {
       label: 'FAVORITES',
       color: '#ff7547',
@@ -38,7 +41,8 @@ const mapStateToProps = state => {
     myDubs: {
       label: 'MY DUBS',
       color: '#ff7547',
-      medias: []
+      canDownload: true,
+      medias: _.map(_.pick(discoverEntities, userDubListArray))
     },
     isFetchedDiscoverData: state.entities.discovers.isFetched
   }
@@ -47,7 +51,8 @@ const mapStateToProps = state => {
 const actionToProps = {
   getDiscoverData,
   onClickVideo: handleSelectVideoToDub,
-  onClickFav: handleUserFavoriteVideo
+  onClickFav: handleUserFavoriteVideo,
+  onClickViewMyDub: handleClickViewMyDub
 }
 
 @withRedux(mapStateToProps, actionToProps)
@@ -60,21 +65,17 @@ export default class extends React.Component {
   }
   getNumberOfFavorite = () => this.props.myFavorites.medias.length
   getNumberOfDub = () => this.props.myDubs.medias.length
-  getGroup = () => {
-    const { myFavorites, myDubs } = this.props
-    let groups = []
-    if (this.getNumberOfFavorite() > 0) groups.push(myFavorites)
-    if (this.getNumberOfDub() > 0) groups.push(myDubs)
-    return groups
+  handleClickViewMyDub = ({ slug }) => {
+    this.props.onClickViewMyDub({ data: this.props.discoverEntities[slug], slug })
   }
   handleClickMedia = ({ slug }) => {
-    this.props.onClickVideo({ data: this.props.entities[slug] })
+    this.props.onClickVideo({ data: this.props.discoverEntities[slug] })
   }
   handleClickFav = ({ slug, isFav }) => {
     this.props.onClickFav({ slug, isFav })
   }
   render() {
-    const { user } = this.props
+    const { user, myDubs, myFavorites } = this.props
     const { isUserLoggedIn, favorites } = user
     console.log(this)
     return (
@@ -115,13 +116,25 @@ export default class extends React.Component {
             </div>
           }
         </div>
-        <MediaSliderPanel
-          groups={this.getGroup()}
-          favList={favorites}
-          canFav={isUserLoggedIn}
-          onClick={this.handleClickMedia}
-          onClickFav={this.handleClickFav}
-        />
+        {
+          this.getNumberOfFavorite() > 0 &&
+          <MediaSliderPanel
+            groups={[myFavorites]}
+            favList={favorites}
+            canFav={isUserLoggedIn}
+            onClick={this.handleClickMedia}
+            onClickFav={this.handleClickFav}
+          />
+        }
+        {
+          this.getNumberOfDub() > 0 &&
+          <MediaSliderPanel
+            groups={[myDubs]}
+            favList={favorites}
+            canFav={false}
+            onClick={this.handleClickViewMyDub}
+          />
+        }
         <Footer />
       </div>
     )

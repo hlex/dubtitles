@@ -2,8 +2,11 @@ import React from 'react'
 import MdFav from 'react-icons/lib/md/favorite'
 import Video from '../Video'
 
+import iconDownload from '../../images/download.svg'
+
 export default class MediaCard extends React.Component {
   static defaultProps = {
+    canDownload: false,
     title:
       'Because waiting for you because waiting for you because waiting for you',
     subtitle: 'Notting Hills',
@@ -35,7 +38,7 @@ export default class MediaCard extends React.Component {
   }
   render() {
     const { isFav } = this.state
-    const { title, subtitle, timing, posterSrc, videoID, videoSrc, onClick, canFav } = this.props
+    const { title, subtitle, timing, posterSrc, videoID, videoSrc, onClick, canFav, canDownload } = this.props
     return (
       <div className='mediaCard'>
         <div className='video-holder'>
@@ -56,9 +59,15 @@ export default class MediaCard extends React.Component {
         <div className='subTitle'>{subtitle}</div>
         <div className='timing'>{timing}</div>
         {
-          canFav &&
+          canFav && !canDownload &&
           <button className='favIcon' onClick={() => this.handelFav()}>
             <MdFav className='icon' color={isFav ? '#fc481e' : '#fff'} />
+          </button>
+        }
+        {
+          canDownload &&
+          <button className='favIcon' onClick={() => this.handelFav()}>
+            <img className='iconDownload' src={iconDownload} />
           </button>
         }
       </div>

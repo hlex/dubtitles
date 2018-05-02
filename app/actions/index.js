@@ -9,6 +9,7 @@ import {
   USER_LOGGED_IN,
   USER_LOGGED_OUT,
   USER_UPDATE_FAVORITES,
+  USER_UPDATE_DUBS,
   DUBTITLE_SET_MEDIA,
   ENTITIES_DISCOVER_RECEIVED
 } from './actionTypes'
@@ -57,6 +58,18 @@ export const userLogin = ({
         favorites: snapshot.val()
       })
     })
+
+    // bind listener for dubs
+    const dubRef = firebase.database().ref(`users/${userId}/dubs`)
+    dubRef.on('value', function(snapshot) {
+      console.log(snapshot.val())
+      // update favoriteList
+      dispatch({
+        type: USER_UPDATE_DUBS,
+        dubs: snapshot.val()
+      })
+    })
+
     // dispatch(goToPage('profile'))
   } else {
     dispatch({
@@ -156,5 +169,17 @@ export const saveDub = ({ recordedSrc, mediaSlug }, callback) => {
     console.log('downloadURL', downloadURL)
     dispatch(writeUserDubtitle({ userId, mediaSlug, recordedURL: downloadURL }))
     if (callback) callback()
+  }
+}
+
+export const handleClickViewMyDub = ({ data, slug }) => {
+  return (dispatch) => {
+    dispatch({
+      type: DUBTITLE_SET_MEDIA,
+      data
+    })
+    const userId = firebase.auth().currentUser.uid
+    dispatch(goToPage(`profile/${userId}/dub/${slug}`))
+    dispatch(handleOpenDubtitlePopup())
   }
 }
