@@ -56,7 +56,7 @@ export default class Header extends Component {
     const {
       location: { pathname }
     } = this.props
-    return pathname === '/' || pathname === '/home' || /profile.*dub/ig.test(pathname)
+    return pathname === '/' || pathname === '/home' || /dub/ig.test(pathname)
   }
   handleLogout = () => {
     firebase

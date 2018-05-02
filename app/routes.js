@@ -19,7 +19,7 @@ const routes = [
         component: Home
       },
       {
-        path: '/profile/:userId/dub/:slugId',
+        path: '/dub',
         component: Home
       },
       {

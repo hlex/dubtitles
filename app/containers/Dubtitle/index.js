@@ -21,29 +21,31 @@ import {
   RecordVideoButton
 } from '../../components'
 
-// import { bindFormValidation } from 'redux-form-manager'
-
-// import { InputField, Button } from '../../components'
 import { withRedux } from '../../hocs'
-// import createForm from './createForm'
-// import firebase from '../../firebase'
 import { openModal, closeModal } from '../../hocs/connectModal'
+import firebase from '../../firebase'
 
 // ======================================================
 // Action
 // ======================================================
 // import { FORM_CHANGE } from '../../actions/actionTypes'
 import { saveDub } from '../../actions'
+// ======================================================
+// Helper
+// ======================================================
+import {
+  getParameterByName
+} from '../../helpers/global'
 
 const hasGetUserMedia = !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
-  navigator.mozGetUserMedia || navigator.msGetUserMedia);
+  navigator.mozGetUserMedia || navigator.msGetUserMedia)
 
 const mapStateToProps = state => {
   const pathname = state.router.location.pathname
-  const isViewDubModal = /profile.*dub/ig.test(pathname)
+  const isViewDubMode = /dub/ig.test(pathname)
   return {
     ...state.domains.dubtitle,
-    isViewDubModal
+    isViewDubMode
   }
 }
 
@@ -78,7 +80,27 @@ export default class extends React.Component {
   }
 
   componentDidMount() {
+    const { isViewDubMode } = this.props
+    if (isViewDubMode) {
+      const userId = getParameterByName('userId')
+      const media = getParameterByName('media')
+      firebase
+        .database()
+        .ref(`/users/${userId}/dubs/${media}`)
+        .once('value')
+        .then((snapshot) => {
+          const mediaFilePath = snapshot.val()
+          console.log('mediaFilePath', mediaFilePath)
+          // new audio
+          this.setState({
+            audioPlayer: new Audio(mediaFilePath)
+          })
+        })
+    }
     this.refs.dubtitlePlayer.subscribeToStateChange(this.handleStateChange.bind(this))
+  }
+  componentWillUnmount = () => {
+    this.state.audioPlayer.pause()
   }
   findSubtitle = (currentTime) => {
     const { subtitle } = this.props
@@ -160,12 +182,16 @@ export default class extends React.Component {
     if (this.state.currentTime !== state.currentTime) {
       const oneDecimalCurrentTime = Math.round(state.currentTime * 10) / 10
       const subtitle = this.findSubtitle(oneDecimalCurrentTime)
+      const isVideoPlaying = this.state.currentTime !== floorCurrentTime
+      if (isVideoPlaying) {
+        this.state.audioPlayer.play()
+      }
       this.setState({
         player: state,
         duration: floorDuration,
         currentTime: floorCurrentTime,
         subtitle,
-        isVideoPlaying: this.state.currentTime !== floorCurrentTime
+        isVideoPlaying
       })
     }
     const isEnded = state.duration === state.currentTime
@@ -232,10 +258,9 @@ export default class extends React.Component {
     })
   }
   render() {
-    console.log('state', this.state, this.props)
     const { subtitle, isRecording, isPlaybackWithRecorded } = this.state
-    const { isViewDubModal, videoSrc, posterSrc } = this.props
-    const mutedPlayer = (isRecording || isPlaybackWithRecorded) && this.hasSubtitle()
+    const { isViewDubMode, videoSrc, posterSrc } = this.props
+    const mutedPlayer = (isRecording || isPlaybackWithRecorded || isViewDubMode) && this.hasSubtitle()
     // console.log('mutedPlayer', 'isRecording', isRecording, 'isPlaybackWithRecorded', isPlaybackWithRecorded, this.hasSubtitle())
     return (
       <div className='dubtitle'>
@@ -274,7 +299,7 @@ export default class extends React.Component {
             disableDefaultControls
           >
             {
-              !isViewDubModal &&
+              !isViewDubMode &&
               <RecordButton
                 onClick={this.handleToggleRecord}
                 isRecording={isRecording}
@@ -285,8 +310,8 @@ export default class extends React.Component {
             <CurrentTimeDisplay order={2} />
             <ProgressControl order={3} />
             {
-              !isViewDubModal &&
-              <RecordVideoButton disabled={isViewDubModal} order={4} />
+              !isViewDubMode &&
+              <RecordVideoButton disabled={isViewDubMode} order={4} />
             }
           </ControlBar>
           {

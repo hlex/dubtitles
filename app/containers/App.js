@@ -76,7 +76,7 @@ class App extends Component {
     const {
       location: { pathname }
     } = this.props
-    return pathname === '/' || pathname === '/home' || /profile.*dub/ig.test(pathname)
+    return pathname === '/' || pathname === '/home' || /dub/ig.test(pathname)
   }
   render() {
     const isHomePage = this.isHomePage()

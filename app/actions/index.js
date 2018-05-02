@@ -179,7 +179,7 @@ export const handleClickViewMyDub = ({ data, slug }) => {
       data
     })
     const userId = firebase.auth().currentUser.uid
-    dispatch(goToPage(`profile/${userId}/dub/${slug}`))
+    dispatch(goToPage(`dub?userId=${userId}&media=${slug}`))
     dispatch(handleOpenDubtitlePopup())
   }
 }

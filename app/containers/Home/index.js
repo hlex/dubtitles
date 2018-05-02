@@ -1,8 +1,9 @@
 import React from 'react'
+import { Player, ControlBar } from 'video-react'
 // ======================================================
 // Components
 // ======================================================
-import { Button } from '../../components'
+import { Button, Corn } from '../../components'
 // ======================================================
 // Containers
 // ======================================================
@@ -20,7 +21,9 @@ import { openModal } from '../../hocs/connectModal'
 // ======================================================
 // Asset
 // ======================================================
+import favoriteMovie from '../../images/favoritemovies.svg'
 import wave from '../../images/wave.svg'
+import popcornBag from '../../images/popcorn_bag.svg'
 
 import youGetSpeak from '../../images/speaking.svg'
 import youGetListeing from '../../images/listening.svg'
@@ -49,15 +52,16 @@ export default class extends React.Component {
           <Header noBackground />
           <div className='home-container'>
             <div className='hero'>
-              <h1>Practicing English</h1>
-              <h2>can be as fun as your favorite movie</h2>
-              <h3 lang='th'>มาฝึกภาษาอังกฤษผ่านหนังเรื่องโปรดของคุณ</h3>
+              <h3>Practice English</h3>
+              <h3>can be as fun as your</h3>
+              <img className='favoriteMovie'src={favoriteMovie} />
+              <p lang='th'>"มาฝึกภาษาอังกฤษผ่านหนังเรื่องโปรดของคุณ"</p>
               <Button onClick={this.handleSignup} classified='tertiary' name='sign up' />
-              <img style={{ float: 'right' }} src='http://via.placeholder.com/525x300' />
             </div>
           </div>
-          <img id='tape1' src={graphicTape} />
-          <img id='tape2' src={graphicTape} />
+          <img id='popcornBag1' src={popcornBag} />
+          <Corn absolute style={{ width: '64px' }} />
+          <Corn absolute style={{ width: '24px' }} />
         </section>
         <div className=''>
           <img src={wave} />
@@ -66,13 +70,32 @@ export default class extends React.Component {
           <div className='white-cloud'>
             <img id='tape3' src={graphicTape} />
             <div className='home-container'>
+              <div className='intro'>
+                <div className='text'>
+                  <h1>JUST SAY IT,</h1>
+                  <h1>ENGLISH FOR FUN.</h1>
+                  <Button classified='primary' name={'let\'s dub'} />
+                </div>
+                <div className='intro-video'>
+                  <Player
+                    ref='player'
+                    poster={'http://via.placeholder.com/640x360'}
+                    preload='metadata'
+                    width={640}
+                    height={360}
+                  >
+                    <source src={'http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4'} />
+                    <ControlBar autoHide disableDefaultControls />
+                  </Player>
+                </div>
+              </div>
+            </div>
+            <div className='home-inner-container'>
               <div className='tooltip'>
                 <h4 lang='th'>
                   “ ใครว่าการฝึกพูดภาษาอังกฤษในชีวิตประจำวัน เป็นเรื่องยาก? ”
                 </h4>
               </div>
-            </div>
-            <div className='home-inner-container'>
               <div className='section-title'>
                 <h3>What is</h3>
                 <h1>dubtitles ?</h1>
@@ -115,43 +138,43 @@ export default class extends React.Component {
                 </ul>
               </div>
             </div>
-            <div className='home-container'>
-              <div className='section-title _right'>
-                <h3>What do you get from</h3>
-                <h1>dubtitles ?</h1>
-              </div>
-            </div>
             <div className='home-inner-container'>
-              <div className='whatDoYouGetWrapper'>
-                <div className='whatDoYouGet'>
-                  <img src={youGetSpeak} />
-                  <div className='topic'>
-                    <h3>speak</h3>
-                    <h3>confidently</h3>
-                  </div>
-                  <h4>พูดได้อย่างมั่นใจ</h4>
-                  <h4>และถูกต้อง</h4>
-                  <h4>จากต้นแบบที่ดี</h4>
+              <div className='whatDoYouGetBlock'>
+                <div className='section-title _center'>
+                  <h3>What do you get from</h3>
+                  <h1>dubtitles ?</h1>
                 </div>
-                <div className='whatDoYouGet'>
-                  <img src={youGetListeing} />
-                  <div className='topic'>
-                    <h3>speak</h3>
-                    <h3>confidently</h3>
+                <div className='whatDoYouGetWrapper'>
+                  <div className='whatDoYouGet'>
+                    <img src={youGetSpeak} />
+                    <div className='topic'>
+                      <h3>speak</h3>
+                      <h3>confidently</h3>
+                    </div>
+                    <h4>พูดได้อย่างมั่นใจ</h4>
+                    <h4>และถูกต้อง</h4>
+                    <h4>จากต้นแบบที่ดี</h4>
                   </div>
-                  <h4>พูดได้อย่างมั่นใจ</h4>
-                  <h4>และถูกต้อง</h4>
-                  <h4>จากต้นแบบที่ดี</h4>
-                </div>
-                <div className='whatDoYouGet'>
-                  <img src={youGetVocab} />
-                  <div className='topic'>
-                    <h3>speak</h3>
-                    <h3>confidently</h3>
+                  <div className='whatDoYouGet'>
+                    <img src={youGetListeing} />
+                    <div className='topic'>
+                      <h3>listen</h3>
+                      <h3>carefully</h3>
+                    </div>
+                    <h4>การฟังเพื่อเลียนแบบ</h4>
+                    <h4>จะช่วยสร้างการเรียนรู้</h4>
+                    <h4>ได้อย่างรวดเร็วยิ่งขึ้น</h4>
                   </div>
-                  <h4>พูดได้อย่างมั่นใจ</h4>
-                  <h4>และถูกต้อง</h4>
-                  <h4>จากต้นแบบที่ดี</h4>
+                  <div className='whatDoYouGet'>
+                    <img src={youGetVocab} />
+                    <div className='topic'>
+                      <h3>vocabulary</h3>
+                      <h3>for daily life</h3>
+                    </div>
+                    <h4>ไม่ใช่แค่ศัพท์ในพจนานุกรม</h4>
+                    <h4>แต่เป็นศัพท์ที่ใช้จริง</h4>
+                    <h4>ในประจำวัน</h4>
+                  </div>
                 </div>
               </div>
             </div>
@@ -164,7 +187,7 @@ export default class extends React.Component {
             <div className='stepWrapper'>
               <div className='steps discover'>
                 <img src={graphicTape} />
-                <h1>Discover</h1>
+                <h1>discover</h1>
                 <div className='_right'>
                   <h4>เลือกประโยคที่จะพูด</h4>
                   <h4>ซึ่งมีสองส่วนหลักๆคือ</h4>
@@ -174,32 +197,31 @@ export default class extends React.Component {
               </div>
               <div className='steps listen'>
                 <img src={stepListen} />
-                <h1 className='_right'>Listen</h1>
+                <h1 className='_right'>listen</h1>
                 <div className='_left'>
-                  <h4>เลือกประโยคที่จะพูด</h4>
-                  <h4>ซึ่งมีสองส่วนหลักๆคือ</h4>
-                  <h4>discover หรือ</h4>
-                  <h4>จาก lessons </h4>
+                  <h4>ตั้งใจฟังและอ่านตามคำ</h4>
+                  <h4>ที่ตัวละครพูด และอย่าลืม</h4>
+                  <h4>ที่จะลองพูดตามพร้อม</h4>
+                  <h4>ออกสำเนียงอย่างมั่นใจ</h4>
                 </div>
               </div>
               <div className='steps speak'>
                 <img src={stepSpeak} />
                 <div className='_right'>
-                  <h4>เลือกประโยคที่จะพูด</h4>
-                  <h4>ซึ่งมีสองส่วนหลักๆคือ</h4>
-                  <h4>discover หรือ</h4>
-                  <h4>จาก lessons </h4>
+                  <h4>จากนั้นกดอัดเสียง </h4>
+                  <h4>โดยครั้งนี้เสียงของเราจะ</h4>
+                  <h4>แทนที่เสียงของตัวละคร</h4>
                 </div>
-                <h1>Speak</h1>
+                <h1>speak</h1>
               </div>
               <div className='steps share'>
                 <img src={stepShare} />
-                <h1>Save & Share</h1>
+                <h1>save & share</h1>
                 <div className='_right'>
-                  <h4>เลือกประโยคที่จะพูด</h4>
-                  <h4>ซึ่งมีสองส่วนหลักๆคือ</h4>
-                  <h4>discover หรือ</h4>
-                  <h4>จาก lessons </h4>
+                  <h4>กดบันทึกคลิป และแชร์</h4>
+                  <h4>ให้เพืื่อนๆได้เห็นว่าเรา</h4>
+                  <h4>พูดได้เทพสุดๆ และชวน</h4>
+                  <h4>ทุกคนมาพูดไปด้วยกัน</h4>
                 </div>
               </div>
             </div>
@@ -209,7 +231,7 @@ export default class extends React.Component {
               <h3>Wanna try</h3>
               <h1>dubtitles</h1>
             </div>
-            <Button full className='_mg0a' classified='primary' name={'Let \'s dub'} />
+            <Button full className='_mg0a' classified='primary' name={'let \'s dub'} />
           </div>
           <Footer />
         </section>

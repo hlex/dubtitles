@@ -78,6 +78,9 @@ h1 {
   @extend %default-typography;
   @extend %CircularStdBold;
   font-size: 45px;
+  @include BREAKPOINT('T') {
+    font-size: 36px;
+  }
 }
 
 h2 {
