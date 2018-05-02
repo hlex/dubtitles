@@ -19,6 +19,7 @@ import { withRedux } from '../../hocs'
 // Action
 // ======================================================
 import {
+  getLessonData,
   goToPage
 } from '../../actions'
 // ======================================================
@@ -46,8 +47,8 @@ const settings = {
     {
       breakpoint: 992,
       settings: {
-        slidesToShow: 3,
-        slidesToScroll: 3
+        slidesToShow: 2,
+        slidesToScroll: 1
       }
     },
     {
@@ -62,68 +63,26 @@ const settings = {
 }
 
 const mapStateToProps = state => {
-  return {}
+  return {
+    isFetchedLessonData: state.entities.lessons.isFetch,
+    isUserLoggedIn: state.user.isLoggedIn,
+    lessons: state.entities.lessons.rawData,
+    entities: state.entities.lessons.data
+  }
 }
 
 const actionToProps = {
+  getLessonData,
   onSelectLesson: goToPage
 }
 
 @withRedux(mapStateToProps, actionToProps)
 export default class extends React.Component {
-  static defaultProps = {
-    lessons: [
-      {
-        isRecommended: true,
-        thumbnail: 'http://via.placeholder.com/380x240',
-        slug: 'english-for-muggles-1',
-        name: 'ENGLISH FOR MUGGLES 1',
-        subtitle: 'British Accent Training',
-        description: 'You will learn grammar and also British accent with the top hit scenes from Harry Potter season 1-7',
-        time: 30,
-        subLesson: 7
-      },
-      {
-        isRecommended: false,
-        thumbnail: 'http://via.placeholder.com/380x240',
-        slug: 'english-for-muggles-2',
-        name: 'ENGLISH FOR MUGGLES 2',
-        subtitle: 'British Accent Training',
-        description: 'You will learn grammar and also British accent with the top hit scenes from Harry Potter season 1-7',
-        time: 30,
-        subLesson: 7
-      },
-      {
-        isRecommended: false,
-        thumbnail: 'http://via.placeholder.com/380x240',
-        slug: 'english-for-muggles-3',
-        name: 'ENGLISH FOR MUGGLES 3',
-        subtitle: 'British Accent Training',
-        description: 'You will learn grammar and also British accent with the top hit scenes from Harry Potter season 1-7',
-        time: 30,
-        subLesson: 7
-      },
-      {
-        isRecommended: false,
-        thumbnail: 'http://via.placeholder.com/380x240',
-        slug: 'english-for-muggles-4',
-        name: 'ENGLISH FOR MUGGLES 4',
-        subtitle: 'British Accent Training',
-        description: 'You will learn grammar and also British accent with the top hit scenes from Harry Potter season 1-7',
-        time: 30,
-        subLesson: 7
-      },
-      {
-        isRecommended: false,
-        thumbnail: 'http://via.placeholder.com/380x240',
-        slug: 'english-for-muggles-5',
-        name: 'ENGLISH FOR MUGGLES 5',
-        subtitle: 'British Accent Training',
-        description: 'You will learn grammar and also British accent with the top hit scenes from Harry Potter season 1-7',
-        time: 30,
-        subLesson: 7
-      }
-    ]
+  componentDidMount = () => {
+    const { isFetchedLessonData, getLessonData } = this.props
+    if (!isFetchedLessonData) {
+      getLessonData()
+    }
   }
   handleSelectLesson = (lessonSlug) => {
     this.props.onSelectLesson(`lessons/${lessonSlug}`)

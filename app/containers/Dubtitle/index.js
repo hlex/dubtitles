@@ -100,7 +100,7 @@ export default class extends React.Component {
     this.refs.dubtitlePlayer.subscribeToStateChange(this.handleStateChange.bind(this))
   }
   componentWillUnmount = () => {
-    this.state.audioPlayer.pause()
+    if (this.state.audioPlayer !== null) this.state.audioPlayer.pause()
   }
   findSubtitle = (currentTime) => {
     const { subtitle } = this.props
@@ -183,7 +183,7 @@ export default class extends React.Component {
       const oneDecimalCurrentTime = Math.round(state.currentTime * 10) / 10
       const subtitle = this.findSubtitle(oneDecimalCurrentTime)
       const isVideoPlaying = this.state.currentTime !== floorCurrentTime
-      if (isVideoPlaying) {
+      if (isVideoPlaying && this.state.audioPlayer !== null) {
         this.state.audioPlayer.play()
       }
       this.setState({

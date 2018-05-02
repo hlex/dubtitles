@@ -11,7 +11,8 @@ import {
   USER_UPDATE_FAVORITES,
   USER_UPDATE_DUBS,
   DUBTITLE_SET_MEDIA,
-  ENTITIES_DISCOVER_RECEIVED
+  ENTITIES_DISCOVER_RECEIVED,
+  ENTITIES_LESSON_RECEIVED
 } from './actionTypes'
 import { clearForm } from './formAction'
 import { uploadBlob, writeUserFavoriteMedia, writeUserUnFavoriteMedia, writeUserDubtitle } from './firebaseAction'
@@ -21,6 +22,7 @@ import firebase from '../firebase'
 // Content
 // ======================================================
 import ContentDiscovers from '../../content/discovers'
+import ContentLessons from '../../content/lessons'
 
 export const goToPage = path => dispatch => dispatch(push(`/${path}`))
 
@@ -157,6 +159,34 @@ export const getDiscoverData = () => {
       type: ENTITIES_DISCOVER_RECEIVED,
       data: entities,
       rawData: ContentDiscovers
+    })
+  }
+}
+
+export const getLessonData = () => {
+  return (dispatch) => {
+    const entities = _.reduce(ContentLessons, (result, lesson) => {
+      const unitItems = _.reduce(lesson.subLessons || [], (acc, subLesson) => {
+        const units = _.reduce(subLesson.units, (accUnit, unit) => {
+          return {
+            ...accUnit,
+            [unit.slug || uuid()]: unit
+          }
+        }, {})
+        return {
+          ...acc,
+          ...units
+        }
+      }, {})
+      return {
+        ...result,
+        ...unitItems
+      }
+    }, {})
+    dispatch({
+      type: ENTITIES_LESSON_RECEIVED,
+      data: entities,
+      rawData: ContentLessons
     })
   }
 }

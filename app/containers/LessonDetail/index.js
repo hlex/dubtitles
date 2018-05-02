@@ -1,5 +1,7 @@
 import React from 'react'
 import _ from 'lodash'
+import IconLock from 'react-icons/lib/fa/lock'
+import IconCheck from 'react-icons/lib/fa/check'
 // ======================================================
 // Component
 // ======================================================
@@ -19,17 +21,29 @@ import { withRedux } from '../../hocs'
 // Action
 // ======================================================
 import {
+  handleSelectVideoToDub,
+  getLessonData,
   goToPage
 } from '../../actions'
 // ======================================================
 // Asset
 // ======================================================
+// import lock from '../../images/'
 
-const mapStateToProps = state => {
-  return {}
+const mapStateToProps = (state, ownProps) => {
+  console.log('ownProps', ownProps)
+  const lessonSlug = ownProps.match.params.slug
+  const lessons = state.entities.lessons.rawData
+  const lesson = _.find(lessons, lesson => lesson.slug === lessonSlug)
+  return {
+    lesson,
+    entities: state.entities.lessons.data
+  }
 }
 
 const actionToProps = {
+  getLessonData,
+  onClickVideo: handleSelectVideoToDub,
   onSelectLesson: goToPage
 }
 
@@ -274,10 +288,20 @@ export default class extends React.Component {
       ]
     }
   }
+  componentDidMount = () => {
+    const { isFetchedLessonData, getLessonData } = this.props
+    if (!isFetchedLessonData) {
+      getLessonData()
+    }
+  }
+  handleClickUnit = ({ slug }) => {
+    this.props.onClickVideo({ data: this.props.entities[slug] })
+  }
   render () {
     const {
       lesson
     } = this.props
+    console.log('>>>>>', this)
     const {
       isRecommended,
       thumbnail,
@@ -319,8 +343,11 @@ export default class extends React.Component {
                       {
                         _.map(subLessonItem.units, (unit) => {
                           return (
-                            <div className={`unitItem ${unit.locked ? 'locked' : ''}`}>
-                              <img src={unit.thumbnail} alt='' />
+                            <div onClick={() => this.handleClickUnit({ slug: unit.slug })} className={`unitItem ${unit.locked ? 'locked' : 'pass'}`}>
+                              <div className='iconStatus'>
+                                {unit.locked ? <IconLock /> : <IconCheck />}
+                              </div>
+                              <img src={unit.posterSrc} alt='' />
                               <div className='unitLevel'>
                                 <h5>{unit.name}</h5>
                                 <p className='small'>{unit.level.toUpperCase()}</p>

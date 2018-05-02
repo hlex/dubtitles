@@ -1,4 +1,9 @@
 .lessonCard {
   min-height: 550px;
   color: $red1;
+  .thumbnail-wrapper {
+    height: 200px;
+    width: auto;
+    cursor: pointer;
+  }
 }

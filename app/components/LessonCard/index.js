@@ -36,8 +36,11 @@ export default class LessonCard extends React.Component {
     } = this.props
     return (
       <Card className='lessonCard'>
-        <img onClick={onClick} src={thumbnail} alt='' />
+        <div className='thumbnail-wrapper'>
+          <img onClick={onClick} src={thumbnail} alt='' />
+        </div>
         <LessonDetail
+          onClick={onClick}
           showRecommenedTag={isRecommended}
           name={name}
           subtitle={subtitle}

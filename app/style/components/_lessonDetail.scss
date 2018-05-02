@@ -28,6 +28,11 @@
   .title {
     position: relative;
     margin: 20px 0;
+    cursor: pointer;
+    @include transition(0.3s);
+    &:hover {
+      color: darken($orange1, 10);
+    }
   }
   .title img.star {
     position: absolute;

@@ -20,7 +20,12 @@
 
 .lessonDetailCard .lessonDetail {
     .detail {
-        width: 400px;
+        flex-grow: 1;
+    }
+    .thumbnail-right-wrapper {
+        max-width: 500px;
+        width: 100%;
+        height: auto;
     }
 }
 
@@ -40,36 +45,57 @@ $text-in-circle-size: 48px;
 }
 
 .lessonDetailCard .subLessonItem {
-  margin-bottom: 30px;
+    margin-bottom: 50px;
     .header {
         display: flex;
         align-items: center;
-        margin-bottom: 20px;
+        margin-bottom: 30px;
     }
 }
 
 .lessonDetailCard .subLessonItem .unitList {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 80px;
 }
 
 .lessonDetailCard .subLessonItem .unitItem {
-  text-align: center;
-  margin: 0 15px;
-  background-color: $yellowOrange;
-  border-radius: 8px;
-  color: $white;
-  display: flex;
-  flex-direction: column;
-  &.locked {
-    background-color: $silverChalice;
-  }
-  img {
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-  }
-  .unitLevel {
-    padding: 10px;
-  }
+    text-align: center;
+    margin: 0 15px;
+    background-color: $yellowOrange;
+    border-radius: 8px;
+    color: $white;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    &.locked .iconStatus {
+        background-color: $silverChalice;
+    }
+    &.pass .iconStatus {
+        background-color: $emerald;
+    }
+    .iconStatus {
+        position: absolute;
+        top: -25px;
+        right: -25px;
+        font-size: 32px;
+        width: 50px;
+        height: 50px;
+        border-radius: 100%;
+        line-height: 42px;
+    }
+    &.pass {
+        cursor: pointer;
+    }
+    &.locked {
+        background-color: $silverChalice;
+    }
+    img {
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+    }
+    .unitLevel {
+        padding: 10px;
+    }
 }
