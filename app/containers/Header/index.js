@@ -9,7 +9,7 @@ import { withRedux } from '../../hocs'
 // ======================================================
 // Action
 // ======================================================
-import { handleUserLogout } from '../../actions'
+import { handleUserLogout, goToPage } from '../../actions'
 // ======================================================
 // Asset
 // ======================================================
@@ -23,6 +23,7 @@ const mapStateToProps = state => {
 }
 
 const actionToProps = {
+  onClickLogo: goToPage,
   onUserLogout: handleUserLogout
 }
 @withRouter
@@ -72,6 +73,9 @@ export default class Header extends Component {
         console.error(error)
       })
   }
+  handleClickLogo = () => {
+    this.props.onClickLogo('')
+  }
   render = () => {
     const { user, noBackground } = this.props
     return (
@@ -82,7 +86,7 @@ export default class Header extends Component {
             onLogout={this.handleLogout}
           />
           <div className='app-logo-wrapper'>
-            <AppLogo />
+            <AppLogo onClick={this.handleClickLogo} />
           </div>
         </div>
         {!this.isHome() && (

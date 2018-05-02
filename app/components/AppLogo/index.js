@@ -2,4 +2,4 @@ import React from 'react'
 
 import appIcon from '../../images/logo.svg'
 
-export default () => <img className='app-logo' src={appIcon} alt='' />
+export default (props) => <img onClick={props.onClick} className='app-logo' src={appIcon} alt='' />
