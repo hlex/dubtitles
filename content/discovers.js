@@ -251,6 +251,7 @@ export default [
     color: '#ff8e49',
     medias: [
       {
+        slug: 'the-hunger-games-I-am-volunteer-as-tribute',
         title: '"I’m volunteer as tribute"',
         source: 'The Hunger Games',
         timing: '19 sec.',
@@ -270,6 +271,7 @@ export default [
         }
       },
       {
+        slug: 'the-devil-wear-prada-you-have-no-style',
         title: '"You have no Style or Sense of Fashion"',
         source: 'The Devil Wears Prada',
         timing: '13 sec.',
@@ -288,6 +290,7 @@ export default [
         }
       },
       {
+        slug: '300-tonight-we-dine-in-hell',
         title: '"Tonight we dine in hell"',
         source: '300',
         timing: '13 sec.',
@@ -309,6 +312,7 @@ export default [
     color: '#ff8d47',
     medias: [
       {
+        slug: 'cinderella-story-waiting-for-you',
         title: '"Waiting for you is like waiting for rain"',
         source: 'Cinderella Story',
         timing: '19 sec.',
@@ -325,6 +329,7 @@ export default [
         }
       },
       {
+        slug: '500-days-of-summer-I-just-woke-up',
         title: '"I just woke up in one day, and I knew"',
         source: '500 Days of Summer',
         timing: '23 sec.',
@@ -350,6 +355,7 @@ export default [
     color: '#ff7c47',
     medias: [
       {
+        slug: 'mean-girl-stop-trying-to-make',
         title: '"Stop trying to make fetch happen"',
         source: 'Mean Girls',
         timing: '8 sec.',
@@ -365,6 +371,7 @@ export default [
         }
       },
       {
+        slug: 'clueless-ugh',
         title: '"Ugh, As if"',
         source: 'Clueless',
         timing: '5 sec.',

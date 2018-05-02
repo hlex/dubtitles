@@ -101,16 +101,19 @@
     margin-bottom: 150px;
     position: relative;
     z-index: 1;
+    color: $red1;
     .text {
         text-align: right;
         margin-right: 20px;
-        flex-basis: 33%;
+        flex-basis: 40%;
 
     }
     .intro-video {
         flex-grow: 1;
     }
-
+    .text h1:last-of-type {
+        margin-bottom: 20px;
+    }
 }
 
 .page-home .tooltip {
@@ -335,9 +338,9 @@
 
 .page-home #tape3 {
     position: absolute;
-    right: -100px;
-    bottom: 750px;
-    width: 300px;
+    left: -80px;
+    bottom: 500px;
+    width: 500px;
     z-index: 0;
 }
 

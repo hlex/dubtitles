@@ -56,17 +56,20 @@ class DiscoverPanel extends React.Component {
         </div>
         <div className='content'>
           <SlickSlider
-            infinite={false}
             settings={settingslider}
-            showPrevNextButtons={false}
-            // showPrevNextButtons
-            // prevArrow={<div />}
-            // nextArrowWrapperStyle={{
-            //   position: 'absolute',
-            //   top: 0,
-            //   right: '-8.3vw',
-            //   zIndex: 1
-            // }}
+            showPrevNextButtons
+            nextArrowWrapperStyle={{
+              position: 'absolute',
+              top: 0,
+              right: 0,
+              zIndex: 1
+            }}
+            prevArrowWrapperStyle={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              zIndex: 1
+            }}
           >
             { _.map(medias, (item, index) => (
               <div key={index} style={{ margin: '0px 7px' }}>

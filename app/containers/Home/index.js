@@ -81,10 +81,8 @@ export default class extends React.Component {
                     ref='player'
                     poster={'http://via.placeholder.com/640x360'}
                     preload='metadata'
-                    width={640}
-                    height={360}
                   >
-                    <source src={'http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4'} />
+                    <source src={'https://res.cloudinary.com/dtornrp4k/video/upload/v1525124268/harry/prove_yourself.mp4'} />
                     <ControlBar autoHide disableDefaultControls />
                   </Player>
                 </div>
