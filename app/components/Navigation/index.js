@@ -17,7 +17,7 @@ export default class Navigation extends Component {
     const { isLoggedIn } = this.props
     return (
       <nav>
-        <ul className='navigation'>
+        <ul className='navigation header'>
           <li>
             <NavLink activeClassName='active' to='/discover'>
               discover

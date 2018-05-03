@@ -4,39 +4,8 @@ import MediaCard from '../MediaCard'
 import SlickSlider from '../SlickSlider'
 
 const settings = {
-  speed: 500,
-  initialSlide: 0,
-  responsive: [
-    {
-      breakpoint: 576,
-      settings: {
-        slidesToShow: 1,
-        slidesToScroll: 1
-      }
-    },
-    {
-      breakpoint: 768,
-      settings: {
-        slidesToShow: 1.5,
-        slidesToScroll: 1
-      }
-    },
-    {
-      breakpoint: 992,
-      settings: {
-        slidesToShow: 3,
-        slidesToScroll: 3
-      }
-    },
-    {
-      breakpoint: 1200,
-      settings: {
-        slidesToShow: 3,
-        slidesToScroll: 3
-        // dots: true
-      }
-    }
-  ]
+  speed: 300,
+  initialSlide: 0
 }
 
 class DiscoverPanel extends React.Component {

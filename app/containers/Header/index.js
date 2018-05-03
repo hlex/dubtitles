@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router'
+import anime from 'animejs'
 import { Navigation, AppLogo, PageTitle } from '../../components'
 
 // ======================================================
@@ -31,6 +32,22 @@ const actionToProps = {
 export default class Header extends Component {
   static defaultProps = {
     noBackground: false
+  }
+  componentDidMount = () => {
+    setTimeout(() => {
+      anime({
+        targets: '.navigation.header li',
+        translateY: 0,
+        delay: 1000,
+        duration: (el, i, l) => i * 1000
+      })
+      anime({
+        targets: '.app-logo-wrapper',
+        translateX: 0,
+        easing: 'easeOutExpo',
+        duration: 2000
+      })
+    }, 500)
   }
   getPageTitle = () => {
     const {

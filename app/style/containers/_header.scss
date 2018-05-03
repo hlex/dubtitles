@@ -2,6 +2,8 @@
   position: absolute;
   right: 30px;
   top: 30px;
+  @include translateX(150%);
+  @include transition(0.3s);
 }
 
 .page-title-container {

@@ -3,10 +3,14 @@ import { renderRoutes } from 'react-router-config'
 import Helmet from 'react-helmet'
 import Modal from 'react-modal-es'
 import _ from 'lodash'
+import anime from 'animejs'
 
 import Header from './Header'
 import Authentication from './Authentication'
 import Dubtitle from './Dubtitle'
+
+import { AppLogo } from '../components'
+
 // ======================================================
 // Action
 // ======================================================
@@ -34,6 +38,9 @@ const actionToProps = {
 @connectModal
 @withRedux(mapStateToProps, actionToProps)
 class App extends Component {
+  state = {
+    loaded: false
+  }
   componentWillMount = () => {
     const { onUserStillLoggedIn } = this.props
     firebase.auth().onAuthStateChanged((user) => {
@@ -50,38 +57,42 @@ class App extends Component {
         // No user is signed in.
       }
     })
-    // firebase
-    //   .auth()
-    //   .onAuthStateChanged()
-    //   .then(user => {
-    //     console.log('onAuthStateChanged', user)
-    //     if (user) {
-    //       onUserStillLoggedIn(user)
-    //       //   // Write User (without Info) to localStorage first, so user is marked as 'loggedIn'
-    //       //   window.localStorage.setItem(storageKey, JSON.stringify(user.toJSON()));
-
-    //       //   const userWithInfo = await firebase.firestore()
-    //       //     .collection('iam_users').doc(user.uid).get()
-    //       //     .then(doc => ({ ...user.toJSON(), ...doc.data() }));
-
-    //       //   // When userInfo return, rewrite to add `userInfo` to user object
-    //       //   window.localStorage.setItem(storageKey, JSON.stringify(userWithInfo));
-    //       // } else {
-    //       //   typeof unregister === 'function' && unregister();
-    //       //   window.localStorage.removeItem(storageKey);
-    //     }
-    //   })
   }
   componentDidMount = () => {
     const {
       location: { pathname }
     } = this.props
     const isViewSub = regexIsViewSub.test(pathname)
-    console.log('isViewSub', isViewSub)
+    setTimeout(() => {
+      this.setState({
+        loaded: true
+      })
+      const timeline = anime.timeline()
+      timeline.add({
+        targets: '.iconLoading',
+        translateY: 30,
+        delay: 2000,
+        duration: 1000
+      })
+      timeline.add({
+        targets: '.iconLoading',
+        translateY: -1000,
+        duration: 1000
+      })
+      timeline.add({
+        targets: '.appLoading',
+        opacity: 0,
+        zIndex: {
+          value: [99999, -1],
+          round: true
+        },
+        duration: 2000
+      })
+    }, 500)
     if (isViewSub) {
       setTimeout(() => {
         openModal('dubtitle')
-      }, 2000)
+      }, 5000)
     }
   }
   isHomePage = () => {
@@ -91,10 +102,14 @@ class App extends Component {
     return pathname === '/' || pathname === '/home' || /dub/ig.test(pathname)
   }
   render() {
+    const { loaded } = this.state
     const isHomePage = this.isHomePage()
     return (
       <React.Fragment>
         <Helmet title='Dubtitles' />
+        <div className={`appLoading ${loaded ? 'loaded' : ''}`}>
+          <AppLogo className='iconLoading' />
+        </div>
         <Modal
           name='authentication'
           title=''

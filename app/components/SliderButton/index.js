@@ -18,7 +18,6 @@ export default class SliderButton extends React.Component {
 
 SliderButton.defaultProps = {
   title: 'Because waiting for you because waiting for you because waiting for you',
-  subTitle: 'Notting Hills',
   timing: '0.14 sec',
   img: 'https://picsum.photos/246/369/?random'
 }
