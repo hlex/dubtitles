@@ -16,7 +16,7 @@ export default class LessonCard extends React.Component {
   }
   static defaultProps = {
     isRecommended: false,
-    posterSrc: 'http://via.placeholder.com/380x240',
+    posterSrc: '',
     name: 'ENGLISH FOR MUGGLES',
     subtitle: 'British Accent Training',
     description: 'You will learn grammar and also British accent with the top hit scenes from Harry Potter season 1-7',

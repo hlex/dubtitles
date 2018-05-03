@@ -6,7 +6,7 @@ import {
 } from '../actions/actionTypes'
 import _ from 'lodash/fp'
 
-const DEFAULT_PROFILE_IMAGE = 'http://via.placeholder.com/250x250'
+const DEFAULT_PROFILE_IMAGE = ''
 
 const getInitialState = () => ({
   email: '',

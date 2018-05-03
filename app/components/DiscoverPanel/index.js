@@ -57,7 +57,7 @@ class DiscoverPanel extends React.Component {
         <div className='content'>
           <SlickSlider
             settings={settingslider}
-            showPrevNextButtons
+            showPrevNextButtons={_.size(medias) > 3}
             nextArrowWrapperStyle={{
               position: 'absolute',
               top: 0,

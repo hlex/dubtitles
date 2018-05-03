@@ -79,7 +79,7 @@ export default class extends React.Component {
                 <div className='intro-video'>
                   <Player
                     ref='player'
-                    poster={'http://via.placeholder.com/640x360'}
+                    poster={'https://res.cloudinary.com/dtornrp4k/image/upload/v1525123859/harry/harry1-01.jpg'}
                     preload='metadata'
                   >
                     <source src={'https://res.cloudinary.com/dtornrp4k/video/upload/v1525124268/harry/prove_yourself.mp4'} />
