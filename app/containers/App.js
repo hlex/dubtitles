@@ -79,7 +79,7 @@ class App extends Component {
     const isViewSub = regexIsViewSub.test(pathname)
     console.log('isViewSub', isViewSub)
     if (isViewSub) {
-      this.setTimeout(() => {
+      setTimeout(() => {
         openModal('dubtitle')
       }, 2000)
     }
