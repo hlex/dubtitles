@@ -111,6 +111,19 @@ export default class extends React.Component {
                 </div>
               ))
             }
+            <div className='lesson-item'>
+              <div style={{
+                minHeight: '550px',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                backgroundColor: '#fff'
+              }}>
+                <h1 style={{ color: '#e8523e' }}>
+                  Coming Soon
+                </h1>
+              </div>
+            </div>
           </SlickSlider>
         </div>
         <Footer />

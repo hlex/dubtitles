@@ -78,7 +78,11 @@ class App extends Component {
     } = this.props
     const isViewSub = regexIsViewSub.test(pathname)
     console.log('isViewSub', isViewSub)
-    if (isViewSub) openModal('dubtitle')
+    if (isViewSub) {
+      this.setTimeout(() => {
+        openModal('dubtitle')
+      }, 2000)
+    }
   }
   isHomePage = () => {
     const {
