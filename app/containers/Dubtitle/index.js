@@ -197,7 +197,7 @@ export default class extends React.Component {
     })
   }
   handleStateChange = (state, prevState) => {
-    if (state.currentTime > 0) this.state.audioPlayer.play()
+    if (state.currentTime > 0 && this.state.audioPlayer !== null) this.state.audioPlayer.play()
     // copy player state to this component's state
     const floorDuration = Math.floor(state.duration)
     const floorCurrentTime = Math.floor(state.currentTime)
@@ -206,7 +206,6 @@ export default class extends React.Component {
       const subtitle = this.findSubtitle(oneDecimalCurrentTime)
       const translation = this.findTranslation(oneDecimalCurrentTime)
       const isVideoPlaying = this.state.currentTime !== floorCurrentTime
-      // if (isVideoPlaying && this.state.audioPlayer !== null) this.state.audioPlayer.play()
       this.setState({
         player: state,
         duration: floorDuration,

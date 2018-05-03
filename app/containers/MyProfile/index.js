@@ -25,6 +25,7 @@ import {
 // ======================================================
 // Asset
 // ======================================================
+import popcornBag from '../../images/popcorn_bag.svg'
 
 const mapStateToProps = state => {
   const userFavoriteListArray = _.keys(state.user.favorites)
@@ -118,13 +119,16 @@ export default class extends React.Component {
         </div>
         {
           this.getNumberOfFavorite() > 0 &&
-          <MediaSliderPanel
-            groups={[myFavorites]}
-            favList={favorites}
-            canFav={isUserLoggedIn}
-            onClick={this.handleClickMedia}
-            onClickFav={this.handleClickFav}
-          />
+          <div style={{ position: 'relative' }}>
+            <img id='profilePopcorn' src={popcornBag} />
+            <MediaSliderPanel
+              groups={[myFavorites]}
+              favList={favorites}
+              canFav={isUserLoggedIn}
+              onClick={this.handleClickMedia}
+              onClickFav={this.handleClickFav}
+            />
+          </div>
         }
         {
           this.getNumberOfDub() > 0 &&
