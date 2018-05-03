@@ -2,6 +2,7 @@ import React from 'react'
 import _ from 'lodash'
 import IconLock from 'react-icons/lib/fa/lock'
 import IconCheck from 'react-icons/lib/fa/check'
+import { animateScroll as scroll } from 'react-scroll'
 // ======================================================
 // Component
 // ======================================================
@@ -50,7 +51,9 @@ const actionToProps = {
 @withRedux(mapStateToProps, actionToProps)
 export default class extends React.Component {
   componentDidMount = () => {
-    window.scrollTo(0, 0)
+    setTimeout(() => {
+      scroll.scrollToTop()
+    }, 1000)
     const { isFetchedLessonData, getLessonData } = this.props
     if (!isFetchedLessonData) {
       getLessonData()

@@ -1,5 +1,6 @@
 import React from 'react'
 import _ from 'lodash'
+import { animateScroll as scroll } from 'react-scroll'
 // ======================================================
 // Containers
 // ======================================================
@@ -59,7 +60,9 @@ const actionToProps = {
 @withRedux(mapStateToProps, actionToProps)
 export default class extends React.Component {
   componentDidMount = () => {
-    window.scrollTo(0, 0)
+    setTimeout(() => {
+      scroll.scrollToTop()
+    }, 1000)
     const { isFetchedDiscoverData, getDiscoverData } = this.props
     if (!isFetchedDiscoverData) {
       getDiscoverData()

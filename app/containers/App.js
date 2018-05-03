@@ -71,12 +71,14 @@ class App extends Component {
       timeline.add({
         targets: '.iconLoading',
         translateY: 30,
-        delay: 2000,
-        duration: 1000
+        delay: 500,
+        duration: 1000,
+        easing: 'easeInQuad'
       })
       timeline.add({
         targets: '.iconLoading',
-        translateY: -1000,
+        delay: 500,
+        translateY: -500,
         duration: 1000
       })
       timeline.add({

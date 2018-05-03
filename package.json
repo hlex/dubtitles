@@ -88,6 +88,7 @@
     "react-router-config": "^1.0.0-beta.4",
     "react-router-dom": "^4.2.2",
     "react-router-redux": "^5.0.0-alpha.9",
+    "react-scroll": "^1.7.9",
     "react-share": "^2.1.1",
     "react-skrollr": "^1.0.4",
     "react-slick": "^0.23.1",
