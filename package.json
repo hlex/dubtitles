@@ -57,6 +57,7 @@
     }
   },
   "dependencies": {
+    "animejs": "^2.2.0",
     "babel-cli": "^6.23.0",
     "babel-core": "^6.23.1",
     "babel-eslint": "8.2.2",
@@ -88,6 +89,7 @@
     "react-router-dom": "^4.2.2",
     "react-router-redux": "^5.0.0-alpha.9",
     "react-share": "^2.1.1",
+    "react-skrollr": "^1.0.4",
     "react-slick": "^0.23.1",
     "react-style-proptype": "^3.2.1",
     "recordrtc": "^5.4.6",
