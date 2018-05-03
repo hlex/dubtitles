@@ -46,6 +46,7 @@ const actionToProps = {
 @withRedux(mapStateToProps, actionToProps)
 export default class extends React.Component {
   componentDidMount = () => {
+    window.scrollTo(0, 0)
     const { isFetchedDiscoverData, getDiscoverData } = this.props
     if (!isFetchedDiscoverData) {
       getDiscoverData()

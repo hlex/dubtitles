@@ -1,6 +1,7 @@
 import React from 'react'
 import { Player, ControlBar } from 'video-react'
 import anime from 'animejs'
+import _ from 'lodash'
 // ======================================================
 // Components
 // ======================================================
@@ -19,11 +20,13 @@ import { openModal } from '../../hocs/connectModal'
 // ======================================================
 // Action
 // ======================================================
+import {
+  goToPage
+} from '../../actions'
 // ======================================================
 // Asset
 // ======================================================
 import favoriteMovie from '../../images/favoritemovies.svg'
-// import wave from '../../images/wave.svg'
 import popcornBag from '../../images/popcorn_bag.svg'
 
 import youGetSpeak from '../../images/speaking.svg'
@@ -49,29 +52,68 @@ const mapStateToProps = state => {
   return {}
 }
 
-const actionToProps = {}
+const actionToProps = {
+  onLetsDub: goToPage
+}
 
 @withRedux(mapStateToProps, actionToProps)
 export default class extends React.Component {
   componentDidMount = () => {
+    window.scrollTo(0, 0)
     const curvePaths = [
-      'M1920 253C1647 144 1448 31 888 71 353 126 113 59 0 0V260Z'
+      'M1920 253C1647 144 1448 31 888 71 353 126 113 59 0 0V260Z',
+      'M0 255S382 338 701 335 1286 284 1397 255 1831 153 1920 158V0H0Z'
       // 'M0,199V33S190,153.92,499.5,153.92C990.58,153.92,1065,0,1427.25,0,1712.37,0,1887,61.28,1920,79.14V196Z',
       // 'M0,19.8S278,204,552,204C1070,204,1064,.41,1478.38 .41,1780,0.41,1920,124,1920,124V285H1V19.8Z',
       // 'M0,48.38S291.69,211.11,565,211.11C945,211.11,1099,.5,1487,0.5,1779.39,0.5,1920,107,1920,107V352H0V48.38Z'
     ]
     curveAnimation('#curve0', curvePaths[0])
+    curveAnimation('#curve1', curvePaths[1])
     // curveAnimation('#curve0', curvePaths[0])
     // curveAnimation('#curve1', curvePaths[1], 50)
     // curveAnimation('#curve2', curvePaths[2], 100)
   }
+  animateCorn = () => {
+    anime({
+      targets: '.corn',
+      duration: 1000
+    })
+  }
+  generateCorn = () => {
+    for (let i = 0; i < randomNumberOfPopcorn; i += 1) {
+      document.getElementById('#pageHomeTop').append()
+    }
+    const MIN_PARTICLE = 10
+    const MAX_PARTICLE = 25
+    const MIN_SIZE = 24
+    const MAX_SIZE = 64
+    const MIN_X = 200
+    const MAX_X = 1000
+    const MIN_Y = 100
+    const MAX_Y = 450
+    const randomNumberOfPopcorn = _.random(MIN_PARTICLE, MAX_PARTICLE)
+    return _.map(_.range(randomNumberOfPopcorn), (i) => {
+      const randomSize = _.random(MIN_SIZE, MAX_SIZE)
+      const randomPos = {
+        top: _.random(MIN_Y, MAX_Y),
+        left: _.random(MIN_X, MAX_X),
+        transform: `rotate(${_.random(0, 360)}deg)`
+      }
+      return (
+        <Corn absolute style={{ width: `${randomSize}px`, ...randomPos }} />
+      )
+    })
+  }
   handleSignup = () => {
     openModal('authentication')
+  }
+  handleLetsDub = () => {
+    this.props.onLetsDub('discover')
   }
   render() {
     return (
       <div className='page-home'>
-        <section className='top'>
+        <section id='pageHomeTop' className='top'>
           <Header noBackground />
           <div className='home-container'>
             <div className='hero'>
@@ -83,8 +125,26 @@ export default class extends React.Component {
             </div>
           </div>
           <img id='popcornBag1' src={popcornBag} />
-          <Corn absolute style={{ width: '64px' }} />
-          <Corn absolute style={{ width: '24px' }} />
+          <Corn
+            absolute
+            style={{
+              width: '64px',
+              left: '260px',
+              bottom: '40px',
+              zIndex: '2',
+              transform: 'rotate(180deg)'
+            }}
+          />
+          <Corn
+            absolute
+            style={{
+              width: '24px',
+              left: '340px',
+              bottom: '35px',
+              zIndex: '2',
+              transform: 'rotate(180deg)'
+            }}
+          />
           <div className='svg-container'>
             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1920 560'>
               <path
@@ -165,6 +225,9 @@ export default class extends React.Component {
                 </ul>
               </div>
             </div>
+          </div>
+          <div className='halfWhite'>
+            <div className='fakeWhite' />
             <div className='home-inner-container'>
               <div className='whatDoYouGetBlock'>
                 <div className='section-title _center'>
@@ -203,6 +266,15 @@ export default class extends React.Component {
                     <h4>ในประจำวัน</h4>
                   </div>
                 </div>
+              </div>
+              <div className='svg-container bottom'>
+                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1920 400'>
+                  <path
+                    id='curve1'
+                    d='M0 255S382 338 701 335 1286 284 1397 255 1831 153 1920 158V0H0Z'
+                    transform='translate(0, 0)'
+                  />
+                </svg>
               </div>
             </div>
           </div>
@@ -258,7 +330,7 @@ export default class extends React.Component {
               <h3>Wanna try</h3>
               <h1>dubtitles</h1>
             </div>
-            <Button full className='_mg0a' classified='primary' name={'let \'s dub'} />
+            <Button onClick={this.handleLetsDub} full className='_mg0a' classified='primary' name={'let \'s dub'} />
           </div>
           <Footer />
         </section>

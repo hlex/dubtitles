@@ -50,6 +50,7 @@ const actionToProps = {
 @withRedux(mapStateToProps, actionToProps)
 export default class extends React.Component {
   componentDidMount = () => {
+    window.scrollTo(0, 0)
     const { isFetchedLessonData, getLessonData } = this.props
     if (!isFetchedLessonData) {
       getLessonData()

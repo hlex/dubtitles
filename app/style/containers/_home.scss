@@ -25,7 +25,7 @@
 
 .page-home section.top {
     position: relative;
-    min-height: 130vh;
+    min-height: 120vh;
     background-position: center;
 	position: relative;
 	overflow: hidden;
@@ -79,8 +79,8 @@
     position: relative;
     background-color: #fff;
     padding: 50px;
-    border-bottom-left-radius: 100px;
-    border-bottom-right-radius: 100px;
+    // border-bottom-left-radius: 100px;
+    // border-bottom-right-radius: 100px;
 }
 
 .page-home .intro {
@@ -118,6 +118,27 @@
         background-color: $orange7;
         color: #fff;
     }
+    &:before, &:after {
+        content: "";
+        position: absolute;
+        bottom: -20px;
+        border: 0;
+        border-style: solid;
+        display: block;
+        width: 0;
+    }
+    &:before {
+        right: 20px;
+        border-right-width: 30px;
+        border-bottom-width: 20px;
+        border-color: transparent $orange7;
+    }
+    &:after {
+        right: 20px;
+        border-right-width: 5px;
+        border-bottom-width: 20px;
+        border-color: transparent #fff;
+    }
 }
 
 .page-home .section-title {
@@ -150,6 +171,27 @@
     margin-left: auto;
     li {
         margin-bottom: 15px;
+    }
+    &:before, &:after {
+        content: "";
+        position: absolute;
+        bottom: -30px;
+        border: 0;
+        border-style: solid;
+        display: block;
+        width: 0;
+    }
+    &:before {
+        left: 20px;
+        border-left-width: 60px;
+        border-bottom-width: 30px;
+        border-color: transparent $pink2;
+    }
+    &:after {
+        left: 20px;
+        border-left-width: 10px;
+        border-bottom-width: 30px;
+        border-color: transparent #fff;
     }
 }
 
@@ -328,9 +370,9 @@
 .page-home #tape3 {
     position: absolute;
     left: -80px;
-    bottom: 500px;
+    bottom: -150px;
     width: 500px;
-    z-index: 0;
+    z-index: 1;
 }
 
 #popcornBag1 {
@@ -367,27 +409,38 @@ img.corn {
 // 	position: relative;
 // 	overflow: hidden;
 // }
+.halfWhite {
+    position: relative;
+    height: auto;
+    .fakeWhite {
+        width: 100%;
+        height: 350px;
+        position: absolute;
+        background-color: #fff;
+    }
+}
 
 .svg-container {
 	position: absolute;
 	bottom: 0;
 	left: 0;
-	width: 100%;
-
+    width: 100%;
+    &.bottom {
+        bottom: 80px;
+    }
 	svg {
 		display: block;
-
 		path {
             // fill: red;
 			fill: #fff;
 
-			&#curve1 {
-				opacity: .6;
-			}
+			// &#curve1 {
+			// 	opacity: .6;
+			// }
 
-			&#curve2 {
-				opacity: .4;
-			}
+			// &#curve2 {
+			// 	opacity: .4;
+			// }
 		}
 	}
 }
