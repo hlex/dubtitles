@@ -41,7 +41,7 @@ const settings = {
 
 class DiscoverPanel extends React.Component {
   render () {
-    const { data, favList, canFav, onClick, onClickFav } = this.props
+    const { data, dubList, favList, canFav, onClick, onClickFav } = this.props
     const { label, canDownload, subLabel, color, medias } = data
     const settingslider = {
       ...settings,
@@ -56,6 +56,7 @@ class DiscoverPanel extends React.Component {
         </div>
         <div className='content'>
           <SlickSlider
+            infinite={false}
             settings={settingslider}
             showPrevNextButtons={_.size(medias) > 3}
             nextArrowWrapperStyle={{
@@ -75,6 +76,7 @@ class DiscoverPanel extends React.Component {
               <div key={index} style={{ margin: '0px 7px' }}>
                 <MediaCard
                   videoID={`${item.slug}-${index}`}
+                  dubSrc={_.get(dubList, item.slug, '')}
                   title={item.title}
                   subtitle={item.source}
                   timing={item.timing}

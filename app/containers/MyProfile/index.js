@@ -76,7 +76,7 @@ export default class extends React.Component {
   }
   render() {
     const { user, myDubs, myFavorites } = this.props
-    const { isUserLoggedIn, favorites } = user
+    const { isUserLoggedIn, favorites, dubs } = user
     console.log(this)
     return (
       <div className='page-myProfile'>
@@ -131,6 +131,7 @@ export default class extends React.Component {
           <MediaSliderPanel
             groups={[myDubs]}
             favList={favorites}
+            dubList={dubs}
             canFav={false}
             onClick={this.handleClickViewMyDub}
           />

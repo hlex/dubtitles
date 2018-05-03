@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import classNames from 'classnames'
 
-import icon from '../../../images/video2.svg'
+import icon from '../../../images/video.svg'
 
 const propTypes = {
   player: PropTypes.object,

@@ -14,12 +14,12 @@ import { userLogin } from '../actions'
 // ======================================================
 // Hoc
 // ======================================================
-import { connectModal } from '../hocs/connectModal'
-// import { connectDubModal } from '../hocs/connectDubModal'
+import { openModal, connectModal } from '../hocs/connectModal'
 
 import { withRedux } from '../hocs'
-
 import firebase from '../firebase'
+
+const regexIsViewSub = /dub/ig
 
 const mapStateToProps = state => {
   return {
@@ -71,6 +71,14 @@ class App extends Component {
     //       //   window.localStorage.removeItem(storageKey);
     //     }
     //   })
+  }
+  componentDidMount = () => {
+    const {
+      location: { pathname }
+    } = this.props
+    const isViewSub = regexIsViewSub.test(pathname)
+    console.log('isViewSub', isViewSub)
+    if (isViewSub) openModal('dubtitle')
   }
   isHomePage = () => {
     const {

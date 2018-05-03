@@ -103,6 +103,7 @@
 
 .confirmToSaveDub {
   max-width: 400px !important;
+  overflow: hidden;
   .modal-body {
     min-height: auto !important;
   }
@@ -110,7 +111,6 @@
     display: none;
   }
   .modal-children {
-    padding: 20px;
     text-align: center;
   }
   .modal-children h1 {
@@ -132,4 +132,44 @@
   button:first-of-type {
     margin-left: 0;
   }
+}
+
+.confirmToSaveDub .summary {
+  padding: 20px;
+  @include transition(0.3s);
+  &.done {
+    transform: translateX(-100%);
+  }
+}
+
+.confirmToSaveDub .share {
+  padding: 20px;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  background-color: #fff;
+  border-radius: 8px;
+  z-index: 10;
+  transform: translateX(100%);
+  @include transition(0.3s);
+  &.active {
+    transform: translateX(0);
+  }
+  .icon-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+  }
+}
+
+.iconHowTo {
+  position: absolute;
+  width: 100%;
+  max-width: 33px;
+  height: auto;
+  top: 15px;
+  right: 15px;
+  z-index: 2;
 }

@@ -34,7 +34,7 @@ export default class extends React.Component {
     onClickFav: () => null
   }
   render() {
-    const { groups, favList, canFav, onClick, onClickFav } = this.props
+    const { groups, dubList, favList, canFav, onClick, onClickFav } = this.props
     return (
       <div className='mediaSliderPanel'>
         {_.map(groups, (group, index) => (
@@ -42,6 +42,7 @@ export default class extends React.Component {
             <DiscoverPanel
               key={group.label}
               favList={favList}
+              dubList={dubList}
               canFav={canFav}
               onClickFav={onClickFav}
               onClick={onClick}

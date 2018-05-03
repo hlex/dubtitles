@@ -38,7 +38,8 @@ export default class MediaCard extends React.Component {
   }
   render() {
     const { isFav } = this.state
-    const { title, subtitle, timing, posterSrc, videoID, videoSrc, onClick, canFav, canDownload } = this.props
+    const { dubSrc, title, subtitle, timing, posterSrc, videoID, videoSrc, onClick, canFav, canDownload, dubList } = this.props
+    console.log()
     return (
       <div className='mediaCard'>
         <div className='video-holder'>
@@ -67,7 +68,7 @@ export default class MediaCard extends React.Component {
         {
           canDownload &&
           <button className='favIcon' onClick={() => this.handelFav()}>
-            <img className='iconDownload' src={iconDownload} />
+            <a href={dubSrc} download><img className='iconDownload' src={iconDownload} /></a>
           </button>
         }
       </div>

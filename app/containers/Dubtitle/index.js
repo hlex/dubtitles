@@ -2,6 +2,10 @@ import React from 'react'
 import _ from 'lodash'
 import Modal from 'react-modal-es'
 import {
+  FacebookIcon,
+  FacebookShareButton
+} from 'react-share'
+import {
   Player,
   ControlBar,
   PlayToggle,
@@ -36,6 +40,10 @@ import { saveDub } from '../../actions'
 import {
   getParameterByName
 } from '../../helpers/global'
+// ======================================================
+// Asset
+// ======================================================
+import iconHowTo from '../../images/howto.svg'
 
 const hasGetUserMedia = !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
   navigator.mozGetUserMedia || navigator.msGetUserMedia)
@@ -77,10 +85,12 @@ export default class extends React.Component {
     isRecording: false,
     isPlaybackWithRecorded: false,
     recordVideo: null,
-    recordedSrc: null
+    recordedSrc: null,
+    saveDone: false
   }
 
   componentDidMount() {
+    // openModal('confirmToSaveDub')
     const { isViewDubMode } = this.props
     if (isViewDubMode) {
       const userId = getParameterByName('userId')
@@ -92,9 +102,13 @@ export default class extends React.Component {
         .then((snapshot) => {
           const mediaFilePath = snapshot.val()
           console.log('mediaFilePath', mediaFilePath)
+          const audioPlayer = new Audio(mediaFilePath)
+          this.play()
+          audioPlayer.play()
+          console.log(audioPlayer)
           // new audio
           this.setState({
-            audioPlayer: new Audio(mediaFilePath)
+            audioPlayer
           })
         })
     }
@@ -102,6 +116,9 @@ export default class extends React.Component {
   }
   componentWillUnmount = () => {
     if (this.state.audioPlayer !== null) this.state.audioPlayer.pause()
+  }
+  play = () => {
+    this.refs.dubtitlePlayer.play()
   }
   findSubtitle = (currentTime) => {
     const { subtitle } = this.props
@@ -117,6 +134,7 @@ export default class extends React.Component {
     })
     return currentTranslation || ' '
   }
+  getCurrentUser = () => _.get(firebase.auth().currentUser, 'uid', '')
   getIsPlayerPlaying = () => _.get(this.state, 'player.ended', true) === false
   getSubtitle = () => this.findSubtitle(this.state.currentTime)
   hasSubtitle = () => this.getSubtitle() !== ' '
@@ -171,14 +189,15 @@ export default class extends React.Component {
       recordedSrc: recordVideo.blob,
       mediaSlug: slug
     }, () => {
-      closeModal('confirmToSaveDub')
-      alert('Save Success')
+      // closeModal('confirmToSaveDub')
       this.setState({
-        recordedSrc: null
+        recordedSrc: null,
+        saveDone: true
       })
     })
   }
   handleStateChange = (state, prevState) => {
+    if (state.currentTime > 0) this.state.audioPlayer.play()
     // copy player state to this component's state
     const floorDuration = Math.floor(state.duration)
     const floorCurrentTime = Math.floor(state.currentTime)
@@ -187,14 +206,15 @@ export default class extends React.Component {
       const subtitle = this.findSubtitle(oneDecimalCurrentTime)
       const translation = this.findTranslation(oneDecimalCurrentTime)
       const isVideoPlaying = this.state.currentTime !== floorCurrentTime
-      if (isVideoPlaying && this.state.audioPlayer !== null) this.state.audioPlayer.play()
+      // if (isVideoPlaying && this.state.audioPlayer !== null) this.state.audioPlayer.play()
       this.setState({
         player: state,
         duration: floorDuration,
         currentTime: floorCurrentTime,
         subtitle,
         translation,
-        isVideoPlaying
+        isVideoPlaying,
+        saveDone: false
       })
     }
     const isEnded = state.duration === state.currentTime
@@ -261,9 +281,9 @@ export default class extends React.Component {
     })
   }
   render() {
-    console.log('Dubtitle:', this.props)
-    const { translation, subtitle, isRecording, isPlaybackWithRecorded } = this.state
-    const { tips = [], isViewDubMode, videoSrc, posterSrc } = this.props
+    // console.log('Dubtitle:', this.props)
+    const { saveDone, translation, subtitle, isRecording, isPlaybackWithRecorded } = this.state
+    const { tips = [], slug, title, isViewDubMode, videoSrc, posterSrc } = this.props
     const mutedPlayer = (isRecording || isPlaybackWithRecorded || isViewDubMode) && this.hasSubtitle()
     // console.log('mutedPlayer', 'isRecording', isRecording, 'isPlaybackWithRecorded', isPlaybackWithRecorded, this.hasSubtitle())
     return (
@@ -279,12 +299,27 @@ export default class extends React.Component {
           willUnmount={() => null}
           willClose={() => null}
         >
-          <h3>Great</h3>
-          <h5 className='italic'>A little bit more practice to become a perfect</h5>
-          <h1>{`${_.random(80, 100)}%`}</h1>
-          <div className='groupButton'>
-            <Button onClick={this.handleDubAgain} className='tertiary' name='dub again' />
-            <Button onClick={this.handleSaveDub} className='primary' name='save' />
+          <div className={`summary ${saveDone ? 'done' : ''}`}>
+            <h3>Great</h3>
+            <h5 className='italic'>A little more practice will be perfect</h5>
+            <h1>{`${_.random(80, 100)}%`}</h1>
+            <div className='groupButton'>
+              <Button onClick={this.handleDubAgain} className='tertiary' name='dub again' />
+              <Button onClick={this.handleSaveDub} className='primary' name='save' />
+            </div>
+          </div>
+          <div className={`share ${saveDone ? 'active' : ''}`}>
+            <h3>Share</h3>
+            <FacebookShareButton
+              url={`https://dubtitles.me/#/dub?userId=${this.getCurrentUser()}&media=${slug}`}
+              quote={title}
+              hashtag='#dubtitles'
+            >
+              <div className='icon-wrapper'>
+                <FacebookIcon size={32} round />
+              </div>
+            </FacebookShareButton>
+            <Button onClick={this.handleDubAgain} className='primary' name='close' />
           </div>
         </Modal>
         <Player
@@ -296,6 +331,7 @@ export default class extends React.Component {
           poster={posterSrc}
           preload='auto'
         >
+          <img className='iconHowTo' src={iconHowTo} />
           <source src={videoSrc} />
           <ControlBar
             autoHide={false}
