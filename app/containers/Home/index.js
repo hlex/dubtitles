@@ -85,6 +85,19 @@ export default class extends React.Component {
         direction: 'alternate',
         loop: true
       })
+      anime({
+        targets: '.corn',
+        translateX: 10,
+        translateY: 10,
+        delay: function(el, i, l) {
+          return i * _.random(50, 150)
+        },
+        duration: function(el, i, l) {
+          return i * _.random(50, 150)
+        },
+        direction: 'alternate',
+        loop: true
+      })
     }, 1000)
     anime({
       targets: '.bottomLetsDubButton',
@@ -130,6 +143,40 @@ export default class extends React.Component {
   handleLetsDub = () => {
     this.props.onLetsDub('discover')
   }
+  renderCorns = () => {
+    const corns = [
+      { type: '1', top: 385, left: 160, width: 42, deg: 0 },
+      { type: '2', top: 193, left: 165, width: 35, deg: 0 },
+      { type: '2', top: 263, left: 95, width: 35, deg: 0 },
+      { type: '1', top: 274, left: 199, width: 55, deg: 0 },
+      { type: '1', top: 240, left: 289, width: 72, deg: 0 },
+      { type: '1', top: 343, left: 327, width: 55, deg: 0 },
+      { type: '2', top: 212, left: 374, width: 37, deg: 0 },
+      { type: '2', top: 107, left: 439, width: 57, deg: 0 },
+      { type: '2', top: 139, left: 603, width: 37, deg: 0 },
+      { type: '1', top: 123, left: 813, width: 107, deg: 0 },
+      { type: '2', top: 316, left: 908, width: 37, deg: 0 },
+      { type: '2', top: 445, left: 910, width: 67, deg: 0 },
+      { type: '2', top: 193, left: 1002, width: 107, deg: 0 },
+      { type: '2', top: 354, left: 1012, width: 76, deg: 0 },
+      { type: '1', top: 276, left: 1126, width: 154, deg: 180 }
+    ]
+    return _.map(corns, ({ type, top, left, width, deg }) => {
+      return (
+        <Corn
+          type={type}
+          absolute
+          style={{
+            width: `${width}px`,
+            left: `${left}px`,
+            top: `${top}px`,
+            zIndex: '2',
+            transform: `rotate(${deg}deg)`
+          }}
+        />
+      )
+    })
+  }
   render() {
     return (
       <ParallaxProvider
@@ -155,6 +202,7 @@ export default class extends React.Component {
                 />
               </div>
             </div>
+            {this.renderCorns()}
             <img id='popcornBag1' src={popcornBag} />
             <Corn
               absolute

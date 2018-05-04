@@ -6,6 +6,6 @@ export default props => (
   <img
     className={`corn ${props.absolute ? 'abs' : ''}`}
     style={props.style}
-    src={props.type === 1 ? corn1 : corn2}
+    src={props.type === '1' ? corn1 : corn2}
   />
 )
